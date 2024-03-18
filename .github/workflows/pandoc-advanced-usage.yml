@@ -1,29 +1,49 @@
-# https://github.com/pandoc/pandoc-action-example
+name:  Mendax Example
 
-name: Advanced Usage
-
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  convert_via_pandoc:
-    runs-on: ubuntu-22.04
+  loop_job:
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-
-      - name: create file list
-        id: files_list
+      - name: Mendax Loop through numbers
+        id: loop
         run: |
-          echo "Lorem ipsum" > lorem_1.md  # create two example files
-          echo "dolor sit amet" > lorem_2.md
-          mkdir output  # create output dir
-          # this will also include README.md
-          echo "files=$(printf '"%s" ' *.md)" > $GITHUB_OUTPUT
+          for i in 1 2 3 4 5
+          do
+            echo "Mendax Current number: $i"
+          done
 
-      - uses: docker://pandoc/latex:2.9
-        with:
-          args: --output=output/result.pdf ${{ steps.files_list.outputs.files }}
+# https://github.com/pandoc/pandoc-action-example
+
+# name: Advanced Usage
+
+# on: push
+
+# jobs:
+#   convert_via_pandoc:
+#     runs-on: ubuntu-22.04
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: create file list
+#         id: files_list
+#         run: |
+#           echo "Lorem ipsum" > lorem_1.md  # create two example files
+#           echo "dolor sit amet" > lorem_2.md
+#           mkdir output  # create output dir
+#           # this will also include README.md
+#           echo "files=$(printf '"%s" ' *.md)" > $GITHUB_OUTPUT
+
+#       - uses: docker://pandoc/core:3.1
+#         with:
+#           args: --output=output ${{ steps.files_list.outputs.files }}
           
-      - uses: actions/upload-artifact@v3
-        with:
-          name: output
-          path: output
+#       - uses: actions/upload-artifact@v4
+#         with:
+#           name: output
+#           path: output
