@@ -13,7 +13,7 @@ jobs:
       - name: Mendax Loop through numbers
         id: loop
         run: |
-          for i in 1 2 3 4 5
+          for i in $( find . -name '*.md' -print0 )
           do
             echo "Mendax Current number: $i"
           done
