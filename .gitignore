@@ -872,6 +872,7 @@ vignettes/*.pdf
 .Renviron
 
 # pkgdown site
+# Comment out if using Github Pages > Select Folder other than /
 #docs/
 
 # translation temp files
