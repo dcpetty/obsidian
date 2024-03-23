@@ -1,6 +1,5 @@
 ---
-title: "AnotherPage
-"
+title: "AnotherPage"
 categories:
  - obsidian
 ---

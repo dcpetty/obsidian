@@ -18,7 +18,8 @@ __maintainer__ = "David C. Petty"
 __email__ = "dcp@acm.org"
 __status__ = "Development"
 
-import argparse, datetime, fnmatch, glob, log, os, pathlib, re, shutil, sys, unicodedata
+import argparse, log, os, re, sys
+import datetime, fnmatch, glob, pathlib, shutil, unicodedata
 
 # Set up logging.
 logger = log.log(__name__, 'obsidian')
@@ -35,7 +36,7 @@ def valid_paths(repo_path):
     # List of patterns to include.
     to_inc = ['*.md', '*.png', '*.jpg', '*.html', ]
     # List of patterns to exclude.
-    to_exc = ['**/.git/**', '**/docs/**', '**/scripts/**', '**/foo/**/bar/*.html']
+    to_exc = ['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md', '**/foo/**/bar/*.html']
 
     # transform glob patterns to regular expressions
     wc_regex = lambda glob: fnmatch.translate(glob.replace('**/', ':GLOB:')) \
@@ -101,9 +102,9 @@ def slugify(path):
     return slugified
 
 
-def format_yaml(repo, path, title, categories, tags):
-    """Return YAML front matter for..."""
-    logger.debug(f"format_yaml: '{repo}' '{path}' '{title}' '{categories}' '{tags}'")
+def format_yaml(title, repo, categories, tags, path=None):
+    """Return YAML front matter for title, [repo] + categories, & tags.
+    If path, logging.DEBUG the YAML front matter."""
     categories_yaml = '\n'.join(
         ['categories:'] + [f' - {c}' for c in [repo] + categories]) + '\n' \
             if [repo] + categories else ''
@@ -114,19 +115,70 @@ def format_yaml(repo, path, title, categories, tags):
         f'title: "{title}"',
         f'{categories_yaml}{tags_yaml}---\n'])
 
-    logger.debug(f"YAML for '{path}'\n{yaml}")
+    if path:
+        logger.debug(f"format_yaml:\n"
+            f"     (title)'{title}'\n"
+            f"      (repo)'{repo}'\n"
+            f"(categories)'{categories}'\n"
+            f"      (tags)'{tags}'\n"
+            f"YAML for '{path}'\n{yaml.strip()}")
 
     return yaml
 
 
 def reformat_links(line, repo, ext):
-    """"""
+    """Replace local links in line with corrected slugified links."""
     return line
 
 
 def parse_tags(line):
-    """"""
+    """Return list of tags parsed from line."""
     return [h.strip()[1:] for h in re.findall('[#]\w+\s', f"{line} ")]
+
+
+def copy_file(note_path, repo, repo_path, site_path):
+    """"""
+    note_stat = pathlib.Path(note_path).stat()
+    date = datetime.date.fromtimestamp(note_stat.st_ctime)
+    rel_note_path = note_path.replace(f"{repo_path}/", '')
+    categories = rel_note_path.split(os.sep)[: -1]
+    note_filename = rel_note_path.split(os.sep)[-1]
+    title = note_filename
+    _posts_path = os.path.join(site_path, '_posts')
+
+    # Process and copy newer files.
+    if rel_note_path.endswith('.md'):
+        # Process and copy newer .MD file.
+        lines, tags = list(), list()
+        with open(note_path, encoding='latin1') as rf:
+            for line in rf.readlines():
+                lines.append(line.lstrip())
+                tags += parse_tags(line)
+        for i, line in enumerate(lines):
+            if not line: continue  # skip leading blank lines
+            if line.startswith('# '):  # extract title from first heading1
+                title = line[2:].strip()
+                lines = lines[i + 1:]
+                break
+        # Check modification dates.
+        post_dirname = os.path.join(*[_posts_path, ] + [slugify(c) for c in categories])
+        post_filename = f"{date}-{slugify(note_filename)}"
+        post_path = os.path.join(post_dirname, post_filename)
+        note_changed = not os.path.isfile(post_path) \
+            or note_stat.st_mtime > pathlib.Path(post_path).stat().st_mtime
+        # logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
+        if note_changed:
+            yaml = format_yaml(title, repo, categories, tags, note_path)
+            os.makedirs(post_dirname, exist_ok=True)
+            logger.info(f"{note_path} \u2192 {post_path}")
+            with open(post_path, "w") as wf:
+                wf.write(yaml)
+                wf.writelines(lines)
+        else:
+            logger.info(f"UNCHANGED: {note_path}")
+    else:
+        # Process and copy newer non-.MD files.
+        logger.debug(f"NOT COPIED: '{rel_note_path}'")
 
 
 def prepare(REPODIR, POSTDIR):
@@ -139,47 +191,20 @@ def prepare(REPODIR, POSTDIR):
     logger.debug(f"site_path: {site_path}")
 
     # Clean _posts and _site directories.
-    _posts_path = os.path.join(site_path, '_posts')
-    if os.path.isdir(_posts_path):
-        logger.debug(f"removing: {_posts_path}")
-        shutil.rmtree(_posts_path, ignore_errors=True)
-    os.mkdir(_posts_path)   # recreate _posts directory
-    _site_path = os.path.join(site_path, '_site')
-    if os.path.isdir(_site_path):
-        logger.debug(f"removing: {_site_path}")
-        shutil.rmtree(_site_path, ignore_errors=True)
+    # _posts_path = os.path.join(site_path, '_posts')
+    # if os.path.isdir(_posts_path):
+    #     logger.debug(f"removing: {_posts_path}")
+    #     shutil.rmtree(_posts_path, ignore_errors=True)
+    # os.mkdir(_posts_path)   # recreate _posts directory
+    # _site_path = os.path.join(site_path, '_site')
+    # if os.path.isdir(_site_path):
+    #     logger.debug(f"removing: {_site_path}")
+    #     shutil.rmtree(_site_path, ignore_errors=True)
 
     # Collect paths to modify and copy.
     paths = valid_paths(repo_path)
-    for path in paths:
-        date = datetime.date.fromtimestamp(pathlib.Path(path).stat().st_ctime)
-        rel_path = path.replace(f"{repo_path}/", '')
-        categories = rel_path.split(os.sep)[: -1]
-        note_filename = rel_path.split(os.sep)[-1]
-        title = note_filename
-        if rel_path.endswith('.md'):
-            lines, tags = list(), list()
-            with open(path, encoding='latin1') as rf:
-                for line in rf.readlines():
-                    lines.append(line.lstrip())
-                    tags += parse_tags(line)
-            for i, line in enumerate(lines):
-                if not line: continue       # skip leading blank lines
-                if line.startswith('# '):   # extract title from first heading1
-                    title = line[2: ]
-                    lines = lines[i + 1: ]
-                    break
-            yaml = format_yaml(repo, path, title, categories, tags)
-            post_dirname = os.path.join(*[_posts_path, ] + categories)
-            post_filename = f"{date}-{slugify(note_filename)}"
-            os.makedirs(post_dirname, exist_ok=True)
-            post_path = os.path.join(post_dirname, post_filename)
-            logger.info(f"{path} \u2192 {post_path}")
-            with open(post_path, "w") as wf:
-                wf.write(yaml)
-                wf.writelines(lines)
-        else:
-            logger.debug(f"NOT COPIED: '{rel_path}'")
+    for path in sorted(paths):
+        copy_file(path, repo, repo_path, site_path)
 
 
 class Parser(argparse.ArgumentParser):

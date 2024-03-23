@@ -1,6 +1,5 @@
 ---
-title: "AdditionalNote
-"
+title: "AdditionalNote"
 categories:
  - obsidian
  - SubFolder

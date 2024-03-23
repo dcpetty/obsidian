@@ -1,6 +1,5 @@
 ---
-title: "ObsidianJekyll
-"
+title: "ObsidianJekyll"
 categories:
  - obsidian
 tags:

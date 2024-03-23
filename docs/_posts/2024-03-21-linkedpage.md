@@ -1,6 +1,5 @@
 ---
-title: "LinkedPage
-"
+title: "LinkedPage"
 categories:
  - obsidian
 ---
