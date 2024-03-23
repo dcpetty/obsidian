@@ -1,6 +1,6 @@
 # obsidian
 
-This is public [Obsidian](https://obsidian.md/) [WikiWikiWeb](https://wiki.c2.com/?WikiWikiWeb) of [`dcpetty`](https://github.com/dcpetty?tab=repositories&q=&type=&language=&sort=name).
+This is the public [Obsidian](https://obsidian.md/) [WikiWikiWeb](https://wiki.c2.com/?WikiWikiWeb) of [`dcpetty`](https://github.com/dcpetty?tab=repositories&q=&type=&language=&sort=name).
 
 <hr>
 
