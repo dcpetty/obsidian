@@ -1,6 +1,6 @@
 # Internal Test page
 
-[[AnotherPage]]
+[AnotherPage](obsidian/AnotherPage.md)
 
 ![20230626-i'm-taking-the-mole](obsidian/assets/20230626-i'm-taking-the-mole.png)
 

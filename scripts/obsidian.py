@@ -128,7 +128,15 @@ def format_yaml(title, repo, categories, tags, path=None):
 
 def reformat_links(line, repo, ext):
     """Replace local links in line with corrected slugified links."""
-    return line
+    regex, fixed = re.compile(f"([(]{repo}/[^)]*{chr(92)}{ext}[)])+"), line[:]
+    for match in regex.finditer(line):
+        old_link = line[match.start():match.end()]
+        new_link = slugify(line[match.start():match.end() - 1]
+            .replace(f"({repo}/", f"(/{repo}/"))
+        logger.debug(f"{old_link} ({new_link})")
+        fixed = fixed.replace(old_link, f"({new_link})")
+        logger.debug(f"** {fixed}")
+    return fixed
 
 
 def parse_tags(line):
@@ -152,7 +160,7 @@ def copy_file(note_path, repo, repo_path, site_path):
         lines, tags = list(), list()
         with open(note_path, encoding='latin1') as rf:
             for line in rf.readlines():
-                lines.append(line.lstrip())
+                lines.append(reformat_links(line.lstrip(), repo, '.md'))
                 tags += parse_tags(line)
         for i, line in enumerate(lines):
             if not line: continue  # skip leading blank lines
