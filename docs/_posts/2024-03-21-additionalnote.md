@@ -1,6 +1,5 @@
 ---
 title: "AdditionalNote"
-categories:
- - obsidian
 ---
 This is an additional note that has a duplicate filename.
+<!-- Modified 2024-03-23:17:20:58 -->

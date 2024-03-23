@@ -132,10 +132,10 @@ def reformat_links(line, repo, ext):
     for match in regex.finditer(line):
         old_link = line[match.start():match.end()]
         new_link = slugify(line[match.start():match.end() - 1]
-            .replace(f"({repo}/", f"(/{repo}/"))
+            .replace(f"({repo}/", f"(/"))
         logger.debug(f"{old_link} ({new_link})")
         fixed = fixed.replace(old_link, f"({new_link})")
-        logger.debug(f"** {fixed}")
+        logger.debug(f"** {fixed.strip()}")
     return fixed
 
 

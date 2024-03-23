@@ -1,6 +1,6 @@
 ---
 title: "LinkedPage"
-categories:
- - obsidian
 ---
 I am linking to other pages like [[obsidian/Test|Test]]. And [[Colors]]. And [[TEST]].
+
+<!-- Modified 2024-03-23:17:20:58 -->

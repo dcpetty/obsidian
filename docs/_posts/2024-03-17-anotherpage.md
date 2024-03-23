@@ -1,6 +1,5 @@
 ---
 title: "AnotherPage"
-categories:
- - obsidian
 ---
 As per the norm set on  [C2](https://wiki.c2.com/), Obsidian filenames are no-space [CamelCase](https://wiki.c2.com/?CamelCase).
+<!-- Modified 2024-03-23:17:20:58 -->
