@@ -106,8 +106,8 @@ def format_yaml(title, repo, categories, tags, path=None):
     """Return YAML front matter for title, [repo] + categories, & tags.
     If path, logging.DEBUG the YAML front matter."""
     categories_yaml = '\n'.join(
-        ['categories:'] + [f' - {c}' for c in [repo] + categories]) + '\n' \
-            if [repo] + categories else ''
+        ['categories:'] + [f' - {c}' for c in [] + categories]) + '\n' \
+            if [] + categories else ''
     tags_yaml = '\n'.join(
         ['tags:'] + [f' - {t}' for t in tags]) + '\n' if tags else ''
     yaml = '\n'.join([
