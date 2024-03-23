@@ -126,16 +126,23 @@ def format_yaml(title, repo, categories, tags, path=None):
     return yaml
 
 
-def reformat_links(line, repo, ext):
-    """Replace local links in line with corrected slugified links."""
-    regex, fixed = re.compile(f"([(]{repo}/[^)]*{chr(92)}{ext}[)])+"), line[:]
+def reformat_links(line, repo):
+    """Replace local links in line with corrected slugified links.
+    - search for '(repo/dir/file.ext)
+    - replace 'repo/' with '/'
+    - if ext is '.md', remove it
+    - slugify the new link
+    - substitute it for the old link
+    """
+    regex, fixed = re.compile(f"([(]{repo}/[^)]*[.]\w{{2,4}}[)])+"), line[:]
     for match in regex.finditer(line):
         old_link = line[match.start():match.end()]
-        new_link = slugify(line[match.start():match.end() - 1]
-            .replace(f"({repo}/", f"(/"))
-        logger.debug(f"{old_link} ({new_link})")
+        new_link = slugify(line[match.start():
+            match.end() - (4 if old_link.endswith('.md)') else 1)]
+                .replace(f"({repo}/", f"(/"))
+        logger.debug(f"links: '{old_link}' '({new_link})'")
         fixed = fixed.replace(old_link, f"({new_link})")
-        logger.debug(f"** {fixed.strip()}")
+        # logger.debug(f"** {fixed.strip()}")
     return fixed
 
 
@@ -152,7 +159,7 @@ def copy_file(note_path, repo, repo_path, site_path):
     categories = rel_note_path.split(os.sep)[: -1]
     note_filename = rel_note_path.split(os.sep)[-1]
     title = note_filename
-    _posts_path = os.path.join(site_path, '_posts')
+    _posts_path = os.path.join(site_path, '_posts')  # must match prepare
 
     # Process and copy newer files.
     if rel_note_path.endswith('.md'):
@@ -160,7 +167,7 @@ def copy_file(note_path, repo, repo_path, site_path):
         lines, tags = list(), list()
         with open(note_path, encoding='latin1') as rf:
             for line in rf.readlines():
-                lines.append(reformat_links(line.lstrip(), repo, '.md'))
+                lines.append(reformat_links(line.lstrip(), repo))
                 tags += parse_tags(line)
         for i, line in enumerate(lines):
             if not line: continue  # skip leading blank lines
@@ -201,7 +208,7 @@ def copy_file(note_path, repo, repo_path, site_path):
             logger.info(f"UNCHANGED: {note_path}")
 
 
-def prepare(REPODIR, POSTDIR):
+def prepare(REPODIR, POSTDIR, REBUILD=False):
     """"""
     repo_path = os.path.realpath(REPODIR)
     logger.debug(f"repo_path: {repo_path}")
@@ -210,11 +217,11 @@ def prepare(REPODIR, POSTDIR):
     site_path = os.path.realpath(POSTDIR)
     logger.debug(f"site_path: {site_path}")
 
-    # Clean _posts and _site directories.
-    # _posts_path = os.path.join(site_path, '_posts')
-    # if os.path.isdir(_posts_path):
-    #     logger.debug(f"removing: {_posts_path}")
-    #     shutil.rmtree(_posts_path, ignore_errors=True)
+    # If REBUILD, lean _posts and _site directories.
+    _posts_path = os.path.join(site_path, '_posts') # must match copy_file
+    if REBUILD and os.path.isdir(_posts_path):
+        logger.debug(f"removing: {_posts_path}")
+        shutil.rmtree(_posts_path, ignore_errors=True)
     # os.mkdir(_posts_path)   # recreate _posts directory
     # _site_path = os.path.join(site_path, '_site')
     # if os.path.isdir(_site_path):
@@ -253,8 +260,10 @@ def main(argv):
                     formatter_class=formatter)
     arguments = [
         # c1, c2, action, dest, default, help
+        ('-r', '--rebuild', 'store_true', 'REBUILD', False,
+         'rebuild entire _posts directory', ),
         ('-v', '--verbose', 'store_true', 'VERBOSE', False,
-         'echo status information', ),
+         'log DEBUG status information',),
     ]
 
     # Add optional arguments with values.
@@ -274,7 +283,7 @@ def main(argv):
     if pa.POSTDIR:
         logger.debug(f"POSTDIR = '{pa.POSTDIR}'")
 
-    prepare(pa.REPODIR, pa.POSTDIR)
+    prepare(pa.REPODIR, pa.POSTDIR, pa.REBUILD)
 
 
 if __name__ == '__main__':
