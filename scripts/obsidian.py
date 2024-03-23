@@ -19,7 +19,7 @@ __email__ = "dcp@acm.org"
 __status__ = "Development"
 
 import argparse, log, os, re, sys
-import datetime, fnmatch, glob, pathlib, shutil, unicodedata
+import datetime, fnmatch, glob, pathlib, shutil, time, unicodedata
 
 # Set up logging.
 logger = log.log(__name__, 'obsidian')
@@ -160,6 +160,7 @@ def copy_file(note_path, repo, repo_path, site_path):
                 title = line[2:].strip()
                 lines = lines[i + 1:]
                 break
+        lines.append(f"\n<!-- Modified {time.strftime('%Y-%m-%d:%H:%M:%S')} -->\n")
         # Check modification dates.
         post_dirname = os.path.join(*[_posts_path, ] + [slugify(c) for c in categories])
         post_filename = f"{date}-{slugify(note_filename)}"
@@ -178,7 +179,18 @@ def copy_file(note_path, repo, repo_path, site_path):
             logger.info(f"UNCHANGED: {note_path}")
     else:
         # Process and copy newer non-.MD files.
-        logger.debug(f"NOT COPIED: '{rel_note_path}'")
+        post_path = os.path.join(_posts_path, slugify(rel_note_path))
+        post_dirname = os.path.dirname(post_path)
+        os.makedirs(post_dirname, exist_ok=True)
+        note_changed = not os.path.isfile(post_path) \
+                       or note_stat.st_mtime > pathlib.Path(post_path).stat().st_mtime
+        #logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
+        if note_changed:
+            os.makedirs(post_dirname, exist_ok=True)
+            logger.info(f"{note_path} \u2192 {post_path}")
+            shutil.copy(note_path, post_path)
+        else:
+            logger.info(f"UNCHANGED: {note_path}")
 
 
 def prepare(REPODIR, POSTDIR):

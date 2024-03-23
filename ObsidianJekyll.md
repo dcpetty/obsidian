@@ -14,8 +14,9 @@
 
 - **Best strategy for parsing links: `Obsidian > Settings > Files and links > Use [[Wikilinks]]` *disabled* & `Obsidian > Settings > Files and links > New link format > Absolute path in vault`.**  This will result in repository (`obsidian`) public notes links being prefixed by `(obsidian` and postfixed by `.md)` (or other valid extensions).
 - **Slugified links involve replacing spaces (`' '`) with `'%20'` but (more or less?) leaving other special characters intact.** The rule of thumb is, therefore, eschew spaces in note / file names and subfolder names.
-- There is a question of whether all image assets should go in `obsidian/docs/assets/` or `obsidian/docs/assets/images/` or ??? (Adjust `Obsidian > Settings > Files and links > Default location for new attachments`.)
-![](Pasted%20image%2020240322150652.png)
+- There is a question of whether all image assets should go in `obsidian/docs/assets/` or `obsidian/docs/assets/images/` or `obsidian/assets` to be copied — with `Obsidian > Settings > Files and links > Default location for new attachments` adjusted.
+
+![](obsidian/assets/Pasted%20image%2020240323125126.png)
 
 - `Obsidian > Settings`
  - `General > Your Account > Sign In`
