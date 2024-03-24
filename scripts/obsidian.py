@@ -295,7 +295,7 @@ if __name__ == '__main__':
     if any((is_idle, is_pycharm, is_jupyter,)):
         logger.debug(f"logpath: {log.log_path()}")
         tests = [
-            ['template.py', '..', '../docs/', '-r', '-v', ],
+            ['template.py', '..', '../docs/', '-v', ],
             ['template.py', '-?', ],
         ]
         # slugify test
