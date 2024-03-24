@@ -4,7 +4,10 @@
 # obsidian.py
 #
 """
-obsidian.py is...
+obsidian.py copies a REPODIR Obsidian repository to a POSTDIR Jekyll repository,
+modifying the pathnames appropriately.
+
+TODO: complete this description
 """
 
 __version__ = "0.0.1"
@@ -26,55 +29,36 @@ logger = log.log(__name__, 'obsidian')
 
 
 def valid_paths(repo_path):
-    """Return valid paths below repo_paths."""
+    """Return valid paths below repo_path."""
 
-    # glob all *.* paths below repo_paths.
-    all_paths = [ p for p in glob.glob(os.path.join(repo_path, '**/*.*'),
-        recursive=True) ]
+    # glob all *.* paths below repo_path.
+    all_paths = [p for p in glob.glob(os.path.join(repo_path, '**/*.*'),
+        recursive=True)]
 
     # https://stackoverflow.com/a/5141829
     # List of patterns to include.
     to_inc = ['*.md', '*.png', '*.jpg', '*.html', ]
     # List of patterns to exclude.
-    to_exc = ['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md', '**/foo/**/bar/*.html']
+    to_exc = ['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md',
+        '**/foo/**/bar/*.html'] # TODO: this is simply to test valid_paths
 
     # transform glob patterns to regular expressions
-    wc_regex = lambda glob: fnmatch.translate(glob.replace('**/', ':GLOB:')) \
-        .replace(':GLOB:', '(.*/)*')
+    nonpath = '/:GLOB:/'    # nonpath cannot be part of a pathname
+    wc_regex = lambda glob: fnmatch.translate(glob.replace('**/', nonpath)) \
+        .replace(nonpath, '(.*/)*')
     inc_regex = r'|'.join([wc_regex(x) for x in to_inc])
     logger.debug(f"include regex: {inc_regex}")
     exc_regex = r'|'.join([wc_regex(x) for x in to_exc]) or r'$.'
     logger.debug(f"exclude regex: {exc_regex}")
 
-    """
-    # Test inc_regex / exc_regex
-    test_globs =[
-        'foo/bar.md',
-        'foo/bar.html',
-        '/obsidian/docs/test.md',
-        'foo/foo1/bar/blap.md',
-        'foo/bar/blap.md',
-        'foo/foo1/bar/blap.html',
-        'foo/bar/blap.html',
-        '/obsidian/foo/foo1/bar/blap.md',
-        '/obsidian/foo/bar/blap.md',
-        '/obsidian/foo/foo1/bar/blap.html',
-        '/obsidian/foo/bar/blap.html',
-    ]
-    included = {f for f in test_globs if re.match(to_inc, f)}
-    logger.debug(f"included: {included}")
-    excluded = {f for f in test_globs if not re.match(to_exc, f)}
-    logger.debug(f"excluded: {excluded}")
-    logger.debug(f"i - e: {included - excluded}")
-    logger.debug(f"i & e: {included & excluded}")
-    logger.debug(f"i ^ e: {included ^ excluded}")
-    """
-
+    # Create set of all includable paths matching inc_regex.
     included = {p for p in all_paths if re.match(inc_regex, p)}
     logger.debug(f"        included: {included}")
+    # Create set of valid paths that does not include paths matching exc_regex.
     paths = {p for p in included if not re.match(exc_regex, p)}
     logger.debug(f"and not excluded: {paths}")
 
+    # Log each valid path to process relative to repo_path.
     for path in paths:
         logger.debug(f"valid: {path.replace(repo_path + '/', '')}")
 
@@ -82,14 +66,14 @@ def valid_paths(repo_path):
 
 
 def slugify(path):
-    """Return simple slugified path.
+    """Return simple slugified path. Used to slugify paths and links.
     - split off any extension and work with root
     - replace '%20' with ' '
     - unicodedata.normalize 'NFKD'
     - remove everything *not* letters, numerals, or '/._-'
     - replace ' ' or '.' or '_' with '-' (Jekyll)
     - remove duplicate '-'s (Jekyll)
-    - add on the extension
+    - add back on the extension
     """
     # https://stackoverflow.com/a/27264385
     root, ext = os.path.splitext(path)
@@ -103,11 +87,12 @@ def slugify(path):
 
 
 def format_yaml(title, repo, categories, tags, path=None):
-    """Return YAML front matter for title, [repo] + categories, & tags.
-    If path, logging.DEBUG the YAML front matter."""
+    """Return YAML front matter for title, [prefix] + categories, & tags.
+    If path, logging.DEBUG the YAML front matter for path."""
+    all_categories = [] + categories # include any prefixes
     categories_yaml = '\n'.join(
-        ['categories:'] + [f' - {c}' for c in [] + categories]) + '\n' \
-            if [] + categories else ''
+        ['categories:'] + [f' - {c}' for c in all_categories]) + '\n' \
+            if all_categories else ''
     tags_yaml = '\n'.join(
         ['tags:'] + [f' - {t}' for t in tags]) + '\n' if tags else ''
     yaml = '\n'.join([
@@ -115,6 +100,7 @@ def format_yaml(title, repo, categories, tags, path=None):
         f'title: "{title}"',
         f'{categories_yaml}{tags_yaml}---\n'])
 
+    # Log YAML front matter for path.
     if path:
         logger.debug(f"format_yaml:\n"
             f"     (title)'{title}'\n"
@@ -128,13 +114,14 @@ def format_yaml(title, repo, categories, tags, path=None):
 
 def reformat_links(line, repo):
     """Replace local links in line with corrected slugified links.
-    - search for '(repo/dir/file.ext)
-    - replace 'repo/' with '/'
+    - search for '(repo/dir/file.ext)'
+    - replace 'repo/' with '/repo/'
     - if ext is '.md', remove it
-    - slugify the new link
+    - slugify the new link (assumes asset directories are already slugified)
     - substitute it for the old link
+    - iterate for all links and return fixed line
     """
-    regex, fixed = re.compile(f"([(]{repo}/[^)]*[.]\w{{2,4}}[)])+"), line[:]
+    regex, fixed = re.compile(f"([(]{repo}/[^)]*" + r'[.]\w{2,4}[)])+'), line[:]
     for match in regex.finditer(line):
         old_link = line[match.start():match.end()]
         new_link = slugify(line[match.start():
@@ -142,28 +129,34 @@ def reformat_links(line, repo):
                 .replace(f"({repo}/", f"(/{repo}/"))
         logger.debug(f"links: '{old_link}' '({new_link})'")
         fixed = fixed.replace(old_link, f"({new_link})")
-        # logger.debug(f"** {fixed.strip()}")
+        # logger.debug(f"fixed line: {fixed.strip()}")
     return fixed
 
 
 def parse_tags(line):
     """Return list of tags parsed from line."""
-    return [h.strip()[1:] for h in re.findall('[#]\w+\s', f"{line} ")]
+    return [h.strip()[1:] for h in re.findall(r'[#]\w+\s', f"{line} ")]
 
 
 def copy_file(note_path, repo, repo_path, site_path):
-    """"""
+    """Copy path from note_path to site_path.
+    - Copy .MD files to _posts_path with YAML front matter, adjusted links, and
+      slugified path if note_path younger post_path.
+    - Copy other valid files with slugified filename (only) following directory
+      pattern in note_path. (Assumes asset directories are already slugified)"""
+    assert os.path.isfile(note_path), f"{note_path} does not exist"
     note_stat = pathlib.Path(note_path).stat()
     date = datetime.date.fromtimestamp(note_stat.st_ctime)
     rel_note_path = note_path.replace(f"{repo_path}/", '')
-    categories = rel_note_path.split(os.sep)[: -1]
     note_filename = rel_note_path.split(os.sep)[-1]
-    title = note_filename
-    _posts_path = os.path.join(site_path, '_posts')  # must match prepare
 
-    # Process and copy newer files.
+    # Process and copy newer .MD files.
     if rel_note_path.endswith('.md'):
         # Process and copy newer .MD file.
+        categories = rel_note_path.split(os.sep)[: -1]
+        title = note_filename
+        _posts_path = os.path.join(site_path, '_posts')  # must match prepare
+
         lines, tags = list(), list()
         with open(note_path, encoding='latin1') as rf:
             for line in rf.readlines():
@@ -197,11 +190,11 @@ def copy_file(note_path, repo, repo_path, site_path):
         note_dirname = os.path.dirname(rel_note_path)
         asset_dirname = os.path.join(site_path, note_dirname)
         asset_path = os.path.join(asset_dirname, slugify(note_filename))
-        logger.debug(f" **** {asset_path}")
         note_changed = not os.path.isfile(asset_path) \
             or note_stat.st_mtime > pathlib.Path(asset_path).stat().st_mtime
-        #logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
+        # logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
         if note_changed:
+            # TODO: files deleted from note_dir are not removed from asset_dir
             os.makedirs(asset_dirname, exist_ok=True)
             logger.info(f"{note_path} \u2192 {asset_path}")
             shutil.copy(note_path, asset_path)
@@ -210,7 +203,8 @@ def copy_file(note_path, repo, repo_path, site_path):
 
 
 def prepare(REPODIR, POSTDIR, REBUILD=False):
-    """"""
+    """Copy and modify valid paths from REPODIR to POSTDIR. If REBUILD, remove
+    _posts and _site directories."""
     repo_path = os.path.realpath(REPODIR)
     logger.debug(f"repo_path: {repo_path}")
     repo = os.path.normpath(repo_path).split(os.sep)[-1]
@@ -218,13 +212,17 @@ def prepare(REPODIR, POSTDIR, REBUILD=False):
     site_path = os.path.realpath(POSTDIR)
     logger.debug(f"site_path: {site_path}")
 
-    # If REBUILD, lean _posts and _site directories.
+    assert os.path.isdir(repo_path), f"{repo_path} is not a directory"
+    assert os.path.isdir(site_path), f"{site_path} is not a directory"
+
+    # If REBUILD, clean _posts directory.
     _posts_path = os.path.join(site_path, '_posts') # must match copy_file
     if REBUILD and os.path.isdir(_posts_path):
         logger.debug(f"removing: {_posts_path}")
         shutil.rmtree(_posts_path, ignore_errors=True)
+    # If REBUILD, clean _site directory. Jekyll should automatically handle.
     _site_path = os.path.join(site_path, '_site')
-    if os.path.isdir(_site_path):
+    if REBUILD and os.path.isdir(_site_path):
         logger.debug(f"removing: {_site_path}")
         shutil.rmtree(_site_path, ignore_errors=True)
 
@@ -261,7 +259,7 @@ def main(argv):
     arguments = [
         # c1, c2, action, dest, default, help
         ('-r', '--rebuild', 'store_true', 'REBUILD', False,
-         'rebuild entire _posts directory', ),
+         'rebuild entire Jekyll site', ),
         ('-v', '--verbose', 'store_true', 'VERBOSE', False,
          'log DEBUG status information',),
     ]
@@ -282,6 +280,9 @@ def main(argv):
         logger.debug(f"REPODIR = '{pa.REPODIR}'")
     if pa.POSTDIR:
         logger.debug(f"POSTDIR = '{pa.POSTDIR}'")
+    logger.debug(f"VERBOSE: '{log.log_path()}'")
+    if pa.REBUILD:
+        logger.debug(f"REBUILD Jekyll site...")
 
     prepare(pa.REPODIR, pa.POSTDIR, pa.REBUILD)
 
