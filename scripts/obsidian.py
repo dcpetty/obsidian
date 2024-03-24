@@ -139,7 +139,7 @@ def reformat_links(line, repo):
         old_link = line[match.start():match.end()]
         new_link = slugify(line[match.start():
             match.end() - (4 if old_link.endswith('.md)') else 1)]
-                .replace(f"({repo}/", f"(/"))
+                .replace(f"({repo}/", f"(/{repo}/"))
         logger.debug(f"links: '{old_link}' '({new_link})'")
         fixed = fixed.replace(old_link, f"({new_link})")
         # logger.debug(f"** {fixed.strip()}")
@@ -194,16 +194,17 @@ def copy_file(note_path, repo, repo_path, site_path):
             logger.info(f"UNCHANGED: {note_path}")
     else:
         # Process and copy newer non-.MD files.
-        post_path = os.path.join(_posts_path, slugify(rel_note_path))
-        post_dirname = os.path.dirname(post_path)
-        os.makedirs(post_dirname, exist_ok=True)
-        note_changed = not os.path.isfile(post_path) \
-                       or note_stat.st_mtime > pathlib.Path(post_path).stat().st_mtime
+        note_dirname = os.path.dirname(rel_note_path)
+        asset_dirname = os.path.join(site_path, note_dirname)
+        asset_path = os.path.join(asset_dirname, slugify(note_filename))
+        logger.debug(f" **** {asset_path}")
+        note_changed = not os.path.isfile(asset_path) \
+            or note_stat.st_mtime > pathlib.Path(asset_path).stat().st_mtime
         #logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
         if note_changed:
-            os.makedirs(post_dirname, exist_ok=True)
-            logger.info(f"{note_path} \u2192 {post_path}")
-            shutil.copy(note_path, post_path)
+            os.makedirs(asset_dirname, exist_ok=True)
+            logger.info(f"{note_path} \u2192 {asset_path}")
+            shutil.copy(note_path, asset_path)
         else:
             logger.info(f"UNCHANGED: {note_path}")
 
@@ -222,11 +223,10 @@ def prepare(REPODIR, POSTDIR, REBUILD=False):
     if REBUILD and os.path.isdir(_posts_path):
         logger.debug(f"removing: {_posts_path}")
         shutil.rmtree(_posts_path, ignore_errors=True)
-    # os.mkdir(_posts_path)   # recreate _posts directory
-    # _site_path = os.path.join(site_path, '_site')
-    # if os.path.isdir(_site_path):
-    #     logger.debug(f"removing: {_site_path}")
-    #     shutil.rmtree(_site_path, ignore_errors=True)
+    _site_path = os.path.join(site_path, '_site')
+    if os.path.isdir(_site_path):
+        logger.debug(f"removing: {_site_path}")
+        shutil.rmtree(_site_path, ignore_errors=True)
 
     # Collect paths to modify and copy.
     paths = valid_paths(repo_path)
@@ -295,11 +295,12 @@ if __name__ == '__main__':
     if any((is_idle, is_pycharm, is_jupyter,)):
         logger.debug(f"logpath: {log.log_path()}")
         tests = [
-            ['template.py', '..', '../docs/', '-v', ],
+            ['template.py', '..', '../docs/', '-r', '-v', ],
             ['template.py', '-?', ],
         ]
-        value = '/obsidian/NestedFolder/2024-03-21-Test%20with__spaces, éh? !@%_.md'
-        logger.info((value, slugify(value),))
+        # slugify test
+        # value = '/obsidian/NestedFolder/2024-03-21-Test%20with__spaces, éh? !@%_.md'
+        # logger.info((value, slugify(value),))
         for test in tests:
             logger.debug(f"# {' '.join(test)}")
             main(test)

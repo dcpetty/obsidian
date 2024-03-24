@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: MM
+title: "Obsidian Notes"	# changed
 email:
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -58,22 +58,26 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "First Lastname"
-  avatar : "/assets/images/bio-photo.jpg"
-  bio    : "My awesome biography constrained to a sentence or two goes here."
+  name   : "David C. Petty"	# changed
+  avatar : "/assets/images/monty-192x192.png"	# changed
+  bio    : "The public <a href=\"https://obsidian.md/\">Obsidian</a> notes <a href=\"https://jekyllrb.com/\">Jekyll</a> website of <a href=\"http://github.com/dcpetty/obsidian/\"><code>dcpetty</code></a>."	# changed
   links:
+# All links changed.
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+      url: "https://dcpetty.github.io/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/dcpetty?tab=repositories&q=&type=&language=&sort=name"
+    - label: "LinkedIn"	# added
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/dcpetty"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: "https://instagram.com/sprytechdatadevil"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/dcpetty"
 
 footer:
   links:
@@ -113,3 +117,6 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
+# Added
+baseurl: /obsidian
