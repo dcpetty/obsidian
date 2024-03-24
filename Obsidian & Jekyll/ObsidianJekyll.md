@@ -4,19 +4,19 @@
 
 - Obsidian has `.md` files in a [normal format](https://www.markdownguide.org/tools/obsidian/) that are shown as **Notes** without the `.md`.
 - Obsidian allows for nested notes within subdirectories.
-- Obsidian allows for Wiki-style links (credits to [Ward Cunningham](https://en.wikipedia.org/wiki/Ward_Cunningham) & https://wiki.c2.com/) of the form `[[ObsidianJekyll]]` to link to this note. As long as there are not duplicate filenames, `[[SubDirectoryNote]]` can refer to [[SubDirectoryNote]] in a subdirectory. 
+- Obsidian allows for Wiki-style links (credits to [Ward Cunningham](https://en.wikipedia.org/wiki/Ward_Cunningham) & https://wiki.c2.com/) of the form `[[ObsidianJekyll]]` to link to this note. As long as there are not duplicate filenames, `[[SubDirectoryNote]]` can refer to [[obsidian/TestPages/SubFolder/SubDirectoryNote]] in a subdirectory. 
   - Under `Obsidian > Settings > Files and links` with `Use [[Wikilinks]]` enabled...
-   - With `Files and links > New link format > Relative path to file`, [[AdditionalNote]] shows as `[[AdditionalNote]]` when entered Wiki-style, whereas [[SubFolder/AdditionalNote|AdditionalNote]] shows as `[[SubFolder/AdditionalNote|AdditionalNote]]` when entered Wiki-style.
-   - With `Files and links > New link format > Absolute path in vault`, [[obsidian/AdditionalNote|AdditionalNote]] shows as `[[obsidian/AdditionalNote|AdditionalNote]]` when entered Wiki-style, whereas [[obsidian/SubFolder/AdditionalNote|AdditionalNote]] shows as `[[obsidian/SubFolder/AdditionalNote|AdditionalNote]]` when entered Wiki-style.
+   - With `Files and links > New link format > Relative path to file`, [[obsidian/TestPages/AdditionalNote]] shows as `[[AdditionalNote]]` when entered Wiki-style, whereas [[obsidian/TestPages/SubFolder/AdditionalNote|AdditionalNote]] shows as `[[SubFolder/AdditionalNote|AdditionalNote]]` when entered Wiki-style.
+   - With `Files and links > New link format > Absolute path in vault`, [[obsidian/TestPages/AdditionalNote|AdditionalNote]] shows as `[[obsidian/AdditionalNote|AdditionalNote]]` when entered Wiki-style, whereas [[obsidian/TestPages/SubFolder/AdditionalNote|AdditionalNote]] shows as `[[obsidian/SubFolder/AdditionalNote|AdditionalNote]]` when entered Wiki-style.
  - Under `Obsidian > Settings > Files and links` with `Use [[Wikilinks]]` disabled...
-  - With `Files and links > New link format > Relative path to file`, [AdditionalNote](AdditionalNote.md) shows as `[AdditionalNote](AdditionalNote.md)` when entered Wiki-style, whereas [AdditionalNote](SubFolder/AdditionalNote.md) shows as `[AdditionalNote](SubFolder/AdditionalNote.md)` when entered Wiki-style.
-  - With `Files and links > New link format > Absolute path in vault`, [[obsidian/AdditionalNote|AdditionalNote]] shows as `[AdditionalNote](obsidian/AdditionalNote.md)` when entered Wiki-style, whereas [AdditionalNote](obsidian/SubFolder/AdditionalNote.md) shows as `[AdditionalNote](obsidian/SubFolder/AdditionalNote.md)` when entered Wiki-style.
+  - With `Files and links > New link format > Relative path to file`, [AdditionalNote](obsidian/TestPages/AdditionalNote.md) shows as `[AdditionalNote](AdditionalNote.md)` when entered Wiki-style, whereas [AdditionalNote](obsidian/TestPages/SubFolder/AdditionalNote.md) shows as `[AdditionalNote](SubFolder/AdditionalNote.md)` when entered Wiki-style.
+  - With `Files and links > New link format > Absolute path in vault`, [[obsidian/TestPages/AdditionalNote|AdditionalNote]] shows as `[AdditionalNote](obsidian/AdditionalNote.md)` when entered Wiki-style, whereas [AdditionalNote](obsidian/TestPages/SubFolder/AdditionalNote.md) shows as `[AdditionalNote](obsidian/SubFolder/AdditionalNote.md)` when entered Wiki-style.
 
 - **Best strategy for parsing links: `Obsidian > Settings > Files and links > Use [[Wikilinks]]` *disabled* & `Obsidian > Settings > Files and links > New link format > Absolute path in vault`.**  This will result in repository (`obsidian`) public notes links being prefixed by `(obsidian` and postfixed by `.md)` (or other valid extensions).
 - **Slugified links involve replacing spaces (`' '`) with `'%20'` but (more or less?) leaving other special characters intact.** The rule of thumb is, therefore, eschew spaces in note / file names and subfolder names.
 - There is a question of whether all image assets should go in `obsidian/docs/assets/` or `obsidian/docs/assets/images/` or `obsidian/assets` to be copied — with `Obsidian > Settings > Files and links > Default location for new attachments` adjusted.
 
-![](obsidian/assets/obsidian/Pasted%20image%2020240323125126.png)
+![](obsidian/assets/obsidian/Pasted%20image%2020240324105650.png)
 
 - `Obsidian > Settings`
  - `General > Your Account > Sign In`

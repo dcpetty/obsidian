@@ -1,9 +1,11 @@
 ---
 title: "Internal Test page"
+categories:
+ - TestPages
 tags:
  - test
 ---
-[AnotherPage](/obsidian/anotherpage) Linked!!!
+[AnotherPage](/obsidian/testpages/anotherpage) Linked!!!
 ![20230626-i'm-taking-the-mole](/obsidian/assets/obsidian/20230626-im-taking-the-mole.png)
 <center><em>I'm leaving and I'm taking the mole.</em></center>
 <br>
@@ -15,4 +17,4 @@ These come from `include foo.html` inside of [https://shopify.github.io/liquid/]
 ```
 {% include foo.html %}
 #test
-<!-- Modified 2024-03-24:09:50:32 -->
+<!-- Modified 2024-03-24:18:22:02 -->

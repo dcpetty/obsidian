@@ -1,3 +1,0 @@
-# SubDirectoryNote
-
-Made a change!

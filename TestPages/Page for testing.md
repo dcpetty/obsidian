@@ -1,6 +1,6 @@
 # Internal Test page
 
-[AnotherPage](obsidian/AnotherPage.md) Linked!!!
+[AnotherPage](obsidian/TestPages/AnotherPage.md) Linked!!!
 
 ![20230626-i'm-taking-the-mole](obsidian/assets/obsidian/20230626-i'm-taking-the-mole.png)
 

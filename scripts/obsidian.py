@@ -65,7 +65,7 @@ def valid_paths(repo_path):
     return paths
 
 
-def slugify(path):
+def slugify(path, preserve_case=False):
     """Return simple slugified path. Used to slugify paths and links.
     - split off any extension and work with root
     - replace '%20' with ' '
@@ -81,9 +81,9 @@ def slugify(path):
         re.sub(r'[\s._]', '-', re.sub(r'[^/\w\s._-]', '',
             unicodedata.normalize('NFKD', re.sub(r'%20', ' ', root))
             .encode('ascii', 'ignore').decode('ascii')))) \
-                .strip('-').lower() + ext
+                .strip('-') + ext
 
-    return slugified
+    return slugified if preserve_case else slugified.lower()
 
 
 def format_yaml(title, repo, categories, tags, path=None):
@@ -169,15 +169,18 @@ def copy_file(note_path, repo, repo_path, site_path):
                 lines = lines[i + 1:]
                 break
         lines.append(f"\n<!-- Modified {time.strftime('%Y-%m-%d:%H:%M:%S')} -->\n")
-        # Check modification dates.
-        post_dirname = os.path.join(*[_posts_path, ] + [slugify(c) for c in categories])
+
+        # TODO: deal w/ slugified categories
+        slugified_categories = [slugify(c, True) for c in categories]
+        post_dirname = os.path.join(*[_posts_path, ] + slugified_categories)
         post_filename = f"{date}-{slugify(note_filename)}"
         post_path = os.path.join(post_dirname, post_filename)
+        # Check modification dates.
         note_changed = not os.path.isfile(post_path) \
             or note_stat.st_mtime > pathlib.Path(post_path).stat().st_mtime
         # logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
         if note_changed:
-            yaml = format_yaml(title, repo, categories, tags, note_path)
+            yaml = format_yaml(title, repo, slugified_categories, tags, note_path)
             os.makedirs(post_dirname, exist_ok=True)
             logger.info(f"{note_path} \u2192 {post_path}")
             with open(post_path, "w") as wf:
@@ -190,6 +193,7 @@ def copy_file(note_path, repo, repo_path, site_path):
         note_dirname = os.path.dirname(rel_note_path)
         asset_dirname = os.path.join(site_path, note_dirname)
         asset_path = os.path.join(asset_dirname, slugify(note_filename))
+        # Check modification dates.
         note_changed = not os.path.isfile(asset_path) \
             or note_stat.st_mtime > pathlib.Path(asset_path).stat().st_mtime
         # logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
@@ -300,8 +304,8 @@ if __name__ == '__main__':
             ['template.py', '-?', ],
         ]
         # slugify test
-        # value = '/obsidian/NestedFolder/2024-03-21-Test%20with__spaces, éh? !@%_.md'
-        # logger.info((value, slugify(value),))
+        value = '/obsidian/NestedFolder/Foo & Bar/2024-03-21-Test%20with__spaces, éh? !@%_.md'
+        logger.info((value, slugify(value, True),))
         for test in tests:
             logger.debug(f"# {' '.join(test)}")
             main(test)
