@@ -52,12 +52,15 @@ document.addEventListener("DOMContentLoaded", function() {
     /* document has at least one aside. */
     let firstNav = null, firstNavBorder = null;
     for (const aside of document.querySelectorAll("aside")) {
+      /* query first nav of aside */
       let nav = aside.querySelector("nav");
       console.log(nav);
       if (nav !== null) {
         /* aside has at least one nav */
         if (firstNav === null) {
+          /* TODO: firstNav is currently unused */
           let firstNav = nav;
+          /* TODO: firstNavBorder is currently unused */
           let firstNavBorder = getComputedStyle(nav).border
           console.log(`firstNav.border = '${firstNavBorder}'`);
         }
@@ -65,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
           /* Jekyll doesn't always like && */
           // && nav.getAttribute("data-toc") == 'top') {
           if (nav.getAttribute("data-toc") == 'top') {
-            /* if <nav data-toc="top" ...> */
+            /* nav is <nav data-toc="top" ...> */
             console.log(nav.style);
             if (firstAside === aside) {
               /* data-toc="top" is in only aside */
@@ -80,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
               /* insert nav at begining of firstAside */
               console.log(`nav inserted afterbegin firstAside`)
               firstAside.insertAdjacentElement('afterbegin', nav);   
-              /* insert spacer at end of nav */
+              /* insert spacer after nav */
               const spacer = document.createElement("div");
               spacer.style.height = "1em";
               nav.insertAdjacentElement("afterend", spacer);
