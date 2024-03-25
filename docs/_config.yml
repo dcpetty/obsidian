@@ -61,8 +61,11 @@ author:
   name   : "David C. Petty"	# changed
   avatar : "/assets/images/monty-192x192.png"	# changed
   bio    : "The public <a href=\"https://obsidian.md/\">Obsidian</a> notes <a href=\"https://jekyllrb.com/\">Jekyll</a> website of <a href=\"http://github.com/dcpetty/obsidian/\"><code>dcpetty</code></a>."	# changed
-  links:
-# All links changed.
+  links: # All links changed.
+    - label: "Cambridge (MA)"
+      icon: "fas fa-fw fa-map-marker-alt"
+      url: "https://google.com/maps/place/Cambridge,+MA/"
+      # url: "https://cambridgema.gov/~/media/Files/GIS/allmapsandatlases/CambridgeBaseMap18x24.pdf"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://dcpetty.github.io/"
@@ -80,16 +83,19 @@ author:
       url: "https://twitter.com/dcpetty"
 
 footer:
-  links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+  links: # All links changed.
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://dcpetty.github.io/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/dcpetty/obsidian"
+    - label: "LinkedIn"	# added
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/dcpetty"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: "https://instagram.com/sprytechdatadevil"
 
 defaults:
   # _posts

@@ -10,7 +10,7 @@ modifying the pathnames appropriately.
 TODO: complete this description
 """
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 __all__ = ["main", ]
 __author__ = "David C. Petty"
@@ -86,19 +86,22 @@ def slugify(path, preserve_case=False):
     return slugified if preserve_case else slugified.lower()
 
 
-def format_yaml(title, repo, categories, tags, path=None):
-    """Return YAML front matter for title, [prefix] + categories, & tags.
-    If path, logging.DEBUG the YAML front matter for path."""
+def format_yaml(title, repo, categories, tags, toc=False, path=None):
+    """Return list of YAML front matter lines for title, [prefix] + categories,
+    & tags. If path, logging.DEBUG the YAML front matter for path."""
     all_categories = [] + categories # include any prefixes
-    categories_yaml = '\n'.join(
-        ['categories:'] + [f' - {c}' for c in all_categories]) + '\n' \
-            if all_categories else ''
-    tags_yaml = '\n'.join(
-        ['tags:'] + [f' - {t}' for t in tags]) + '\n' if tags else ''
-    yaml = '\n'.join([
-        f'---',
+    categories_yaml = (['categories:'] + [f' - {c}' for c in all_categories]) \
+        if all_categories else list()
+    tags_yaml = (['tags:'] + [f' - {t}' for t in tags]) \
+        if tags else list()
+    toc_yaml = (['toc: true', 'toc_sticky: true', ]) \
+        if toc else list()
+    yaml = [
+        f'---', 'show_date: true',
         f'title: "{title}"',
-        f'{categories_yaml}{tags_yaml}---\n'])
+        ] + categories_yaml + tags_yaml + toc_yaml + [
+        f'---', ''
+    ]
 
     # Log YAML front matter for path.
     if path:
@@ -107,7 +110,8 @@ def format_yaml(title, repo, categories, tags, path=None):
             f"      (repo)'{repo}'\n"
             f"(categories)'{categories}'\n"
             f"      (tags)'{tags}'\n"
-            f"YAML for '{path}'\n{yaml.strip()}")
+            f"YAML for '{path}'\n"
+            f"{chr(10).join(yaml).strip()}")
 
     return yaml
 
@@ -145,47 +149,58 @@ def copy_file(note_path, repo, repo_path, site_path):
     - Copy other valid files with slugified filename (only) following directory
       pattern in note_path. (Assumes asset directories are already slugified)"""
     assert os.path.isfile(note_path), f"{note_path} does not exist"
-    note_stat = pathlib.Path(note_path).stat()
-    date = datetime.date.fromtimestamp(note_stat.st_ctime)
+    # No st_birthtime on Window$; st_ctime is metadata change on others.
+    has_birthtime = hasattr(os.stat(note_path), 'st_birthtime')
+    note_stat = \
+        os.stat(note_path) if has_birthtime else pathlib.Path(note_path).stat()
+    date = datetime.date.fromtimestamp(
+        note_stat.st_birthtime if has_birthtime else note_stat.st_ctime)
     rel_note_path = note_path.replace(f"{repo_path}/", '')
     note_filename = rel_note_path.split(os.sep)[-1]
 
     # Process and copy newer .MD files.
     if rel_note_path.endswith('.md'):
         # Process and copy newer .MD file.
-        categories = rel_note_path.split(os.sep)[: -1]
-        title = note_filename
+        title = note_filename   # if no initial header1 for title
+        categories = [slugify(c, True)
+            for c in rel_note_path.split(os.sep)[: -1]]
         _posts_path = os.path.join(site_path, '_posts')  # must match prepare
-
-        lines, tags = list(), list()
-        with open(note_path, encoding='latin1') as rf:
-            for line in rf.readlines():
-                lines.append(reformat_links(line.lstrip(), repo))
-                tags += parse_tags(line)
-        for i, line in enumerate(lines):
-            if not line: continue  # skip leading blank lines
-            if line.startswith('# '):  # extract title from first heading1
-                title = line[2:].strip()
-                lines = lines[i + 1:]
-                break
-        lines.append(f"\n<!-- Modified {time.strftime('%Y-%m-%d:%H:%M:%S')} -->\n")
-
-        # TODO: deal w/ slugified categories
-        slugified_categories = [slugify(c, True) for c in categories]
-        post_dirname = os.path.join(*[_posts_path, ] + slugified_categories)
+        post_dirname = os.path.join(*[_posts_path, ] + categories)
         post_filename = f"{date}-{slugify(note_filename)}"
         post_path = os.path.join(post_dirname, post_filename)
+
         # Check modification dates.
         note_changed = not os.path.isfile(post_path) \
             or note_stat.st_mtime > pathlib.Path(post_path).stat().st_mtime
         # logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
         if note_changed:
-            yaml = format_yaml(title, repo, slugified_categories, tags, note_path)
+            lines, tags = list(), list()
+            toc, regex = False, re.compile(r'^[#]{2,6}\s')
+
+            # Read list of lines, reformatting links, parsing tags, finding toc
+            # headers, parsing title, and appending comment.
+            with open(note_path, encoding='latin1') as rf:
+                for line in rf.readlines():
+                    lines.append(reformat_links(line.rstrip(), repo))
+                    tags += parse_tags(line)
+                    toc = toc or regex.search(line)
+            for i, line in enumerate(lines):
+                if not line: continue       # skip leading blank lines
+                if line.startswith('# '):   # extract title from first heading1
+                    title = line[2:].strip()
+                    del lines[i]
+                    break
+            lines.append(f"\n<!-- Modified {time.strftime('%Y-%m-%d:%H:%M:%S')} -->\n")
+
+            # Create list of YAML front matter.
+            yaml = format_yaml(title, repo, categories, tags, toc, note_path)
+
+            # Create directory and write post.
             os.makedirs(post_dirname, exist_ok=True)
             logger.info(f"{note_path} \u2192 {post_path}")
             with open(post_path, "w") as wf:
-                wf.write(yaml)
-                wf.writelines(lines)
+                wf.write('\n'.join(yaml))
+                wf.write('\n'.join(lines).lstrip())
         else:
             logger.info(f"UNCHANGED: {note_path}")
     else:
@@ -199,6 +214,7 @@ def copy_file(note_path, repo, repo_path, site_path):
         # logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
         if note_changed:
             # TODO: files deleted from note_dir are not removed from asset_dir
+            # Create directory and copy asset.
             os.makedirs(asset_dirname, exist_ok=True)
             logger.info(f"{note_path} \u2192 {asset_path}")
             shutil.copy(note_path, asset_path)
@@ -301,11 +317,11 @@ if __name__ == '__main__':
         logger.debug(f"logpath: {log.log_path()}")
         tests = [
             ['template.py', '..', '../docs/', '-v', ],
-            ['template.py', '-?', ],
+            # ['template.py', '-?', ],
         ]
         # slugify test
-        value = '/obsidian/NestedFolder/Foo & Bar/2024-03-21-Test%20with__spaces, éh? !@%_.md'
-        logger.info((value, slugify(value, True),))
+        #value = '/obsidian/NestedFolder/Foo & Bar/2024-03-21-Test%20with__spaces, éh? !@%_.md'
+        #logger.info((value, slugify(value, True),))
         for test in tests:
             logger.debug(f"# {' '.join(test)}")
             main(test)
