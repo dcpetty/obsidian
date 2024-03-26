@@ -1,6 +1,6 @@
 # `obsidian.py`
 
-[Obsidian](https://obsidian.md/) '&hellip;is the private and flexible writing app that adapts to the way you think.' [Jekyll](https://jekyllrb.com) '&hellip;is a static site generator. It takes text written in your favorite markup language and uses layouts to create a static website.' 
+[Obsidian](https://obsidian.md/) '&hellip;is the private and flexible writing app that adapts to the way you think.' [Jekyll](https://jekyllrb.com) '&hellip;is a static site generator. It takes text written in your favorite markup language and uses layouts to create a static website.' The theme I have chosen is [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes/) (MM).
 
 ## `obsidian.py`
 
@@ -26,10 +26,16 @@ optional arguments:
 
 ## Including a right-navigation `.HTML` file
 
-This is a sample of right navigation above any table of contents &mdash; including JavaScript to position the `<nav>`. There are *a lot* of assumptions.
+This is a sample of right navigation above any table of contents &mdash; including JavaScript to position the `<nav>`. It was inspired by [Renato Golia](https://renatogolia.com/2020/10/22/creating-this-blog-theme/). There are *a lot* of assumptions.
 
 ```js
 <!-- Example right navigation above any ToC -->
+<!--
+The example right navigation HTML and JavaScript to position it above any ToC is based on the Minimal Mistakes (MM) format and assumes:
+- The HTML follows the <aside... <nav... <header... <ul... <li... <a... MM pattern exactly.
+- The example right navigation <nav> tag has a data-toc="top" attribute.
+- The ToC aside (if there is one) is the first-child of a <section> with class="page__content".
+-->
 <aside class="sidebar__right sticky">
 <nav class="toc" data-toc="top">
   <header><h4 class="nav__title" title="External Links"><i class="fa fa-link"></i> External Links</h4>
@@ -46,6 +52,7 @@ This is a sample of right navigation above any table of contents &mdash; includi
 <!-- JavaScript for positioning right navigation above any ToC -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+  // https://stackoverflow.com/a/24070373
   // function runs when the DOM is ready, i.e. when document parsed
   let firstAside = document.querySelector("aside");
   if (firstAside) {
@@ -57,13 +64,12 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(nav);
       if (nav !== null) {
         /* aside has at least one nav */
-        if (firstNav === null) {
-          /* TODO: firstNav is currently unused */
-          let firstNav = nav;
-          /* TODO: firstNavBorder is currently unused */
-          let firstNavBorder = getComputedStyle(nav).border
-          console.log(`firstNav.border = '${firstNavBorder}'`);
-        }
+//        /* TODO: firstNav & firstNavBorder are currently unused */
+//        if (firstNav === null) {
+//          let firstNav = nav;
+//          let firstNavBorder = getComputedStyle(nav).border
+//          console.log(`firstNav.border = '${firstNavBorder}'`);
+//        }
         if (nav.hasAttribute("data-toc")) {
           /* Jekyll doesn't always like && */
           // && nav.getAttribute("data-toc") == 'top') {
@@ -97,9 +103,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 ```
+- https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
+- https://zellwk.com/blog/css-values-in-js/
+- https://github.com/mmistakes/minimal-mistakes/tree/master/_layouts
 
 ### TODO
 
 - Add configuration for *include globs* `['*.md', '*.png', '*.jpg', '*.html', ]` and *exclude globs* `['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md', ]`.
 - Add a way to clean out old `asset` files.
-- Include modification date as well as creation date in [Minimal Mistakes]() pages.
+- Include modification date as well as creation date in [MM](https://github.com/mmistakes/minimal-mistakes/) pages.
