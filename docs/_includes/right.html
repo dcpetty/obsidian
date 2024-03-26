@@ -1,4 +1,10 @@
 <!-- Example right navigation above any ToC -->
+<!--
+The example right navigation HTML and JavaScript to position it above any ToC is based on the Minimal Mistakes (MM) format and assumes:
+- The HTML follows the <aside... <nav... <header... <ul... <li... <a... MM pattern exactly.
+- The example right navigation <nav> tag has a data-toc="top" attribute.
+- The ToC aside (if there is one) is the first-child of a <section> with class="page__content".
+-->
 <aside class="sidebar__right sticky">
 <nav class="toc" data-toc="top">
   <header><h4 class="nav__title" title="External Links"><i class="fa fa-link"></i> External Links</h4>
@@ -15,6 +21,7 @@
 <!-- JavaScript for positioning right navigation above any ToC -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+  // https://stackoverflow.com/a/24070373
   // function runs when the DOM is ready, i.e. when document parsed
   let firstAside = document.querySelector("aside");
   if (firstAside) {
@@ -26,13 +33,12 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(nav);
       if (nav !== null) {
         /* aside has at least one nav */
-        if (firstNav === null) {
-          /* TODO: firstNav is currently unused */
-          let firstNav = nav;
-          /* TODO: firstNavBorder is currently unused */
-          let firstNavBorder = getComputedStyle(nav).border
-          console.log(`firstNav.border = '${firstNavBorder}'`);
-        }
+//        /* TODO: firstNav & firstNavBorder are currently unused */
+//        if (firstNav === null) {
+//          let firstNav = nav;
+//          let firstNavBorder = getComputedStyle(nav).border
+//          console.log(`firstNav.border = '${firstNavBorder}'`);
+//        }
         if (nav.hasAttribute("data-toc")) {
           /* Jekyll doesn't always like && */
           // && nav.getAttribute("data-toc") == 'top') {
