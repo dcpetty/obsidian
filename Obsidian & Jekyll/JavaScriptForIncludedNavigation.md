@@ -1,10 +1,25 @@
+# JavaScript for `_include`d .HTML file with right navigation
+Inspired by [Renato Golia](https://renatogolia.com/2020/10/22/creating-this-blog-theme/) and his [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) (MM) [jekyll](https://jekyllrb.com/) site, hosted on [GitHub Pages](https://pages.github.com/) , this `right.html` file in the `_include` directory can be included on any [Obsidian](https://obsidian.md) note with `{% raw %}{% include right.html %}{% endraw %}` to add an additional navigation box like this:
+![](obsidian/assets/obsidian/Pasted%20image%2020240326090137.png)
+<br><br>
+# Code
+This JavaScript / HTML uses the structure of the rendered Jekyll pages to place the right navigation box at the top of the right column above any table of contents (as on this page).
+
+The basic algorithm is:
+- Given that there is HTML that matches the `<aside... <nav... <header... <ul... <li... <a...` MM pattern *exactly*
+- use [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to find all `asside` tags with included `nav` tags
+- With more than one `asside` tag, move the `nav` tag with attribute `data-toc="top"` to the beginning of the *first* `asside`
+- If the included `asside` id the first one, move it to the beginning of a `section` tag matching `<section class="page__content ..." ...>`.
+
+```js
+<script>
 <!-- Example right navigation above any ToC -->
-<!-- {% comment %}
+<!--
 The example right navigation HTML and JavaScript to position it above any ToC is based on the Minimal Mistakes (MM) format and assumes:
 - The HTML follows the <aside... <nav... <header... <ul... <li... <a... MM pattern exactly.
 - The example right navigation <nav> tag has a data-toc="top" attribute.
 - The ToC aside (if there is one) is the first-child of a <section> with class="page__content".
-{% endcomment %} -->
+-->
 <aside class="sidebar__right sticky">
 <nav class="toc" data-toc="top">
   <header><h4 class="nav__title" title="External Links"><i class="fa fa-link"></i> External Links</h4>
@@ -71,3 +86,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+```
+
+# TODO
+- Allow for more than one such navigation with the `data-toc` attribute setting the position.
+- Have some way to minimize reliance on the structure of the rendered Jakyll page.
+{% include right.html %}

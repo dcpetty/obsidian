@@ -65,6 +65,7 @@ def valid_paths(repo_path):
     return paths
 
 
+# TODO: fix using permalink
 def slugify(path, preserve_case=False):
     """Return simple slugified path. Used to slugify paths and links.
     - split off any extension and work with root
@@ -175,7 +176,7 @@ def copy_file(note_path, repo, repo_path, site_path):
         # logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
         if note_changed:
             lines, tags = list(), list()
-            toc, regex = False, re.compile(r'^[#]{2,6}\s')
+            toc, regex = 0, re.compile(r'^[#]{1,6}\s')
 
             # Read list of lines, reformatting links, parsing tags, finding toc
             # headers, parsing title, and appending comment.
@@ -183,12 +184,13 @@ def copy_file(note_path, repo, repo_path, site_path):
                 for line in rf.readlines():
                     lines.append(reformat_links(line.rstrip(), repo))
                     tags += parse_tags(line)
-                    toc = toc or regex.search(line)
+                    toc += 1 if regex.search(line) else 0
             for i, line in enumerate(lines):
                 if not line: continue       # skip leading blank lines
                 if line.startswith('# '):   # extract title from first heading1
                     title = line[2:].strip()
                     del lines[i]
+                    toc -= 1
                     break
             lines.append(f"\n<!-- Modified {time.strftime('%Y-%m-%d:%H:%M:%S')} -->\n")
 

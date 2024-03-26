@@ -48,6 +48,8 @@ https://pages.github.com/themes/ *Supported themes* for Jekyll on GitHub pages
 - [https://renatogolia.com/2020/10/22/creating-this-blog-theme/](https://renatogolia.com/2020/10/22/creating-this-blog-theme/) More configuration
 - [https://mmistakes.github.io/minimal-mistakes/docs/layouts/](https://mmistakes.github.io/minimal-mistakes/docs/layouts/) MM layouts
 
+There is more documentation in [JavaScriptForIncludedNavigation](obsidian/Obsidian%20&%20Jekyll/JavaScriptForIncludedNavigation.md) about including right navigation.
+
 #Jekyll
 
 
