@@ -71,10 +71,16 @@ author:
       url: "https://dcpetty.github.io/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/dcpetty?tab=repositories&q=&type=&language=&sort=name"
+      url: "https://github.com/dcpetty/obsidian"
+    - label: "CV"
+      icon: "fas fa-fw fa-info"
+      url: "https://dcpetty.github.io/cv"
     - label: "LinkedIn"	# added
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/dcpetty"
+    - label: "stack<strong>overflow</strong>"
+      icon: "fab fa-fw fa-stack-overflow"
+      url: "https://stackoverflow.com/users/17467335"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/sprytechdatadevil"
@@ -90,12 +96,12 @@ footer:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/dcpetty/obsidian"
+    - label: "CV"
+      icon: "fas fa-fw fa-info"
+      url: "https://dcpetty.github.io/cv"
     - label: "LinkedIn"	# added
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/dcpetty"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/sprytechdatadevil"
 
 defaults:
   # _posts
