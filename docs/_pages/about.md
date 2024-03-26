@@ -4,7 +4,7 @@ title: "About"
 ---
 The public [Obsidian](https://obsidian.md/) notes [Jekyll](https://jekyllrb.com/) website of [`dcpetty`](http://github.com/dcpetty/obsidian/)
 
-[Quoting](https://dcpetty.github.io/cv/):
+From my [CV](https://dcpetty.github.io/cv/):
 > Experienced and creative engineer and educator with two decades each in
 software engineering for technology startups and in computing education 
 for public high schools. 
@@ -17,4 +17,4 @@ including as cofounder of two telecommunications companies.
 problem solving, cross-curricular learning and collaboration, and computing 
 from beginning to advanced; including physical computing and robotics.
 
-<span style="font-size: 144pt;">&#x270C;</span>
+<span style="font-size: 108pt;">&#x270C;</span>
