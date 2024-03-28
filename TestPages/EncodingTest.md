@@ -8,4 +8,4 @@ This is a way to test:
 
 My favorites: ×≈≡ΛΔ𝛿×∏ʻ⊠□ΦΘ👍🏻
 
-[[https://google/com/]] is the Google link!
+[[https://google.com/]] is the Google link!

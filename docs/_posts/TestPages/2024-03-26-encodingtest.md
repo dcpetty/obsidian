@@ -12,6 +12,6 @@ This is a way to test:
 
 My favorites: ×≈≡ΛΔ𝛿×∏ʻ⊠□ΦΘ👍🏻
 
-[https://google/com/](https://google/com/) is the Google link!
+[https://google.com/](https://google.com/) is the Google link!
 
-<!-- Modified 2024-03-27:23:03:01 -->
+<!-- Modified 2024-03-27:23:09:29 -->
