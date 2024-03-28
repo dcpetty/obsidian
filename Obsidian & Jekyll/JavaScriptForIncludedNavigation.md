@@ -1,15 +1,27 @@
 # JavaScript for `_include`d .HTML file with right navigation
-Inspired by [Renato Golia](https://renatogolia.com/2020/10/22/creating-this-blog-theme/) and his [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) (MM) [jekyll](https://jekyllrb.com/) site, hosted on [GitHub Pages](https://pages.github.com/) , this `right.html` file in the `_include` directory can be included on any [Obsidian](https://obsidian.md) note with `{% raw %}{% include right.html %}{% endraw %}` to add an additional navigation box like this:
+
+Inspired by [Renato Golia](https://renatogolia.com/2020/10/22/creating-this-blog-theme/) and his [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) (MM) [jekyll](https://jekyllrb.com/) site, hosted on [GitHub Pages](https://pages.github.com/) , this `right.html` file in the `_include` directory can be included on any [Obsidian](https://obsidian.md) note with `{% raw %}{% include right.html %}{% endraw %}` to add an additional navigation box like this (as on this page):
+
 ![](obsidian/assets/obsidian/Pasted%20image%2020240326090137.png)
 <br><br>
+This matches the list items:
+```HTML
+    <!-- Example list of external links -->
+    <li><a href="https://obsidian.md/">Obsidian</a></li>
+    <li><a href="https://jekyllrb.com/">Jekyll</a></li>
+    <li><a href="https://github.com/dcpetty/obsidian">GitHub</a></li>
+    <li><a href="https://google.com/">Google</a></li>
+```
+
 # Code
-This JavaScript / HTML uses the structure of the rendered Jekyll pages to place the right navigation box at the top of the right column above any table of contents (as on this page).
+
+This JavaScript / HTML uses the structure of the rendered Jekyll pages to place the right navigation box at the top of the right column above any table of contents.
 
 The basic algorithm is:
 - Given that there is HTML that matches the `<aside... <nav... <header... <ul... <li... <a...` MM pattern *exactly*
-- use [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to find all `asside` tags with included `nav` tags
-- With more than one `asside` tag, move the `nav` tag with attribute `data-toc="top"` to the beginning of the *first* `asside`
-- If the included `asside` id the first one, move it to the beginning of a `section` tag matching `<section class="page__content ..." ...>`.
+- use [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to find all `aside` tags with included `nav` tags
+- With more than one `aside` tag, move the `nav` tag with attribute `data-toc="top"` to the beginning of the *first* `aside`
+- With only one `aside` tag (the included `aside` id the *first* one), move it to the beginning of a `section` tag matching `<section class="page__content ..." ...>`.
 
 ```js
 <script>
@@ -89,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
 ```
 
 # TODO
+
 - Allow for more than one such navigation with the `data-toc` attribute setting the position.
 - Have some way to minimize reliance on the structure of the rendered Jakyll page.
 {% include right.html %}

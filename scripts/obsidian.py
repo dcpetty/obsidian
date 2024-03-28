@@ -119,22 +119,38 @@ def format_yaml(title, repo, categories, tags, toc=False, path=None):
 
 def reformat_links(line, repo):
     """Replace local links in line with corrected slugified links.
+    First
     - search for '(repo/dir/file.ext)'
     - replace 'repo/' with '/repo/'
     - if ext is '.md', remove it
     - slugify the new link (assumes asset directories are already slugified)
     - substitute it for the old link
-    - iterate for all links and return fixed line
+    - iterate for all matching links
+    Second:
+    - search for '[[link]]' that is not immediately preceded or followed by '`'
+    - replace '[[link]]' with '[link](link)'
+    - iterate for all matching links
+    - return fixed line
     """
-    regex, fixed = re.compile(f"([(]{repo}/[^)]*" + r'[.]\w{2,4}[)])+'), line[:]
-    for match in regex.finditer(line):
-        old_link = line[match.start():match.end()]
+    single_re = re.compile(f"([(]{repo}/[^)]*" + r'[.]\w{2,4}[)])+')
+    fixed = line[:]
+    for match in single_re.finditer(line):
+        old_link = line[match.start(): match.end()]
         new_link = slugify(line[match.start():
             match.end() - (4 if old_link.endswith('.md)') else 1)]
                 .replace(f"({repo}/", f"(/{repo}/"))
         logger.debug(f"links: '{old_link}' '({new_link})'")
         fixed = fixed.replace(old_link, f"({new_link})")
-        # logger.debug(f"fixed line: {fixed.strip()}")
+        # logger.debug(f"fixed '[': {fixed.strip()}")
+
+    double_re = re.compile(r'((^|[^`])([\[]{2}([^\]]*)[\]]{2})([^`]|$))+')
+    for match in double_re.finditer(fixed):
+        old_link = match.groups()[2]
+        uri = match.groups()[3]
+        new_link = f"[{uri}]({uri})"
+        fixed = fixed.replace(old_link, new_link)
+        # logger.debug(f"fixed '[[': {fixed.strip()}")
+
     return fixed
 
 
@@ -180,7 +196,7 @@ def copy_file(note_path, repo, repo_path, site_path):
 
             # Read list of lines, reformatting links, parsing tags, finding toc
             # headers, parsing title, and appending comment.
-            with open(note_path, encoding='latin1') as rf:
+            with open(note_path, encoding='utf-8') as rf:
                 for line in rf.readlines():
                     lines.append(reformat_links(line.rstrip(), repo))
                     tags += parse_tags(line)
@@ -200,7 +216,7 @@ def copy_file(note_path, repo, repo_path, site_path):
             # Create directory and write post.
             os.makedirs(post_dirname, exist_ok=True)
             logger.info(f"{note_path} \u2192 {post_path}")
-            with open(post_path, "w") as wf:
+            with open(post_path, "w", encoding='utf-8') as wf:
                 wf.write('\n'.join(yaml))
                 wf.write('\n'.join(lines).lstrip())
         else:

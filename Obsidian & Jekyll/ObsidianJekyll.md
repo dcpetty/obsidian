@@ -36,6 +36,7 @@ https://pages.github.com/themes/ *Supported themes* for Jekyll on GitHub pages
 - Replace `' '` with `'-'`.
 - `lower()` the result.
 ## Minimal Mistakes
+
 - https://github.com/mmistakes/mm-github-pages-starter/generate copy MM starter
 - https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/ installed from scratch, to fix `gem install jekyll bundler`
 
