@@ -178,7 +178,7 @@ def copy_file(note_path, repo, repo_path, site_path):
     # Process and copy newer .MD files.
     if rel_note_path.endswith('.md'):
         # Process and copy newer .MD file.
-        title = note_filename   # if no initial header1 for title
+        title = re.sub(r'[.]md$', '', note_filename)    # if no initial header1
         categories = [slugify(c, True)
             for c in rel_note_path.split(os.sep)[: -1]]
         _posts_path = os.path.join(site_path, '_posts')  # must match prepare
@@ -220,7 +220,7 @@ def copy_file(note_path, repo, repo_path, site_path):
                 wf.write('\n'.join(yaml))
                 wf.write('\n'.join(lines).lstrip())
         else:
-            logger.info(f"UNCHANGED: {note_path}")
+            logger.debug(f"UNCHANGED: {note_path}")
     else:
         # Process and copy newer non-.MD files.
         note_dirname = os.path.dirname(rel_note_path)
@@ -237,7 +237,7 @@ def copy_file(note_path, repo, repo_path, site_path):
             logger.info(f"{note_path} \u2192 {asset_path}")
             shutil.copy(note_path, asset_path)
         else:
-            logger.info(f"UNCHANGED: {note_path}")
+            logger.debug(f"UNCHANGED: {note_path}")
 
 
 def prepare(REPODIR, POSTDIR, REBUILD=False):
