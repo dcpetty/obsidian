@@ -1,6 +1,6 @@
 # JavaScript for `_include`d .HTML file with right navigation
 
-Inspired by [Renato Golia](https://renatogolia.com/2020/10/22/creating-this-blog-theme/) and his [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) (MM) [jekyll](https://jekyllrb.com/) site, hosted on [GitHub Pages](https://pages.github.com/) , this `right.html` file in the `_include` directory can be included on any [Obsidian](https://obsidian.md) note with `{% raw %}{% include right.html %}{% endraw %}` to add an additional navigation box like this (as on this page):
+Inspired by [Renato Golia](https://renatogolia.com/2020/10/22/creating-this-blog-theme/) and his [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) (MM) [Jekyll](https://jekyllrb.com/) site, hosted on [GitHub Pages](https://pages.github.com/) , this `right.html` file in the `_include` directory can be included on any [Obsidian](https://obsidian.md) note with `{% raw %}{% include right.html %}{% endraw %}` to add an additional navigation box like this (as on this page):
 
 ![](obsidian/assets/obsidian/Pasted%20image%2020240326090137.png)
 <br><br>
@@ -21,7 +21,7 @@ The basic algorithm is:
 - Given that there is HTML that matches the `<aside... <nav... <header... <ul... <li... <a...` MM pattern *exactly*
 - use [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to find all `aside` tags with included `nav` tags
 - With more than one `aside` tag, move the `nav` tag with attribute `data-toc="top"` to the beginning of the *first* `aside`
-- With only one `aside` tag (the included `aside` id the *first* one), move it to the beginning of a `section` tag matching `<section class="page__content ..." ...>`.
+- With only one `aside` tag (the included `aside` id is the *first* one), move it to the beginning of a `section` tag matching `<section class="page__content ..." ...>`.
 
 ```js
 <script>
@@ -103,5 +103,5 @@ document.addEventListener("DOMContentLoaded", function() {
 # TODO
 
 - Allow for more than one such navigation with the `data-toc` attribute setting the position.
-- Have some way to minimize reliance on the structure of the rendered Jakyll page.
+- Have some way to minimize reliance on the structure of the rendered Jekyll page.
 {% include right.html %}

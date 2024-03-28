@@ -4,38 +4,47 @@
 
 - Obsidian has `.md` files in a [normal format](https://www.markdownguide.org/tools/obsidian/) that are shown as **Notes** without the `.md`.
 - Obsidian allows for nested notes within subdirectories.
-- Obsidian allows for Wiki-style links (credits to [Ward Cunningham](https://en.wikipedia.org/wiki/Ward_Cunningham) & https://wiki.c2.com/) of the form `[[ObsidianJekyll]]` to link to this note. As long as there are not duplicate filenames, `[[SubDirectoryNote]]` can refer to [[obsidian/TestPages/SubFolder/SubDirectoryNote]] in a subdirectory. 
+- Obsidian allows for Wiki-style links (credits to [Ward Cunningham](https://en.wikipedia.org/wiki/Ward_Cunningham) & [[https://wiki.c2.com/]]) of the form `[[ObsidianJekyll]]` to link to this note. As long as there are not duplicate filenames, `[[SubDirectoryNote]]` can refer to [[obsidian/TestPages/SubFolder/SubDirectoryNote]] in a subdirectory. 
   - Under `Obsidian > Settings > Files and links` with `Use [[Wikilinks]]` enabled...
    - With `Files and links > New link format > Relative path to file`, [[obsidian/TestPages/AdditionalNote]] shows as `[[AdditionalNote]]` when entered Wiki-style, whereas [[obsidian/TestPages/SubFolder/AdditionalNote|AdditionalNote]] shows as `[[SubFolder/AdditionalNote|AdditionalNote]]` when entered Wiki-style.
    - With `Files and links > New link format > Absolute path in vault`, [[obsidian/TestPages/AdditionalNote|AdditionalNote]] shows as `[[obsidian/AdditionalNote|AdditionalNote]]` when entered Wiki-style, whereas [[obsidian/TestPages/SubFolder/AdditionalNote|AdditionalNote]] shows as `[[obsidian/SubFolder/AdditionalNote|AdditionalNote]]` when entered Wiki-style.
  - Under `Obsidian > Settings > Files and links` with `Use [[Wikilinks]]` disabled...
   - With `Files and links > New link format > Relative path to file`, [AdditionalNote](obsidian/TestPages/AdditionalNote.md) shows as `[AdditionalNote](AdditionalNote.md)` when entered Wiki-style, whereas [AdditionalNote](obsidian/TestPages/SubFolder/AdditionalNote.md) shows as `[AdditionalNote](SubFolder/AdditionalNote.md)` when entered Wiki-style.
   - With `Files and links > New link format > Absolute path in vault`, [[obsidian/TestPages/AdditionalNote|AdditionalNote]] shows as `[AdditionalNote](obsidian/AdditionalNote.md)` when entered Wiki-style, whereas [AdditionalNote](obsidian/TestPages/SubFolder/AdditionalNote.md) shows as `[AdditionalNote](obsidian/SubFolder/AdditionalNote.md)` when entered Wiki-style.
+  
+## Best strategy for allowing for parsing Obsidian links
 
-- **Best strategy for parsing links: `Obsidian > Settings > Files and links > Use [[Wikilinks]]` *disabled* & `Obsidian > Settings > Files and links > New link format > Absolute path in vault`.**  This will result in repository (`obsidian`) public notes links being prefixed by `(obsidian` and postfixed by `.md)` (or other valid extensions).
+- `Obsidian > Settings > Files and links > Use [[Wikilinks]]` *disabled* & `Obsidian > Settings > Files and links > New link format > Absolute path in vault`. This will result in repository (`obsidian`) public notes links being prefixed by `(obsidian` and postfixed by `.md)` (or other valid extensions).
 - **Slugified links involve replacing spaces (`' '`) with `'%20'` but (more or less?) leaving other special characters intact.** The rule of thumb is, therefore, eschew spaces in note / file names and subfolder names.
 - There is a question of whether all image assets should go in `obsidian/docs/assets/` or `obsidian/docs/assets/images/` or `obsidian/assets` to be copied — with `Obsidian > Settings > Files and links > Default location for new attachments` adjusted.
 
 ![](obsidian/assets/obsidian/Pasted%20image%2020240324105650.png)
 
-- `Obsidian > Settings`
+- Other `Obsidian > Settings`
  - `General > Your Account > Sign In`
 
 #Obsidian
 
 ## Jekyll on GitHub
 
-Links for setting up 
-https://docs.github.com/en/pages/quickstart *Quickstart for GitHub Pages* with Jekyll
-https://github.com/jhvanderschee/brackettest *Wiki-style links in Jekyll*
-https://pages.github.com/themes/ *Supported themes* for Jekyll on GitHub pages
+Research for setting up an Obsidian-compatible Jekyll site:
 
-[2024-03-21-Test with spaces, éh? !@%](obsidian/docs/_posts/NestedDirectory/2024-03-21-Test%20with%20spaces,%20éh?%20!@%.md) This link illustrates the simple Obsidian slugified links (*replace spaces (`' '`) with `'%20'` but (more or less?) leave other special characters intact*). Since we can slugify the copied pages however we want, the simple slugify function should:
-- Replace `'%20'` with `' '`.
-- Call `unicodedata.normalize('NFKD', ...)` (https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize) with the result.
-- Replace `' '` with `'-'`.
-- `lower()` the result.
+- [[https://docs.github.com/en/pages/quickstart]] *Quickstart for GitHub Pages* with Jekyll
+- [[https://github.com/jhvanderschee/brackettest]] *Wiki-style links in Jekyll*
+- [[https://pages.github.com/themes/]] *Supported themes* for Jekyll on GitHub pages
+
+Jekyll-compatible Obsidian links:
+
+- Slugified ([[https://arc.net/l/quote/zeinsemk]]) links created by Jekyll for `.md` files — if there is no `permalink:` in the YAML front matter — involve replacing spaces (`' '`) with `'%20'` but (more or less?) leaving other special characters intact. *The rule of thumb for Obsidian notes is, therefore, eschew spaces in file names and subfolder names* &mdash; which is the [[https://wiki.c2.com/]] norm.
+- `[2024-03-21-Test with spaces, éh? !@%](obsidian/docs/_posts/NestedDirectory/2024-03-21-Test%20with%20spaces,%20éh?%20!@%.md)` This link illustrates the simple Obsidian slugified links (*replace spaces (`' '`) with `'%20'` but (more or less?) leave other special characters intact*). Since we can slugify the copied pages however we want, the simple slugify function should:
+ - Replace `'%20'` with `' '`.
+ - Call `unicodedata.normalize('NFKD', ...)` (https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize) with the result.
+ - Replace `' '` with `'-'`, remove anything matching `r'[^/\w\s._-]'`, replace anything matching `r'[\s._]'` with `'-'`, and remove multiple `'-'`s.
+ - Conditionally `lower()` the result (based on if it is a pathname or `categories:`  names).
+- xxx
 ## Minimal Mistakes
+
+What I did to get Jekyll going on my local machine:
 
 - https://github.com/mmistakes/mm-github-pages-starter/generate copy MM starter
 - https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/ installed from scratch, to fix `gem install jekyll bundler`
@@ -52,5 +61,3 @@ https://pages.github.com/themes/ *Supported themes* for Jekyll on GitHub pages
 There is more documentation in [JavaScriptForIncludedNavigation](obsidian/Obsidian%20&%20Jekyll/JavaScriptForIncludedNavigation.md) about including right navigation.
 
 #Jekyll
-
-
