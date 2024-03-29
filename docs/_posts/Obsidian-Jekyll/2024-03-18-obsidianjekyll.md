@@ -26,13 +26,14 @@ toc_sticky: true
 
 - `Obsidian > Settings > Files and links > Use [[Wikilinks]]` *disabled* & `Obsidian > Settings > Files and links > New link format > Absolute path in vault`. This will result in repository (`obsidian`) public notes links being prefixed by `(obsidian` and postfixed by `.md)` (or other valid extensions).
 - **Slugified links involve replacing spaces (`' '`) with `'%20'` but (more or less?) leaving other special characters intact.** The rule of thumb is, therefore, eschew spaces in note / file names and subfolder names.
-- Wiki-style links (`[[https://obsidian.md/]]`)  can be more easily entered verbatim, because wiki-style links are not allowed with `/`s (and so cannot be clicked).
-- There is a question of whether all image assets should go in `obsidian/docs/assets/` or `obsidian/docs/assets/images/` or **`obsidian/assets/obsidian`** to be copied — with `Obsidian > Settings > Files and links > Default location for new attachments` adjusted.
+- Wiki-style *external* links (`[[https://obsidian.md/]]`)  can be more easily entered verbatim, because wiki-style links are not allowed with `/`s (with the side effect that they cannot be clicked in Obsidian — only Jekyll).
+- There is a question of whether all image assets should go in `obsidian/docs/assets/` or `obsidian/docs/assets/images/` or **`obsidian/assets/obsidian`** to be copied — with `Obsidian > Settings > Files and links > Default location for new attachments` adjusted (see below).
 
 ![](/obsidian/assets/obsidian/pasted-image-20240324105650.png)
 
 - Other `Obsidian > Settings`
  - `General > Your Account > Sign In`
+ - `Editor > Default editing mode > Source mode`
 
 #Obsidian
 
@@ -69,11 +70,11 @@ There is more documentation in [JavaScriptForIncludedNavigation](/obsidian/obsid
 What I did to get Jekyll running on my local machine:
 
 - https://github.com/mmistakes/mm-github-pages-starter/generate copy MM starter
-- https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/ installed from scratch, to fix `gem install jekyll bundler`
+- https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/ installed from scratch, to fix `gem install jekyll bundler`.
 
-> `gem install jekyll bundler`
-> `bundle install`
-> `bundle add webrick`
+> `gem install jekyll bundler`<br>
+> `bundle install`<br>
+> `bundle add webrick`<br>
 
 - [https://www.cross-validated.com/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-I/](https://www.cross-validated.com/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-I/) is a really helpful configuration HOW-TO site
 - [https://www.supertechcrew.com/setup-jekyll-sitemap/](https://www.supertechcrew.com/setup-jekyll-sitemap/) describes `sitemap.xml`
@@ -86,4 +87,4 @@ What I did to get Jekyll running on my local machine:
 
 - Revisit the idea of simply copying the .MD files with adjusted links to `README.md` files in named directories and use [https://pages.github.com/](https://pages.github.com/) to format them.
 
-<!-- Modified 2024-03-29:08:30:34 -->
+<!-- Modified 2024-03-29:16:34:56 -->
