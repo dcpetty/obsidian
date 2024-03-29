@@ -112,4 +112,4 @@ document.addEventListener("DOMContentLoaded", function() {
 - Have some way to minimize reliance on the structure of the rendered Jekyll page.
 {% include right.html %}
 
-<!-- Modified 2024-03-28:12:40:44 -->
+<!-- Modified 2024-03-29:00:46:28 -->

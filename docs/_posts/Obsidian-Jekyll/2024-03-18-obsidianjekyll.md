@@ -85,4 +85,4 @@ What I did to get Jekyll running on my local machine:
 
 - Revisit the idea of simply copying the .MD files with adjusted links to `README.md` files in named directories and use [https://pages.github.com/](https://pages.github.com/) to format them.
 
-<!-- Modified 2024-03-29:00:43:27 -->
+<!-- Modified 2024-03-29:00:46:28 -->

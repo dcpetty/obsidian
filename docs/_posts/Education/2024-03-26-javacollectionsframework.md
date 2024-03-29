@@ -34,4 +34,4 @@ As preparation for the assignment&hellip;
 - [https://drive.google.com/file/d/1ELECPhkhtFAWsUOwGgrOzN2q5e8Zgr24/](https://drive.google.com/file/d/1ELECPhkhtFAWsUOwGgrOzN2q5e8Zgr24/) UML class diagram for the full Java Collections Framework (made with [https://www.draw.io/](https://www.draw.io/))
 - [https://drive.google.com/file/d/1wANe9e2n44Viy3h-7eeps5mVmudaBaid/](https://drive.google.com/file/d/1wANe9e2n44Viy3h-7eeps5mVmudaBaid/) UML class diagram for linked-list assignment: `LinkedList`, `Queue`, and `Stack` (made with [https://www.draw.io/](https://www.draw.io/))
 
-<!-- Modified 2024-03-27:23:38:59 -->
+<!-- Modified 2024-03-29:00:46:28 -->
