@@ -29,7 +29,7 @@ logger = log.log(__name__, 'obsidian')
 
 
 def valid_paths(repo_path):
-    """Return valid paths below repo_path."""
+    """Return sorted list of valid paths below repo_path."""
 
     # glob all *.* paths below repo_path.
     all_paths = [p for p in glob.glob(os.path.join(repo_path, '**/*.*'),
@@ -55,7 +55,7 @@ def valid_paths(repo_path):
     included = {p for p in all_paths if re.match(inc_regex, p)}
     logger.debug(f"        included: {included}")
     # Create set of valid paths that does not include paths matching exc_regex.
-    paths = {p for p in included if not re.match(exc_regex, p)}
+    paths = sorted({p for p in included if not re.match(exc_regex, p)})
     logger.debug(f"and not excluded: {paths}")
 
     # Log each valid path to process relative to repo_path.
@@ -164,7 +164,8 @@ def copy_file(note_path, repo, repo_path, site_path):
     - Copy .MD files to _posts_path with YAML front matter, adjusted links, and
       slugified path if note_path younger post_path.
     - Copy other valid files with slugified filename (only) following directory
-      pattern in note_path. (Assumes asset directories are already slugified)"""
+      pattern in note_path if note_path younger post_path. (Assumes asset
+      directories are already slugified)"""
     assert os.path.isfile(note_path), f"{note_path} does not exist"
     # No st_birthtime on Window$; st_ctime is metadata change on others.
     has_birthtime = hasattr(os.stat(note_path), 'st_birthtime')
