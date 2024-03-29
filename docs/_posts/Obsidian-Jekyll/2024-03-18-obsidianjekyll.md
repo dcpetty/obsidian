@@ -1,6 +1,6 @@
 ---
 show_date: true
-title: "ObsidianJekyll"
+title: "What I learned about Obsidian & Jekyll"
 categories:
  - Obsidian-Jekyll
 tags:
@@ -9,7 +9,7 @@ tags:
 toc: true
 toc_sticky: true
 ---
-## What I learned about Obsidian & Jekyll
+## How Obsidian works as a linking Markdown editor
 
 - Obsidian has `.md` files in a [normal format](https://www.markdownguide.org/tools/obsidian/) that are shown as **Notes** without the `.md`.
 - Obsidian allows for nested notes within subdirectories.
@@ -21,10 +21,11 @@ toc_sticky: true
   - With `Files and links > New link format > Relative path to file`, [AdditionalNote](/obsidian/testpages/additionalnote) shows as `[AdditionalNote](AdditionalNote.md)` when entered Wiki-style, whereas [AdditionalNote](/obsidian/testpages/subfolder/additionalnote) shows as `[AdditionalNote](SubFolder/AdditionalNote.md)` when entered Wiki-style.
   - With `Files and links > New link format > Absolute path in vault`, [obsidian/TestPages/AdditionalNote|AdditionalNote](obsidian/TestPages/AdditionalNote|AdditionalNote) shows as `[AdditionalNote](/obsidian/additionalnote)` when entered Wiki-style, whereas [AdditionalNote](/obsidian/testpages/subfolder/additionalnote) shows as `[AdditionalNote](/obsidian/subfolder/additionalnote)` when entered Wiki-style.
 
-## Best strategy for allowing for parsing Obsidian links
+### Best strategy for allowing for parsing Obsidian links
 
 - `Obsidian > Settings > Files and links > Use [[Wikilinks]]` *disabled* & `Obsidian > Settings > Files and links > New link format > Absolute path in vault`. This will result in repository (`obsidian`) public notes links being prefixed by `(obsidian` and postfixed by `.md)` (or other valid extensions).
 - **Slugified links involve replacing spaces (`' '`) with `'%20'` but (more or less?) leaving other special characters intact.** The rule of thumb is, therefore, eschew spaces in note / file names and subfolder names.
+- Wiki-style links (`[[https://obsidian.md/]]`)  can be more easily entered verbatim, because wiki-style links are not allowed with `/`s (and so cannot be clicked).
 - There is a question of whether all image assets should go in `obsidian/docs/assets/` or `obsidian/docs/assets/images/` or `obsidian/assets` to be copied — with `Obsidian > Settings > Files and links > Default location for new attachments` adjusted.
 
 ![](/obsidian/assets/obsidian/pasted-image-20240324105650.png)
@@ -36,24 +37,35 @@ toc_sticky: true
 
 ## Jekyll on GitHub
 
-Research for setting up an Obsidian-compatible Jekyll site:
+Jekyll follows a certain directory structure and the public Obsidian notes must conform to that structure.
+
+- the `docs` directory...
+- The `_posts` directory...
+- The `asets` directory...
+- The `_include` directory...
+
+There is more documentation in [JavaScriptForIncludedNavigation](/obsidian/obsidian-jekyll/javascriptforincludednavigation) about including right navigation from .HTML files in the `_include` directory.
+
+### Research for setting up an Obsidian-compatible Jekyll site:
 
 - [https://docs.github.com/en/pages/quickstart](https://docs.github.com/en/pages/quickstart) *Quickstart for GitHub Pages* with Jekyll
 - [https://github.com/jhvanderschee/brackettest](https://github.com/jhvanderschee/brackettest) *Wiki-style links in Jekyll*
 - [https://pages.github.com/themes/](https://pages.github.com/themes/) *Supported themes* for Jekyll on GitHub pages
 
-Jekyll-compatible Obsidian links:
+### Jekyll-compatible Obsidian links:
 
 - Slugified ([https://arc.net/l/quote/zeinsemk](https://arc.net/l/quote/zeinsemk)) links created by Jekyll for `.md` files — if there is no `permalink:` in the YAML front matter — involve replacing spaces (`' '`) with `'%20'` but (more or less?) leaving other special characters intact. *The rule of thumb for Obsidian notes is, therefore, eschew spaces in file names and subfolder names* &mdash; which is the [https://wiki.c2.com/](https://wiki.c2.com/) norm.
-- `[2024-03-21-Test with spaces, éh? !@%](/obsidian/docs/-posts/nesteddirectory/2024-03-21-test-with-spaces-eh)` This link illustrates the simple Obsidian slugified links (*replace spaces (`' '`) with `'%20'` but (more or less?) leave other special characters intact*). Since we can slugify the copied pages however we want, the simple slugify function should:
- - Replace `'%20'` with `' '`.
- - Call `unicodedata.normalize('NFKD', ...)` (https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize) with the result.
- - Replace `' '` with `'-'`, remove anything matching `r'[^/\w\s._-]'`, replace anything matching `r'[\s._]'` with `'-'`, and remove multiple `'-'`s.
- - Conditionally `lower()` the result (based on if it is a pathname or `categories:`  names).
-- xxx
+- `[2024-03-21-Test with spaces, éh? !@%](/obsidian/docs/-posts/nesteddirectory/2024-03-21-test-with-spaces-eh)` This link illustrates the simple Obsidian slugified links (*replace spaces (`' '`) with `'%20'` but (more or less?) leave other special characters intact*).
+- Since we can slugify the copied pages however we want, the simple slugify function should:
+   - Replace `'%20'` with `' '`.
+   - Call `unicodedata.normalize('NFKD', ...)` (https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize) with the result.
+   - Replace `' '` with `'-'`, remove anything matching `r'[^/\w\s._-]'`, replace anything matching `r'[\s._]'` with `'-'`, and remove multiple `'-'`s.
+   - Conditionally `lower()` the result (based on if it is a pathname or `categories:`  names).
+- Therefore, translate `[text](/obsidian/directory/file)` links to `[text](/obsidian/directory/file)` links and translate `[[https://obsidian.md/]]` links to `[https://obsidian.md/](https://obsidian.md)` links.
+
 ## Minimal Mistakes
 
-What I did to get Jekyll going on my local machine:
+What I did to get Jekyll running on my local machine:
 
 - https://github.com/mmistakes/mm-github-pages-starter/generate copy MM starter
 - https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/ installed from scratch, to fix `gem install jekyll bundler`
@@ -67,8 +79,10 @@ What I did to get Jekyll going on my local machine:
 - [https://renatogolia.com/2020/10/22/creating-this-blog-theme/](https://renatogolia.com/2020/10/22/creating-this-blog-theme/) More configuration
 - [https://mmistakes.github.io/minimal-mistakes/docs/layouts/](https://mmistakes.github.io/minimal-mistakes/docs/layouts/) MM layouts
 
-There is more documentation in [JavaScriptForIncludedNavigation](/obsidian/obsidian-jekyll/javascriptforincludednavigation) about including right navigation.
-
 #Jekyll
 
-<!-- Modified 2024-03-28:12:40:44 -->
+## TODO
+
+- Revisit the idea of simply copying the .MD files with adjusted links to `README.md` files in named directories and use [https://pages.github.com/](https://pages.github.com/) to format them.
+
+<!-- Modified 2024-03-29:00:43:27 -->
