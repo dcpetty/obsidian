@@ -86,5 +86,23 @@ What I did to get Jekyll running on my local machine:
 ## TODO
 
 - Revisit the idea of simply copying the .MD files with adjusted links to `README.md` files in named directories and use [https://pages.github.com/](https://pages.github.com/) to format them.
+- [https://ascii-tree-generator.com/](https://ascii-tree-generator.com/) can generate a directory tree matching come sample files.
+<pre>obsidian/
+├─ assets/
+│  ├─ obsidian/
+│  │  ├─ img.png
+├─ docs/
+│  ├─ assets/
+│  │  ├─ obsidian/
+│  │  │  ├─ img.png
+│  ├─ _posts/
+│  │  ├─ 2024-03-01-firstfile.md
+│  │  ├─ 2024-03-02-secondfile.md
+│  │  ├─ 2024-03-03-thirdfile.md
+├─ FirstFolder/
+│  ├─ SecondFile.md
+├─ FirstFile.md
+├─ ThirdFile.md
+</pre>
 
-<!-- Modified 2024-03-29:16:34:56 -->
+<!-- Modified 2024-03-31:22:46:50 -->

@@ -21,12 +21,12 @@ toc_sticky: true
 ## Images
 ![20230626-i'm-taking-the-mole](/obsidian/assets/obsidian/20230626-im-taking-the-mole.png)
 
-
 <center><em>I'm leaving and I'm taking the mole.</em></center>
 <br>
 ![](/obsidian/assets/obsidian/pasted-image-20240323125356.png)
 <br><br>
 There one `<br>` tags preceding and two `<br>` tags following this pasted image.
+
 ## Included files
 
 These come from {% raw %}`{% include foo.html %}`{% endraw %} ([https://shopify.github.io/liquid/](https://shopify.github.io/liquid/) ).
@@ -37,4 +37,4 @@ These come from {% raw %}`{% include foo.html %}`{% endraw %} ([https://shopify.
 
 {% include foo.html %}
 
-<!-- Modified 2024-03-29:00:46:28 -->
+<!-- Modified 2024-03-31:22:46:50 -->
