@@ -1,11 +1,11 @@
 # A list of possible introductory Python tutorials
 
-It is possible to learn [Python](https://pyton.org) on-line from self-directed learning. This document lists several tutorial sites with Python-specific introductory tutorials. Some zero-cost&hellip; some are not.
+It is possible to learn [Python](https://python.org) on-line from self-directed learning. This document lists several tutorial sites with Python-specific introductory tutorials. Some zero-cost&hellip; some are not.
 
 ## Organizations
 
 - [edX](https://www.edx.org/learn/python) has ≈40 Python courses (including one from [MIT](https://www.edx.org/course/introduction-to-computer-science-and-programming-7))
-- [Courseera](https://www.coursera.org/search?query=introductory%20Python) has a few dozen Python tutorials.
+- [Coursera](https://www.coursera.org/search?query=introductory%20Python) has a few dozen Python tutorials.
 - [Udacity](https://arc.net/l/quote/ipmgpyva) has a few Python tutorials.
 
 ## Tutorials
