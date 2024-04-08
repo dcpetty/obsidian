@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# obsidian.py
+# obsidianjekyll.py
 #
 """
 obsidian.py copies a REPODIR Obsidian repository to a POSTDIR Jekyll repository,
@@ -28,41 +28,91 @@ import datetime, fnmatch, glob, pathlib, shutil, time, unicodedata
 logger = log.log(__name__, 'obsidian')
 
 
-def valid_paths(repo_path):
-    """Return sorted list of valid paths below repo_path."""
+class Paths(object):
+    """Keep track of the directories, paths, and repository."""
 
-    # glob all *.* paths below repo_path.
-    all_paths = [p for p in glob.glob(os.path.join(repo_path, '**/*.*'),
-        recursive=True)]
+    _default_repodir = '.'
+    _default_postdir = './docs'
 
-    # https://stackoverflow.com/a/5141829
+
+    def __init__(self, repodir=None, postdir=None):
+        """Initialize paths for repository and site."""
+        self._repodir = repodir if repodir else type(self)._default_repodir
+        self._postdir = postdir if postdir else type(self)._default_postdir
+        self._repo_path = os.path.realpath(self._repodir)
+        logger.debug(f"repo_path: {self._repo_path}")
+        self._repo = os.path.normpath(self._repo_path).split(os.sep)[-1]
+        logger.debug(f"repo: {self._repo}")
+        self._site_path = os.path.realpath(self._postdir)
+        logger.debug(f"site_path: {self._site_path}")
+
+        assert os.path.isdir(self._repo_path), \
+            f"{self._repo_path} is not a directory"
+        assert os.path.isdir(self._site_path), \
+            f"{self._site_path} is not a directory"
+
+
+    # Properties repo_path, repo, site_path.
+    def _get_repo_path(self): return self._repo_path
+    repo_path = property(_get_repo_path)
+    def _get_repo(self): return self._repo
+    repo = property(_get_repo)
+    def _get_site_path(self): return self._site_path
+    site_path = property(_get_site_path)
+
+
+class PathNames(object):
+    """Collect Jekyll files from an Obsidian vault."""
+
+    _default_repo_path = '.'
     # List of patterns to include.
-    to_inc = ['*.md', '*.png', '*.jpg', '*.html', ]
+    _default_to_inc = ['*.md', '*.png', '*.jpg', '*.html', ]
     # List of patterns to exclude.
-    to_exc = ['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md',
-        '**/foo/**/bar/*.html'] # TODO: this is simply to test valid_paths
+    _default_to_exc = ['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md',
+        '**/foo/**/bar/*.html']  # TODO: this is simply to test valid_paths
 
-    # transform glob patterns to regular expressions
-    nonpath = '/:GLOB:/'    # nonpath cannot be part of a pathname
-    wc_regex = lambda glob: fnmatch.translate(glob.replace('**/', nonpath)) \
-        .replace(nonpath, '(.*/)*')
-    inc_regex = r'|'.join([wc_regex(x) for x in to_inc])
-    logger.debug(f"include regex: {inc_regex}")
-    exc_regex = r'|'.join([wc_regex(x) for x in to_exc]) or r'$.'
-    logger.debug(f"exclude regex: {exc_regex}")
+    def __init__(self, repo_path=None, to_inc=None, to_exc=None):
+        """Created sorted list of valid paths below repo_path."""
+        self._repo_path = repo_path if repo_path else type(self)._default_repo_path
+        self._to_inc = to_inc if to_inc else type(self)._default_to_inc
+        self._to_exc = to_exc if to_exc else type(self)._default_to_exc
+        self._path_names = self._valid_paths(self._repo_path, self._to_inc, self._to_exc)
 
-    # Create set of all includable paths matching inc_regex.
-    included = {p for p in all_paths if re.match(inc_regex, p)}
-    logger.debug(f"        included: {included}")
-    # Create set of valid paths that does not include paths matching exc_regex.
-    paths = sorted({p for p in included if not re.match(exc_regex, p)})
-    logger.debug(f"and not excluded: {paths}")
 
-    # Log each valid path to process relative to repo_path.
-    for path in paths:
-        logger.debug(f"valid: {path.replace(repo_path + '/', '')}")
+    # Properties files.
+    def _get_path_names(self): return self._path_names
+    path_names = property(_get_path_names)
 
-    return paths
+
+    def _valid_paths(self, repo_path, to_inc, to_exc):
+        """Return sorted list of valid paths below repo_path."""
+
+        # https://stackoverflow.com/a/5141829
+        # glob all *.* paths below repo_path.
+        all_paths = [p for p in glob.glob(os.path.join(repo_path, '**/*.*'),
+            recursive=True)]
+
+        # transform glob patterns to regular expressions
+        nonpath = '/:GLOB:/'    # nonpath cannot be part of a pathname
+        wc_regex = lambda glob: fnmatch.translate(glob.replace('**/', nonpath)) \
+            .replace(nonpath, '(.*/)*')
+        inc_regex = r'|'.join([wc_regex(x) for x in to_inc])
+        logger.debug(f"include regex: {inc_regex}")
+        exc_regex = r'|'.join([wc_regex(x) for x in to_exc]) or r'$.'
+        logger.debug(f"exclude regex: {exc_regex}")
+
+        # Create set of all includable paths matching inc_regex.
+        included = {p for p in all_paths if re.match(inc_regex, p)}
+        logger.debug(f"        included: {included}")
+        # Create set of valid paths that does not include paths matching exc_regex.
+        paths = sorted({p for p in included if not re.match(exc_regex, p)})
+        logger.debug(f"and not excluded: {paths}")
+
+        # Log each valid path to process relative to repo_path.
+        for path in paths:
+            logger.debug(f"valid: {path.replace(repo_path + '/', '')}")
+
+        return paths
 
 
 # TODO: fix using permalink
@@ -244,31 +294,23 @@ def copy_file(note_path, repo, repo_path, site_path):
 def prepare(REPODIR, POSTDIR, REBUILD=False):
     """Copy and modify valid paths from REPODIR to POSTDIR. If REBUILD, remove
     _posts and _site directories."""
-    repo_path = os.path.realpath(REPODIR)
-    logger.debug(f"repo_path: {repo_path}")
-    repo = os.path.normpath(repo_path).split(os.sep)[-1]
-    logger.debug(f"repo: {repo}")
-    site_path = os.path.realpath(POSTDIR)
-    logger.debug(f"site_path: {site_path}")
 
-    assert os.path.isdir(repo_path), f"{repo_path} is not a directory"
-    assert os.path.isdir(site_path), f"{site_path} is not a directory"
-
+    paths = Paths(REPODIR, POSTDIR)
     # If REBUILD, clean _posts directory.
-    _posts_path = os.path.join(site_path, '_posts') # must match copy_file
+    _posts_path = os.path.join(paths.site_path, '_posts')   # must match copy_file
     if REBUILD and os.path.isdir(_posts_path):
         logger.debug(f"removing: {_posts_path}")
         shutil.rmtree(_posts_path, ignore_errors=True)
     # If REBUILD, clean _site directory. Jekyll should automatically handle.
-    _site_path = os.path.join(site_path, '_site')
+    _site_path = os.path.join(paths.site_path, '_site')
     if REBUILD and os.path.isdir(_site_path):
         logger.debug(f"removing: {_site_path}")
         shutil.rmtree(_site_path, ignore_errors=True)
 
     # Collect paths to modify and copy.
-    paths = valid_paths(repo_path)
-    for path in sorted(paths):
-        copy_file(path, repo, repo_path, site_path)
+    path_names = PathNames(paths.repo_path)
+    for path in sorted(path_names.path_names):
+        copy_file(path, paths.repo, paths.repo_path, paths.site_path)
 
 
 class Parser(argparse.ArgumentParser):
@@ -335,8 +377,8 @@ if __name__ == '__main__':
     if any((is_idle, is_pycharm, is_jupyter,)):
         logger.debug(f"logpath: {log.log_path()}")
         tests = [
-            ['template.py', '..', '../docs/', ],
-            # ['template.py', '-?', ],
+            ['obsidianjekyll.py', '..', '../docs/', ],
+            # ['obsidianjekyll.py', '-?', ],
         ]
         # slugify test
         #value = '/obsidian/NestedFolder/Foo & Bar/2024-03-21-Test%20with__spaces, éh? !@%_.md'
