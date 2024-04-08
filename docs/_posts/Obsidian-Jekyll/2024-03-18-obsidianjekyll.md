@@ -34,6 +34,7 @@ toc_sticky: true
 - Other `Obsidian > Settings`
  - `General > Your Account > Sign In`
  - `Editor > Default editing mode > Source mode`
+ - `Core plugins > property view > Enabled`
 
 #Obsidian
 
@@ -105,4 +106,4 @@ What I did to get Jekyll running on my local machine:
 ├─ ThirdFile.md
 </pre>
 
-<!-- Modified 2024-03-31:22:46:50 -->
+<!-- Modified 2024-04-06:16:53:13 -->

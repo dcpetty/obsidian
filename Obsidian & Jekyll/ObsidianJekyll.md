@@ -25,6 +25,7 @@
 - Other `Obsidian > Settings`
  - `General > Your Account > Sign In`
  - `Editor > Default editing mode > Source mode`
+ - `Core plugins > property view > Enabled`
 
 #Obsidian
 
