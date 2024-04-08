@@ -1,15 +1,15 @@
-# `obsidian.py`
+# `obsidianjekyll.py`
 
 [Obsidian](https://obsidian.md/) '&hellip;is the private and flexible writing app that adapts to the way you think.' [Jekyll](https://jekyllrb.com) '&hellip;is a static site generator. It takes text written in your favorite markup language and uses layouts to create a static website.' The theme I have chosen is [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes/) (MM).
 
-## `obsidian.py`
+## `obsidianjekyll.py`
 
-`obsidian.py` processes an [Obsidian](https://obsidian.md/) vault into a [Jekyll](https://jekyllrb.com) markdown-based website.
+`obsidianjekyll.py` processes an [Obsidian](https://obsidian.md/) vault into a [Jekyll](https://jekyllrb.com) markdown-based website.
 
-Executing `obsidian.py -?` from the command line shows:
+Executing `obsidianjekyll.py -?` from the command line shows:
 
 ```python3
-usage: obsidian.py [-?] [--version] [-r] [-v] REPODIR POSTDIR
+usage: obsidianjekyll.py [-?] [--version] [-r] [-v] REPODIR POSTDIR
 
 Format files in REPODIR into Jekyll and copy results to POSTDIR.
 
