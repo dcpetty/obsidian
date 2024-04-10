@@ -22,7 +22,7 @@ __email__ = "dcp@acm.org"
 __status__ = "Development"
 
 import argparse, log, os, re, sys
-import datetime, fnmatch, glob, pathlib, shutil, time, unicodedata
+import datetime, fnmatch, glob, pathlib, shutil, time, unicodedata, yaml
 
 # Set up logging.
 logger = log.log(__name__, 'obsidian')
@@ -39,47 +39,107 @@ class Paths(object):
         """Initialize paths for repository and site."""
         self._repodir = repodir if repodir else type(self)._default_repodir
         self._postdir = postdir if postdir else type(self)._default_postdir
-        self._repo_path = os.path.realpath(self._repodir)
-        logger.debug(f"repo_path: {self._repo_path}")
+        self._repo_path = os.path.realpath(self._repodir)   # no trailing '/'
         self._repo = os.path.normpath(self._repo_path).split(os.sep)[-1]
-        logger.debug(f"repo: {self._repo}")
-        self._site_path = os.path.realpath(self._postdir)
-        logger.debug(f"site_path: {self._site_path}")
+        self._site_path = os.path.realpath(self._postdir)   # no trailing '/'
+        self._posts_path = os.path.join(self.site_path, '_posts')
 
         assert os.path.isdir(self._repo_path), \
-            f"{self._repo_path} is not a directory"
+            f"'{self._repo_path}' is not a directory"
         assert os.path.isdir(self._site_path), \
-            f"{self._site_path} is not a directory"
+            f"'{self._site_path}' is not a directory"
+        assert os.path.exists(self._posts_path) \
+            and os.path.isdir(self._posts_path), \
+            f"'{self._posts_path}' is not a directory"
+
+        self._log()
 
 
-    # Properties repo_path, repo, site_path.
+    def _log(self):
+        logger.debug(f"Paths repo_path:  {self.repo_path}")
+        logger.debug(f"Paths repo:       {self.repo}")
+        logger.debug(f"Paths site_path:  {self.site_path}")
+        logger.debug(f"Paths posts_path: {self.posts_path}")
+        #logger.info(f"perma: {self.permalink(os.path.join(self.repo_path, 'TestPages/This is a note with spaces,_ éh? !@$-.md'))}")
+        #logger.info(f"post:  {self.post_path(os.path.join(self.repo_path, 'TestPages/This is a note with spaces,_ éh? !@$-.md'), '2024-03-22')}")
+        #logger.info(f"asset: {self.asset_path(os.path.join(self.repo_path, 'assets/obsidian/Pasted image 20240326090137.png'))}")
+
+
+    # Properties repo_path, repo, site_path, posts_path.
     def _get_repo_path(self): return self._repo_path
     repo_path = property(_get_repo_path)
     def _get_repo(self): return self._repo
     repo = property(_get_repo)
     def _get_site_path(self): return self._site_path
     site_path = property(_get_site_path)
+    def _get_posts_path(self): return self._posts_path
+    posts_path = property(_get_posts_path)
+
+
+    # Utilities.
+    def _check_dir(self, d): assert os.path.isdir(d), f"'{d}' is not a directory"; return d
+    def _check_file(self, f): assert os.path.isfile(f), f"'{f}' is not a file"; return f
+    def note_dirname(self, note_path): return self._check_dir(os.path.dirname(note_path))
+    def note_filename(self, note_path): return os.path.basename(self._check_file(note_path))
+    def rel_note_path(self, note_path): return self._check_file(note_path).replace(f"{self.repo_path}/", '')
+    def rel_note_dirname(self, note_path): return os.path.dirname(self.rel_note_path(note_path))
+    def permalink(self, note_path): return f"/{os.path.splitext(self.slugify(self.rel_note_path(note_path)))[0]}/"
+    def post_path(self, note_path, yaml_date): return os.path.join(self.posts_path,
+        f"{yaml_date}-{self.slugify(self.note_filename(note_path))}")
+    def asset_path(self, note_path): return os.path.join(self.site_path,
+        self.rel_note_dirname(note_path), self.slugify(self.note_filename(note_path)))
+
+
+    @staticmethod
+    def slugify(path, preserve_case=False):
+        """Return simple slugified path. Used to slugify paths and links.
+        - split off any extension and work with root
+        - replace '%20' with ' '
+        - unicodedata.normalize 'NFKD'
+        - remove everything *not* letters, numerals, or '/._-'
+        - replace ' ' or '.' or '_' with '-' (Jekyll)
+        - remove duplicate '-'s (Jekyll)
+        - add back on the extension
+        """
+        # https://stackoverflow.com/a/27264385
+        root, ext = os.path.splitext(path)
+        slugified = re.sub('[-]{2,}', '-',
+            re.sub(r'[\s._]', '-', re.sub(r'[^/\w\s._-]', '',
+                unicodedata.normalize('NFKD', re.sub(r'%20', ' ', root))
+                    .encode('ascii', 'ignore').decode('ascii')))) \
+                        .strip('-') + ext
+
+        return slugified if preserve_case else slugified.lower()
 
 
 class PathNames(object):
-    """Collect Jekyll files from an Obsidian vault."""
+    """Collect Jekyll file pathnames from an Obsidian vault."""
 
-    _default_repo_path = '.'
     # List of patterns to include.
     _default_to_inc = ['*.md', '*.png', '*.jpg', '*.html', ]
     # List of patterns to exclude.
     _default_to_exc = ['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md',
         '**/foo/**/bar/*.html']  # TODO: this is simply to test valid_paths
 
-    def __init__(self, repo_path=None, to_inc=None, to_exc=None):
+    def __init__(self, paths, to_inc=None, to_exc=None):
         """Created sorted list of valid paths below repo_path."""
-        self._repo_path = repo_path if repo_path else type(self)._default_repo_path
+        self._paths = paths
         self._to_inc = to_inc if to_inc else type(self)._default_to_inc
         self._to_exc = to_exc if to_exc else type(self)._default_to_exc
-        self._path_names = self._valid_paths(self._repo_path, self._to_inc, self._to_exc)
+        self._path_names = self._valid_paths(self._paths.repo_path, self._to_inc, self._to_exc)
+
+        self._log()
 
 
-    # Properties files.
+    def _log(self):
+        # TODO: make better, since Paths and _valid_paths already log
+        logger.debug(f"PathNames paths:       {self.paths}")
+        logger.debug(f"PathNames path_names:  {self.path_names}")
+
+
+    # Properties paths, path_names.
+    def _get_paths(self): return self._paths
+    paths = property(_get_paths)
     def _get_path_names(self): return self._path_names
     path_names = property(_get_path_names)
 
@@ -92,215 +152,321 @@ class PathNames(object):
         all_paths = [p for p in glob.glob(os.path.join(repo_path, '**/*.*'),
             recursive=True)]
 
-        # transform glob patterns to regular expressions
+        # Transform glob patterns to regular expressions.
         nonpath = '/:GLOB:/'    # nonpath cannot be part of a pathname
         wc_regex = lambda glob: fnmatch.translate(glob.replace('**/', nonpath)) \
             .replace(nonpath, '(.*/)*')
         inc_regex = r'|'.join([wc_regex(x) for x in to_inc])
-        logger.debug(f"include regex: {inc_regex}")
         exc_regex = r'|'.join([wc_regex(x) for x in to_exc]) or r'$.'
-        logger.debug(f"exclude regex: {exc_regex}")
 
         # Create set of all includable paths matching inc_regex.
         included = {p for p in all_paths if re.match(inc_regex, p)}
-        logger.debug(f"        included: {included}")
         # Create set of valid paths that does not include paths matching exc_regex.
         paths = sorted({p for p in included if not re.match(exc_regex, p)})
-        logger.debug(f"and not excluded: {paths}")
 
-        # Log each valid path to process relative to repo_path.
-        for path in paths:
-            logger.debug(f"valid: {path.replace(repo_path + '/', '')}")
+        def _log_valid_paths():
+            logger.debug(f"PathNames include regex:    {inc_regex}")
+            logger.debug(f"PathNames exclude regex:    {exc_regex}")
+            logger.debug(f"PathNames         included: {included}")
+            logger.debug(f"PathNames and not excluded: {paths}")
+            # Log each valid path to process relative to repo_path.
+            for path in paths:
+                valid_pathname = path.replace(repo_path + '/', '')
+                logger.debug(f"PathNames valid:        {valid_pathname}")
+
+        _log_valid_paths()
 
         return paths
 
-
-# TODO: fix using permalink
-def slugify(path, preserve_case=False):
-    """Return simple slugified path. Used to slugify paths and links.
-    - split off any extension and work with root
-    - replace '%20' with ' '
-    - unicodedata.normalize 'NFKD'
-    - remove everything *not* letters, numerals, or '/._-'
-    - replace ' ' or '.' or '_' with '-' (Jekyll)
-    - remove duplicate '-'s (Jekyll)
-    - add back on the extension
+class Files(object):
+    """Process files into list of dictionaries contaning keys:
+    note_path - full repository note pathname
+    note_file - repository note filename paths.note_filename(note_path)
+    note_relp - note pathname relative to repo used for permalink or asset copy paths.rel_note_path(note_path)
+    note_ctime- note creation time
+    note_mtime- note modification time
+    note_ismd - True if note_path is a .MD file, otherwise it's an asset file
+    note_text - list of lines of text in repository file
+    note_yaml - repository YAML front matter
+    post_path - full post pathname paths.post_path(note_path, yaml_date) or paths.asset_path(post_path)
+    post_mtime- post modification time (if exists)
     """
-    # https://stackoverflow.com/a/27264385
-    root, ext = os.path.splitext(path)
-    slugified = re.sub('[-]{2,}', '-',
-        re.sub(r'[\s._]', '-', re.sub(r'[^/\w\s._-]', '',
-            unicodedata.normalize('NFKD', re.sub(r'%20', ' ', root))
-            .encode('ascii', 'ignore').decode('ascii')))) \
-                .strip('-') + ext
 
-    return slugified if preserve_case else slugified.lower()
+    _default_files = list()
 
 
-def format_yaml(title, repo, categories, tags, toc=False, path=None):
-    """Return list of YAML front matter lines for title, [prefix] + categories,
-    & tags. If path, logging.DEBUG the YAML front matter for path."""
-    all_categories = [] + categories # include any prefixes
-    categories_yaml = (['categories:'] + [f' - {c}' for c in all_categories]) \
-        if all_categories else list()
-    tags_yaml = (['tags:'] + [f' - {t}' for t in tags]) \
-        if tags else list()
-    toc_yaml = (['toc: true', 'toc_sticky: true', ]) \
-        if toc else list()
-    yaml = [
-        f'---', 'show_date: true',
-        f'title: "{title}"',
-        ] + categories_yaml + tags_yaml + toc_yaml + [
-        f'---', ''
-    ]
+    def __init__(self, path_names):
+        """Initialize _paths, _files."""
+        self._path_names = path_names
+        self._paths = path_names.paths
+        self._files = type(self)._default_files
 
-    # Log YAML front matter for path.
-    if path:
-        logger.debug(f"format_yaml:\n"
-            f"     (title)'{title}'\n"
-            f"      (repo)'{repo}'\n"
-            f"(categories)'{categories}'\n"
-            f"      (tags)'{tags}'\n"
-            f"YAML for '{path}'\n"
-            f"{chr(10).join(yaml).strip()}")
+        # Initialize all pathnames into file dictionaries.
+        for path in self.path_names.path_names:
+            self._add_file(path)
 
-    return yaml
+        self._log()
 
 
-def reformat_links(line, repo):
-    """Replace local links in line with corrected slugified links.
-    First
-    - search for '(repo/dir/file.ext)'
-    - replace 'repo/' with '/repo/'
-    - if ext is '.md', remove it
-    - slugify the new link (assumes asset directories are already slugified)
-    - substitute it for the old link
-    - iterate for all matching links
-    Second:
-    - search for '[[link]]' that is not immediately preceded or followed by '`'
-    - replace '[[link]]' with '[link](link)'
-    - iterate for all matching links
-    - return fixed line
-    """
-    single_re = re.compile(f"([(]{repo}/[^)]*" + r'[.]\w{2,4}[)])+')
-    fixed = line[:]
-    for match in single_re.finditer(line):
-        old_link = line[match.start(): match.end()]
-        new_link = slugify(line[match.start():
-            match.end() - (4 if old_link.endswith('.md)') else 1)]
-                .replace(f"({repo}/", f"(/{repo}/"))
-        logger.debug(f"links: '{old_link}' '({new_link})'")
-        fixed = fixed.replace(old_link, f"({new_link})")
-        # logger.debug(f"fixed '[': {fixed.strip()}")
-
-    double_re = re.compile(r'((^|[^`])([\[]{2}([^\]]*)[\]]{2})([^`]|$))+')
-    for match in double_re.finditer(fixed):
-        old_link = match.groups()[2]
-        uri = match.groups()[3]
-        new_link = f"[{uri}]({uri})"
-        fixed = fixed.replace(old_link, new_link)
-        # logger.debug(f"fixed '[[': {fixed.strip()}")
-
-    return fixed
+    def _log(self):
+        # TODO: make better, since Paths and PathNames already log
+        logger.debug(f"Files paths: {self.paths}")
+        logger.debug(f"Files names: {self.path_names}")
+        logger.debug(f"Files files: {self.files}")
 
 
-def parse_tags(line):
-    """Return list of tags parsed from line."""
-    return [h.strip()[1:] for h in re.findall(r'[#]\w+\s', f"{line} ")]
+    # Properties paths, path_names, files.
+    def _get_paths(self): return self._paths
+    paths = property(_get_paths)
+    def _get_path_names(self): return self._path_names
+    path_names = property(_get_path_names)
+    def _get_files(self): return self._files
+    files = property(_get_files)
 
 
-def copy_file(note_path, repo, repo_path, site_path):
-    """Copy path from note_path to site_path.
-    - Copy .MD files to _posts_path with YAML front matter, adjusted links, and
-      slugified path if note_path younger post_path.
-    - Copy other valid files with slugified filename (only) following directory
-      pattern in note_path if note_path younger post_path. (Assumes asset
-      directories are already slugified)"""
-    assert os.path.isfile(note_path), f"{note_path} does not exist"
-    # No st_birthtime on Window$; st_ctime is metadata change on others.
-    has_birthtime = hasattr(os.stat(note_path), 'st_birthtime')
-    note_stat = \
-        os.stat(note_path) if has_birthtime else pathlib.Path(note_path).stat()
-    date = datetime.date.fromtimestamp(
-        note_stat.st_birthtime if has_birthtime else note_stat.st_ctime)
-    rel_note_path = note_path.replace(f"{repo_path}/", '')
-    note_filename = rel_note_path.split(os.sep)[-1]
+    def _add_file(self, note_path):
+        """Add repository file dictionary for pathname to _files."""
+        repo_path, site_path = self.paths.repo_path, self.paths.site_path
+        assert os.path.isfile(note_path), f"'{note_path}' does not exist"
+        assert note_path.startswith(repo_path), \
+            f"not '{note_path}'.startswith('{repo_path}')"
 
-    # Process and copy newer .MD files.
-    if rel_note_path.endswith('.md'):
-        # Process and copy newer .MD file.
-        title = re.sub(r'[.]md$', '', note_filename)    # if no initial header1
-        categories = [slugify(c, True)
-            for c in rel_note_path.split(os.sep)[: -1]]
-        _posts_path = os.path.join(site_path, '_posts')  # must match prepare
-        post_dirname = os.path.join(*[_posts_path, ] + categories)
-        post_filename = f"{date}-{slugify(note_filename)}"
-        post_path = os.path.join(post_dirname, post_filename)
+        file_dict = dict()
+        file_dict['note_path'] = note_path
+        file_dict['note_file'] = self.paths.note_filename(note_path)
+        file_dict['note_relp'] = self.paths.rel_note_path(note_path)
+        # Set file times.
+        has_birthtime = hasattr(os.stat(note_path), 'st_birthtime')
+        note_stat = \
+            os.stat(note_path) \
+                if has_birthtime else pathlib.Path(note_path).stat()
+        file_dict['note_ctime'] = note_stat.st_birthtime \
+            if has_birthtime else note_stat.st_ctime
+        file_dict['note_mtime'] = os.path.getmtime(note_path)
+        # Parse .MD files. Others are untouched
+        file_dict['is_md'] = os.path.splitext(note_path)[1].lower() == '.md'
 
-        # Check modification dates.
-        note_changed = not os.path.isfile(post_path) \
-            or note_stat.st_mtime > pathlib.Path(post_path).stat().st_mtime
-        # logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
-        if note_changed:
-            lines, tags = list(), list()
-            toc, regex = 0, re.compile(r'^[#]{1,6}\s')
-
-            # Read list of lines, reformatting links, parsing tags, finding toc
-            # headers, parsing title, and appending comment.
-            with open(note_path, encoding='utf-8') as rf:
-                for line in rf.readlines():
-                    lines.append(reformat_links(line.rstrip(), repo))
-                    tags += parse_tags(line)
-                    toc += 1 if regex.search(line) else 0
-            for i, line in enumerate(lines):
-                if not line: continue       # skip leading blank lines
-                if line.startswith('# '):   # extract title from first heading1
-                    title = line[2:].strip()
-                    del lines[i]
-                    toc -= 1
-                    break
-            lines.append(f"\n<!-- Modified {time.strftime('%Y-%m-%d:%H:%M:%S')} -->\n")
-
-            # Create list of YAML front matter.
-            yaml = format_yaml(title, repo, categories, tags, toc, note_path)
-
-            # Create directory and write post.
-            os.makedirs(post_dirname, exist_ok=True)
-            logger.info(f"{note_path} \u2192 {post_path}")
-            with open(post_path, "w", encoding='utf-8') as wf:
-                wf.write('\n'.join(yaml))
-                wf.write('\n'.join(lines).lstrip())
+        # Process .MD file.
+        if file_dict['is_md']:
+            file_dict['post_path'] = self.paths.post_path(note_path,
+                Files.yaml_date(file_dict['note_ctime']))
+            if os.path.isfile(file_dict['post_path']):
+                file_dict['post_mtime'] = os.path.getmtime(file_dict['post_path'])
+            # Parse file into front, lines, and yaml.
+            self._parse_md(file_dict)
+        # Process asset file.
         else:
-            logger.debug(f"UNCHANGED: {note_path}")
-    else:
-        # Process and copy newer non-.MD files.
-        note_dirname = os.path.dirname(rel_note_path)
-        asset_dirname = os.path.join(site_path, note_dirname)
-        asset_path = os.path.join(asset_dirname, slugify(note_filename))
-        # Check modification dates.
-        note_changed = not os.path.isfile(asset_path) \
-            or note_stat.st_mtime > pathlib.Path(asset_path).stat().st_mtime
-        # logger.debug((note_stat.st_mtime, pathlib.Path(post_path).stat().st_mtime))
-        if note_changed:
-            # TODO: files deleted from note_dir are not removed from asset_dir
-            # Create directory and copy asset.
-            os.makedirs(asset_dirname, exist_ok=True)
-            logger.info(f"{note_path} \u2192 {asset_path}")
-            shutil.copy(note_path, asset_path)
+            file_dict['post_path'] = self.paths.asset_path(note_path)
+            if os.path.isfile(file_dict['post_path']):
+                file_dict['post_mtime'] = os.path.getmtime(file_dict['post_path'])
+
+        self.files.append(file_dict)
+
+        # TODO: get rid of these
+        if file_dict['is_md'] and file_dict['yaml']:
+            logger.debug(file_dict)
+            fix_yaml = lambda s: re.sub(': [\'"]', ': ', re.sub('[\'"]\n', '\n', s))
+            yaml_text = yaml.safe_dump(file_dict['yaml'], default_style=None, default_flow_style=False, sort_keys=False)
+            logger.debug('\n' + fix_yaml(yaml_text))
         else:
-            logger.debug(f"UNCHANGED: {note_path}")
+            logger.debug(file_dict)
+
+
+
+    def _parse_md(self, file_dict):
+        """Parse YAML front matter lines (if any) to file_dict['front'] and
+        list of other lines (if any) to file_dict['lines']. Then add
+        file_dict['yaml'] with the merged front matter and Jekyll information
+        in file_dict. file_dict str keys include: note_path, note_file,
+        note_ctime, note_mtime, is_md."""
+        assert file_dict['is_md'], \
+            f"'{file_dict['note_file']}' is not a markdown file"
+        front, lines, in_yaml, divider = list(), list(), False, None
+        # Read lines of note_path and parse into YAML front matter and text lines.
+        with open(file_dict['note_path'], encoding='utf-8') as np:
+            for line in np.readlines():
+                # Process YAML .MD file, looking for lines starting '---'
+                if line.startswith('---'):
+                    in_yaml = not in_yaml   # toggle in_yaml
+                    if in_yaml and divider:
+                        front.append(divider)
+                    divider = '---\n'
+                else:
+                    if in_yaml:
+                        front.append(line)  # add line to front matter
+                    else:
+                        fixed = self._reformat_links(line.rstrip(), self.paths.repo)
+                        lines.append(fixed) # add fixed line to text lines
+        file_dict['front'] = front
+        file_dict['lines'] = lines
+        file_dict['yaml'] = self._parse_yaml(file_dict) # updates lines
+
+
+    yaml_datetime = lambda timestamp: \
+        time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timestamp))
+    yaml_date = lambda timestamp: \
+        time.strftime('%Y-%m-%d', time.localtime(timestamp))
+
+    def _reformat_links(self, line, repo):
+        """Replace local links in line with corrected slugified links.
+        First
+        - search for '(repo/dir/file.ext)'
+        - replace 'repo/' with '/repo/'
+        - if ext is '.md', remove it
+        - slugify the new link (assumes asset pathnames are already slugified)
+        - substitute it for the old link
+        - iterate for all matching links
+        Second:
+        - search for '[[link]]' that is not immediately preceded or followed by '`'
+        - replace '[[link]]' with '[link](link)'
+        - iterate for all matching links
+        - return fixed line
+        """
+        single_re = re.compile(f"([(]{repo}/[^)]*" + r'[.]\w{2,4}[)])+')
+        fixed = line[:]
+        for match in single_re.finditer(line):
+            old_link = line[match.start(): match.end()]
+            new_link = Paths.slugify(line[match.start():
+                match.end() - (4 if old_link.endswith('.md)') else 1)]
+                    .replace(f"({repo}/", f"(/{repo}/"))
+            fixed = fixed.replace(old_link, f"({new_link})")
+            # logger.debug(f"fixed '[': {fixed.strip()}")
+
+        double_re = re.compile(r'((^|[^`])([\[]{2}([^\]]*)[\]]{2})([^`]|$))+')
+        for match in double_re.finditer(fixed):
+            old_link = match.groups()[2]
+            uri = match.groups()[3]
+            new_link = f"[{uri}]({uri})"
+            fixed = fixed.replace(old_link, new_link)
+            # logger.debug(f"fixed '[[': {fixed.strip()}")
+
+        return fixed
+
+    def _parse_yaml(self, file_dict):
+        """Return consolidated YAML dictionary parsed from existing YAML
+        collected from file_dict['front'] (if any) and formatted Jekyll YAML
+        parsed from file_dict['lines'] --- which may be updated if initial H1
+        title removed. file_dict str keys include: front, lines, note_path,
+        note_file, note_ctime, note_mtime."""
+        front, lines, jekyll = file_dict['front'], file_dict['lines'], dict()
+
+        # The YAML of a Jekyll should have:
+        # - title: parsed from the first h1 line which is the removed or note filename
+        # - date: creation date
+        # - last_modified_at: modification date
+        # - show_date: true
+        # - permalink: slugified note filename relative to repo minus extension
+        # - tags: parsed from hashtags in lines
+        # - toc: true if any headers (r'^[#]{1,6}\s') in lines
+        # - toc_sticky: true if any headers (r'^[#]{1,6}\s') in lines
+        jekyll['title'] = self._parse_title(lines,
+            os.path.splitext(file_dict['note_file'])[0])
+        jekyll['date'] = Files.yaml_datetime(file_dict['note_ctime'])
+        jekyll['last_modified_at'] = Files.yaml_datetime(file_dict['note_mtime'])
+        jekyll['show_date'] = 'true'
+        jekyll['permalink'] = self.paths.permalink(file_dict['note_path'])
+        tag_list = self._parse_tags(lines)
+        if tag_list:
+            jekyll['tags'] = tag_list
+        if self._has_headers(lines):
+            jekyll['toc'] = 'true'
+            jekyll['toc_sticky'] = 'true'
+        yaml_dict_list = [jekyll] + list(yaml.safe_load_all(''.join(front)))
+        logger.debug(f"yamls: {yaml_dict_list}")
+        return self._merge_yaml(yaml_dict_list)
+
+
+    def _parse_title(self, lines, alt='TITLE'):
+        """Return title parsed from first non-blank line of lines if it is an
+        H1, otherwise alt."""
+        title = alt
+        for i, line in enumerate(lines):
+            if not line: continue       # skip leading blank lines
+            if line.startswith('# '):   # extract title from first heading1
+                title = line[2:].strip()
+                del lines[i]
+            break                       # otherwise break
+        return title
+
+
+    def _parse_tags(self, lines):
+        """Return list of tags parsed from lines."""
+        tags = list()
+        for line in lines:
+            tags += [h.strip()[1:] for h in re.findall(r'[#][\w-]+\s', f"{line} ")]
+        return tags
+
+
+    def _has_headers(self, lines):
+        """Return True if there are any H1 - H6 lines in lines. Must come after
+        _parse_title so any initial H1 title is removed."""
+        regex = re.compile(r'^[#]{1,6}\s')
+        for line in lines:
+            if regex.search(line):
+                return True
+        return False
+
+
+    def _merge_yaml(self, yaml_list):
+        """Return dictionary of yaml_list dictionaries merged into one
+        where values for every key are either the concatenation of all strings,
+        or a set of the union of list values for duplicate keys sorted."""
+        merged = dict()
+        for yaml_dict in yaml_list:
+            for key in yaml_dict:
+                # yaml_dict[key] is list or str.
+                empty = list() if isinstance(yaml_dict[key], list) else ''
+                merged[key] = merged.get(key, empty) + yaml_dict[key]
+        return { key: sorted(set(val)) if isinstance(val, list) else val for key, val in merged.items() }
+
+
+    def copy_files(self):
+        """"""
+        for fd in self.files:
+            # Initialize local variables.
+            note_path, note_mtime = fd['note_path'], fd['note_mtime']
+            post_path = fd['post_path']
+            post_dirname = os.path.dirname(fd['post_path'])
+            note_changed = not os.path.isfile(post_path) \
+                or note_mtime > fd['post_mtime']
+            if fd['is_md']:
+                # Write markdown file.
+                lines = fd['lines']
+                fix_yaml = lambda s: re.sub(': [\'"]', ': ', re.sub('[\'"]\n', '\n', s))
+                yaml_text = fix_yaml(yaml.safe_dump(fd['yaml'],
+                    default_style=None, default_flow_style=False,
+                    sort_keys=False, allow_unicode=True))
+                div, nl = '---\n', '\n'
+                # Check modification dates.
+                if note_changed:
+                    # Create directory and write post.
+                    os.makedirs(post_dirname, exist_ok=True)
+                    with open(post_path, "w", encoding='utf-8') as wf:
+                        wf.write(f"{div}{yaml_text.strip()}{nl}{div}")
+                        wf.write('\n'.join(lines).lstrip())
+                    logger.info(f"{note_path} \u2192 {post_path}")
+                else:
+                    logger.debug(f"UNCHANGED: {note_path}")
+            else:
+                # Copy asset file.
+                if note_changed:
+                    # Create directory and write post.
+                    os.makedirs(post_dirname, exist_ok=True)
+                    shutil.copy(note_path, post_path)
+                    logger.info(f"{note_path} \u2192 {post_path}")
+                else:
+                    logger.debug(f"UNCHANGED: {note_path}")
 
 
 def prepare(REPODIR, POSTDIR, REBUILD=False):
     """Copy and modify valid paths from REPODIR to POSTDIR. If REBUILD, remove
     _posts and _site directories."""
-
     paths = Paths(REPODIR, POSTDIR)
+
     # If REBUILD, clean _posts directory.
-    _posts_path = os.path.join(paths.site_path, '_posts')   # must match copy_file
-    if REBUILD and os.path.isdir(_posts_path):
-        logger.debug(f"removing: {_posts_path}")
-        shutil.rmtree(_posts_path, ignore_errors=True)
+    if REBUILD and os.path.isdir(paths.posts_path):
+        logger.debug(f"removing: {paths.posts_path}")
+        shutil.rmtree(paths.posts_path, ignore_errors=True)
     # If REBUILD, clean _site directory. Jekyll should automatically handle.
     _site_path = os.path.join(paths.site_path, '_site')
     if REBUILD and os.path.isdir(_site_path):
@@ -308,9 +474,9 @@ def prepare(REPODIR, POSTDIR, REBUILD=False):
         shutil.rmtree(_site_path, ignore_errors=True)
 
     # Collect paths to modify and copy.
-    path_names = PathNames(paths.repo_path)
-    for path in sorted(path_names.path_names):
-        copy_file(path, paths.repo, paths.repo_path, paths.site_path)
+    path_names = PathNames(paths)
+    files = Files(path_names)
+    files.copy_files()
 
 
 class Parser(argparse.ArgumentParser):
