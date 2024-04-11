@@ -445,13 +445,12 @@ class Files(object):
                 or note_mtime > fd['post_mtime']
             if fd['is_md']:
                 # Write markdown file after 'fixing' YAML.
-                lines = fd['lines']
-                yaml_text = Files.fix_yaml(yaml.safe_dump(fd['yaml'],
-                    default_style=None, default_flow_style=False,
-                    sort_keys=False, allow_unicode=True))
-                div, nl = '---\n', '\n'
-                # Check modification dates.
                 if note_changed:
+                    lines = fd['lines']
+                    yaml_text = Files.fix_yaml(yaml.safe_dump(fd['yaml'],
+                        default_style=None, default_flow_style=False,
+                        sort_keys=False, allow_unicode=True))
+                    div, nl = '---\n', '\n'
                     # Create directory and write post.
                     os.makedirs(post_dirname, exist_ok=True)
                     with open(post_path, "w", encoding='utf-8') as wf:
@@ -463,7 +462,7 @@ class Files(object):
             else:
                 # Copy asset file.
                 if note_changed:
-                    # Create directory and write post.
+                    # Create directory and copy post.
                     os.makedirs(post_dirname, exist_ok=True)
                     shutil.copy(note_path, post_path)
                     logger.info(f"{note_path} \u2192 {post_path}")
