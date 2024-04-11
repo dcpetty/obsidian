@@ -111,4 +111,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
 - Add configuration for *include globs* `['*.md', '*.png', '*.jpg', '*.html', ]` and *exclude globs* `['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md', ]`.
 - Add a way to clean out old `asset` files.
-- Include modification date as well as creation date in [MM](https://github.com/mmistakes/minimal-mistakes/) pages.
