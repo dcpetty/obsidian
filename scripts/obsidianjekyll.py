@@ -109,7 +109,6 @@ class Paths(object):
                 unicodedata.normalize('NFKD', re.sub(r'%20', ' ', root))
                     .encode('ascii', 'ignore').decode('ascii')))) \
                         .strip('-') + ext
-
         return slugified if preserve_case else slugified.lower()
 
 
@@ -332,11 +331,12 @@ class Files(object):
         fixed = line[:]
         for match in single_re.finditer(line):
             old_link = line[match.start(): match.end()]
-            new_link = Paths.slugify(line[match.start():
-                match.end() - (4 if old_link.endswith('.md)') else 1)]
-                    .replace(f"({repo}/", f"(/{repo}/"))
+            #logger.info(f"match: {line[match.start() + 1: match.end() - 1]}")
+            new_link = re.sub('[.]md$', '', re.sub(f"^{repo}/", f"/{repo}/",
+                Paths.slugify(line[match.start() + 1: match.end() - 1])))
+            #logger.info(f"new link:  '{new_link}'")
             fixed = fixed.replace(old_link, f"({new_link})")
-            # logger.debug(f"fixed '[': {fixed.strip()}")
+            #logger.info(f"fixed '[': '{fixed.strip()}'")
 
         # Process double-bracket links everywhere on fixed line.
         double_re = re.compile(r'((^|[^`])([\[]{2}([^\]]*)[\]]{2})([^`]|$))+')
@@ -432,9 +432,9 @@ class Files(object):
 
     # TODO fix fix_yaml to be more specific to 'true' or '2024-03-25 18:15:12'
     fix_yaml = lambda s: \
-        re.sub('(title: )(.*)', r'\1"\2"',
-        re.sub(': [\'"]', ': ',
-        re.sub('[\'"]\n', '\n', s)))
+        re.sub('(title: )(.*)', r'\1"\2"',  # put '"' around title
+        re.sub(': [\'"]', ': ',             # remove quotes after ': '
+        re.sub('[\'"]\n', '\n', s)))        # remove quotes before '\n'
 
 
     def copy_files(self):
@@ -562,8 +562,9 @@ if __name__ == '__main__':
             # ['obsidianjekyll.py', '-?', ],
         ]
         # slugify test
-        #value = '/obsidian/NestedFolder/Foo & Bar/2024-03-21-Test%20with__spaces, éh? !@%_.md'
-        #logger.info((value, slugify(value, True),))
+        value = '/obsidian/NestedFolder/Foo & Bar/2024-03-21-Test%20with__spaces, éh? !@%_.md'
+        value = '(/obsidian/TestPages/Page%20for%20testing...%20_%20éh?%20!@$-.md'
+        logger.info((value, Paths.slugify(value, True),))
         for test in tests:
             logger.debug(f"# {' '.join(test)}")
             main(test)
