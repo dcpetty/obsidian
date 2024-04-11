@@ -431,7 +431,10 @@ class Files(object):
 
 
     # TODO fix fix_yaml to be more specific to 'true' or '2024-03-25 18:15:12'
-    fix_yaml = lambda s: re.sub(': [\'"]', ': ', re.sub('[\'"]\n', '\n', s))
+    fix_yaml = lambda s: \
+        re.sub('(title: )(.*)', r'\1"\2"',
+        re.sub(': [\'"]', ': ',
+        re.sub('[\'"]\n', '\n', s)))
 
 
     def copy_files(self):

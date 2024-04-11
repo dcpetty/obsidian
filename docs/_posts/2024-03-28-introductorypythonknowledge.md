@@ -1,5 +1,5 @@
 ---
-title: IntroductoryPythonKnowledge
+title: "IntroductoryPythonKnowledge"
 date: 2024-03-28 15:56:32
 last_modified_at: 2024-03-28 18:37:46
 show_date: true

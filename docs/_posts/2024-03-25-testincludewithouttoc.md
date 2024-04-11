@@ -1,5 +1,5 @@
 ---
-title: Note for testing included right.html without ToC
+title: "Note for testing included right.html without ToC"
 date: 2024-03-25 17:07:49
 last_modified_at: 2024-03-25 18:15:12
 show_date: true

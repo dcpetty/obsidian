@@ -1,5 +1,5 @@
 ---
-title: JavaScript for `_include`d .HTML file with right navigation
+title: "JavaScript for `_include`d .HTML file with right navigation"
 date: 2024-03-26 08:16:31
 last_modified_at: 2024-03-28 12:26:53
 show_date: true

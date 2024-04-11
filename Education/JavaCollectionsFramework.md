@@ -1,6 +1,6 @@
 # Post-AP assignment: Java Collections Framework
 
-After the APCS A (Java)  Examination, there are often 3-5 weeks left in the semester (especially for non-seniors) &mdash; depending on when the examination is scheduled and snow days.
+After the APCS A (Java)  Examination, there are often 3-5 weeks left in the semester (especially for non-seniors) &mdash; depending on when the examination is scheduled and snow days. 
 
 The [Java Collections Framework](https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html) is a '&hellip;unified architecture for representing and manipulating collections' that goes beyond primitive arrays. It can form the introductory basis of a second-semester college data structures course. As such, it is a valuable introduction to what computing majors will see in their first year of post-secondary education.
 # Assignment

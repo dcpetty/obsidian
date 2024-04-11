@@ -1,5 +1,5 @@
 ---
-title: A list of possible introductory Python tutorials
+title: "A list of possible introductory Python tutorials"
 date: 2024-03-30 20:55:39
 last_modified_at: 2024-04-01 14:24:15
 show_date: true

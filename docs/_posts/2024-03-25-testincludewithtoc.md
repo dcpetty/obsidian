@@ -1,5 +1,5 @@
 ---
-title: Note for testing included `right.html` with ToC
+title: "Note for testing included `right.html` with ToC"
 date: 2024-03-25 17:03:57
 last_modified_at: 2024-03-25 17:07:33
 show_date: true

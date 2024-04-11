@@ -1,5 +1,5 @@
 ---
-title: AnotherPage
+title: "AnotherPage"
 date: 2024-03-17 11:13:23
 last_modified_at: 2024-03-24 11:03:27
 show_date: true

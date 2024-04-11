@@ -1,5 +1,5 @@
 ---
-title: What I learned about Obsidian & Jekyll
+title: "What I learned about Obsidian & Jekyll"
 date: 2024-03-18 15:48:12
 last_modified_at: 2024-04-04 23:38:22
 show_date: true
