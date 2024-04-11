@@ -10,7 +10,7 @@ modifying the pathnames appropriately.
 TODO: complete this description
 """
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 __all__ = ["main", ]
 __author__ = "David C. Petty"
@@ -76,7 +76,7 @@ class Paths(object):
     posts_path = property(_get_posts_path)
 
 
-    # Utilities.
+    # Utilities for note_path.
     def _check_dir(self, d): assert os.path.isdir(d), f"'{d}' is not a directory"; return d
     def _check_file(self, f): assert os.path.isfile(f), f"'{f}' is not a file"; return f
     def note_dirname(self, note_path): return self._check_dir(os.path.dirname(note_path))
@@ -92,7 +92,8 @@ class Paths(object):
 
     @staticmethod
     def slugify(path, preserve_case=False):
-        """Return simple slugified path. Used to slugify paths and links.
+        """Return simple slugified path. Used to slugify paths and links. If
+        preserve_case is False, convert slugified path to lowercase.
         - split off any extension and work with root
         - replace '%20' with ' '
         - unicodedata.normalize 'NFKD'
@@ -126,15 +127,15 @@ class PathNames(object):
         self._paths = paths
         self._to_inc = to_inc if to_inc else type(self)._default_to_inc
         self._to_exc = to_exc if to_exc else type(self)._default_to_exc
-        self._path_names = self._valid_paths(self._paths.repo_path, self._to_inc, self._to_exc)
+        self._path_names = self._valid_paths(self.paths.repo_path, self._to_inc, self._to_exc)
 
         self._log()
 
 
     def _log(self):
-        # TODO: make better, since Paths and _valid_paths already log
-        logger.debug(f"PathNames paths:       {self.paths}")
-        logger.debug(f"PathNames path_names:  {self.path_names}")
+        # logger.debug(f"PathNames paths:       {self.paths}")
+        # logger.debug(f"PathNames path_names:  {self.path_names}")
+        pass    # Paths and self._valid_paths already log
 
 
     # Properties paths, path_names.
@@ -145,7 +146,8 @@ class PathNames(object):
 
 
     def _valid_paths(self, repo_path, to_inc, to_exc):
-        """Return sorted list of valid paths below repo_path."""
+        """Return sorted list of valid paths below repo_path if matching to_inc,
+        but not if matching to_exc. logging.DEBUG the result."""
 
         # https://stackoverflow.com/a/5141829
         # glob all *.* paths below repo_path.
@@ -181,22 +183,23 @@ class PathNames(object):
 class Files(object):
     """Process files into list of dictionaries contaning keys:
     note_path - full repository note pathname
-    note_file - repository note filename paths.note_filename(note_path)
-    note_relp - note pathname relative to repo used for permalink or asset copy paths.rel_note_path(note_path)
+    note_file - repository note filename
+    note_relp - note pathname relative to repo used for permalink or asset copy
     note_ctime- note creation time
     note_mtime- note modification time
     note_ismd - True if note_path is a .MD file, otherwise it's an asset file
     note_text - list of lines of text in repository file
     note_yaml - repository YAML front matter
-    post_path - full post pathname paths.post_path(note_path, yaml_date) or paths.asset_path(post_path)
-    post_mtime- post modification time (if exists)
+    post_path - full post pathname paths.post_path(note_path, yaml_date)
+                or paths.asset_path(post_path)
+    post_mtime- post modification time (if post exists)
     """
 
     _default_files = list()
 
 
     def __init__(self, path_names):
-        """Initialize _paths, _files."""
+        """Initialize _path_names, _paths, _files."""
         self._path_names = path_names
         self._paths = path_names.paths
         self._files = type(self)._default_files
@@ -209,10 +212,15 @@ class Files(object):
 
 
     def _log(self):
-        # TODO: make better, since Paths and PathNames already log
-        logger.debug(f"Files paths: {self.paths}")
-        logger.debug(f"Files names: {self.path_names}")
-        logger.debug(f"Files files: {self.files}")
+        # logger.debug(f"Files paths: {self.paths}")        # Paths logs
+        # logger.debug(f"Files names: {self.path_names}")   # PathNames logs
+        # Log file dictionaries' relevant information
+        for fd in self.files:
+            exc = { 'front', 'lines', } # exclude values for these keys
+            fd_text = '\n  '.join([f"{k}: {v}"
+                for k, v in fd.items() if k not in exc])
+            logger.debug(f"Files file: "
+                f"'{self.paths.rel_note_path(fd['note_path'])}'\n  {fd_text}")
 
 
     # Properties paths, path_names, files.
@@ -222,6 +230,12 @@ class Files(object):
     path_names = property(_get_path_names)
     def _get_files(self): return self._files
     files = property(_get_files)
+
+
+    yaml_datetime = lambda timestamp: \
+        time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timestamp))
+    yaml_date = lambda timestamp: \
+        time.strftime('%Y-%m-%d', time.localtime(timestamp))
 
 
     def _add_file(self, note_path):
@@ -235,6 +249,7 @@ class Files(object):
         file_dict['note_path'] = note_path
         file_dict['note_file'] = self.paths.note_filename(note_path)
         file_dict['note_relp'] = self.paths.rel_note_path(note_path)
+
         # Set file times.
         has_birthtime = hasattr(os.stat(note_path), 'st_birthtime')
         note_stat = \
@@ -243,34 +258,25 @@ class Files(object):
         file_dict['note_ctime'] = note_stat.st_birthtime \
             if has_birthtime else note_stat.st_ctime
         file_dict['note_mtime'] = os.path.getmtime(note_path)
-        # Parse .MD files. Others are untouched
+
+        # Parse .MD files. Others are untouched.
         file_dict['is_md'] = os.path.splitext(note_path)[1].lower() == '.md'
 
-        # Process .MD file.
         if file_dict['is_md']:
+            # Process .MD file.
             file_dict['post_path'] = self.paths.post_path(note_path,
                 Files.yaml_date(file_dict['note_ctime']))
             if os.path.isfile(file_dict['post_path']):
                 file_dict['post_mtime'] = os.path.getmtime(file_dict['post_path'])
-            # Parse file into front, lines, and yaml.
+            # Parse file into front, lines, and yaml added to file_dict.
             self._parse_md(file_dict)
-        # Process asset file.
         else:
+            # Process asset file.
             file_dict['post_path'] = self.paths.asset_path(note_path)
             if os.path.isfile(file_dict['post_path']):
                 file_dict['post_mtime'] = os.path.getmtime(file_dict['post_path'])
 
         self.files.append(file_dict)
-
-        # TODO: get rid of these
-        if file_dict['is_md'] and file_dict['yaml']:
-            logger.debug(file_dict)
-            fix_yaml = lambda s: re.sub(': [\'"]', ': ', re.sub('[\'"]\n', '\n', s))
-            yaml_text = yaml.safe_dump(file_dict['yaml'], default_style=None, default_flow_style=False, sort_keys=False)
-            logger.debug('\n' + fix_yaml(yaml_text))
-        else:
-            logger.debug(file_dict)
-
 
 
     def _parse_md(self, file_dict):
@@ -282,6 +288,7 @@ class Files(object):
         assert file_dict['is_md'], \
             f"'{file_dict['note_file']}' is not a markdown file"
         front, lines, in_yaml, divider = list(), list(), False, None
+
         # Read lines of note_path and parse into YAML front matter and text lines.
         with open(file_dict['note_path'], encoding='utf-8') as np:
             for line in np.readlines():
@@ -297,15 +304,12 @@ class Files(object):
                     else:
                         fixed = self._reformat_links(line.rstrip(), self.paths.repo)
                         lines.append(fixed) # add fixed line to text lines
+
+        # Add fron, lines, and yaml to file_dict.
         file_dict['front'] = front
         file_dict['lines'] = lines
         file_dict['yaml'] = self._parse_yaml(file_dict) # updates lines
 
-
-    yaml_datetime = lambda timestamp: \
-        time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timestamp))
-    yaml_date = lambda timestamp: \
-        time.strftime('%Y-%m-%d', time.localtime(timestamp))
 
     def _reformat_links(self, line, repo):
         """Replace local links in line with corrected slugified links.
@@ -322,6 +326,8 @@ class Files(object):
         - iterate for all matching links
         - return fixed line
         """
+
+        # Process single-bracket links everywhere on line.
         single_re = re.compile(f"([(]{repo}/[^)]*" + r'[.]\w{2,4}[)])+')
         fixed = line[:]
         for match in single_re.finditer(line):
@@ -332,6 +338,7 @@ class Files(object):
             fixed = fixed.replace(old_link, f"({new_link})")
             # logger.debug(f"fixed '[': {fixed.strip()}")
 
+        # Process double-bracket links everywhere on fixed line.
         double_re = re.compile(r'((^|[^`])([\[]{2}([^\]]*)[\]]{2})([^`]|$))+')
         for match in double_re.finditer(fixed):
             old_link = match.groups()[2]
@@ -372,7 +379,7 @@ class Files(object):
             jekyll['toc'] = 'true'
             jekyll['toc_sticky'] = 'true'
         yaml_dict_list = [jekyll] + list(yaml.safe_load_all(''.join(front)))
-        logger.debug(f"yamls: {yaml_dict_list}")
+        # logger.debug(f"yamls: {yaml_dict_list}")
         return self._merge_yaml(yaml_dict_list)
 
 
@@ -393,13 +400,15 @@ class Files(object):
         """Return list of tags parsed from lines."""
         tags = list()
         for line in lines:
-            tags += [h.strip()[1:] for h in re.findall(r'[#][\w-]+\s', f"{line} ")]
+            tags += [h.strip()[1:]
+                for h in re.findall(r'[#][\w-]+\s', f"{line} ")]
         return tags
 
 
     def _has_headers(self, lines):
         """Return True if there are any H1 - H6 lines in lines. Must come after
-        _parse_title so any initial H1 title is removed."""
+        _parse_title so after any initial H1 title is removed. Used to determine
+        whether table of contents should be included."""
         regex = re.compile(r'^[#]{1,6}\s')
         for line in lines:
             if regex.search(line):
@@ -417,11 +426,16 @@ class Files(object):
                 # yaml_dict[key] is list or str.
                 empty = list() if isinstance(yaml_dict[key], list) else ''
                 merged[key] = merged.get(key, empty) + yaml_dict[key]
-        return { key: sorted(set(val)) if isinstance(val, list) else val for key, val in merged.items() }
+        return { key: sorted(set(val)) if isinstance(val, list) else val
+            for key, val in merged.items() }
+
+
+    # TODO fix fix_yaml to be more specific to 'true' or '2024-03-25 18:15:12'
+    fix_yaml = lambda s: re.sub(': [\'"]', ': ', re.sub('[\'"]\n', '\n', s))
 
 
     def copy_files(self):
-        """"""
+        """Copy all files in self.files. """
         for fd in self.files:
             # Initialize local variables.
             note_path, note_mtime = fd['note_path'], fd['note_mtime']
@@ -430,10 +444,9 @@ class Files(object):
             note_changed = not os.path.isfile(post_path) \
                 or note_mtime > fd['post_mtime']
             if fd['is_md']:
-                # Write markdown file.
+                # Write markdown file after 'fixing' YAML.
                 lines = fd['lines']
-                fix_yaml = lambda s: re.sub(': [\'"]', ': ', re.sub('[\'"]\n', '\n', s))
-                yaml_text = fix_yaml(yaml.safe_dump(fd['yaml'],
+                yaml_text = Files.fix_yaml(yaml.safe_dump(fd['yaml'],
                     default_style=None, default_flow_style=False,
                     sort_keys=False, allow_unicode=True))
                 div, nl = '---\n', '\n'
@@ -461,7 +474,7 @@ class Files(object):
 def prepare(REPODIR, POSTDIR, REBUILD=False):
     """Copy and modify valid paths from REPODIR to POSTDIR. If REBUILD, remove
     _posts and _site directories."""
-    paths = Paths(REPODIR, POSTDIR)
+    paths = Paths(REPODIR, POSTDIR) # initialize paths w/ REPODIR and POSTDIR
 
     # If REBUILD, clean _posts directory.
     if REBUILD and os.path.isdir(paths.posts_path):
@@ -474,9 +487,9 @@ def prepare(REPODIR, POSTDIR, REBUILD=False):
         shutil.rmtree(_site_path, ignore_errors=True)
 
     # Collect paths to modify and copy.
-    path_names = PathNames(paths)
-    files = Files(path_names)
-    files.copy_files()
+    path_names = PathNames(paths)   # collect all valid Obsidian vault paths
+    files = Files(path_names)       # process information from all paths
+    files.copy_files()              # copy from Obsidian to Jekyll changed files
 
 
 class Parser(argparse.ArgumentParser):
