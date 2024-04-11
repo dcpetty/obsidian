@@ -1,7 +1,7 @@
 ---
 title: "What I learned about Obsidian & Jekyll"
 date: 2024-03-18 15:48:12
-last_modified_at: 2024-04-04 23:38:22
+last_modified_at: 2024-04-11 19:39:52
 show_date: true
 permalink: /obsidian-jekyll/obsidianjekyll/
 tags:
@@ -9,6 +9,7 @@ tags:
 - Obsidian
 toc: true
 toc_sticky: true
+category: ObsidianJekyll
 ---
 ## How Obsidian works as a linking Markdown editor
 

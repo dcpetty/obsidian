@@ -1,9 +1,10 @@
 ---
 title: "Big data sources"
 date: 2024-04-02 20:40:19
-last_modified_at: 2024-04-08 12:25:10
+last_modified_at: 2024-04-11 19:40:09
 show_date: true
 permalink: /education/bigdatasources/
+category: Education
 ---
 Kerri Murphy wrote:
 > What sites do you use to obtain large sets of data for your students working with Big Data?

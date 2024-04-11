@@ -1,3 +1,6 @@
+---
+category: Education
+---
 # What is STEM education?
 
 [STEM](https://en.wikipedia.org/wiki/STEM) an acronym for *science, technology, engineering, and mathematics*. Sometimes an '*A*' is added to include *arts* in [STE(A)M](https://en.wikipedia.org/wiki/STEAM_fields). 

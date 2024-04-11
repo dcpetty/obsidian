@@ -1,3 +1,6 @@
+---
+category: ObsidianJekyll
+---
 # What I learned about Obsidian & Jekyll
 
 ## How Obsidian works as a linking Markdown editor

@@ -1,3 +1,6 @@
+---
+category: Test
+---
 # Note for testing included `right.html` with ToC
 
 ## First section

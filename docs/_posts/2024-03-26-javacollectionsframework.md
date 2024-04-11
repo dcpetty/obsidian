@@ -1,11 +1,12 @@
 ---
 title: "Post-AP assignment: Java Collections Framework"
 date: 2024-03-26 19:05:59
-last_modified_at: 2024-04-11 08:39:21
+last_modified_at: 2024-04-11 19:40:20
 show_date: true
 permalink: /education/javacollectionsframework/
 toc: true
 toc_sticky: true
+category: Education
 ---
 After the APCS A (Java)  Examination, there are often 3-5 weeks left in the semester (especially for non-seniors) &mdash; depending on when the examination is scheduled and snow days.
 

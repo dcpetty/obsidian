@@ -1,11 +1,12 @@
 ---
 title: "JavaScript for `_include`d .HTML file with right navigation"
 date: 2024-03-26 08:16:31
-last_modified_at: 2024-03-28 12:26:53
+last_modified_at: 2024-04-11 19:39:44
 show_date: true
 permalink: /obsidian-jekyll/javascriptforincludednavigation/
 toc: true
 toc_sticky: true
+category: ObsidianJekyll
 ---
 Inspired by [Renato Golia](https://renatogolia.com/2020/10/22/creating-this-blog-theme/) and his [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) (MM) [Jekyll](https://jekyllrb.com/) site, hosted on [GitHub Pages](https://pages.github.com/) , this `right.html` file in the `_include` directory can be included on any [Obsidian](https://obsidian.md) note with `{% raw %}{% include right.html %}{% endraw %}` to add an additional navigation box like this (as on this page):
 

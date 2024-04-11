@@ -1,12 +1,15 @@
 ---
 title: "AdditionalNote"
 date: 2024-03-20 23:35:06
-last_modified_at: 2024-03-24 11:03:50
+last_modified_at: 2024-04-11 19:37:57
 show_date: true
 permalink: /testpages/subfolder/additionalnote/
 tags:
 - test
+category: Test
 ---
-This is an additional note that has a duplicate filename in a subfolder.
+This is an additional note that has a duplicate filename in the `SubFolder` subdirectory. We can still link to the other [AdditionalNote](/obsidian/testpages/additionalnote).
+
+As per the norm set on  [C2](https://wiki.c2.com/), Obsidian filenames are no-space [CamelCase](https://wiki.c2.com/?CamelCase).
 
 #test

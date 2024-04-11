@@ -1,11 +1,12 @@
 ---
 title: "What is STEM education?"
 date: 2024-04-03 16:33:14
-last_modified_at: 2024-04-03 18:23:11
+last_modified_at: 2024-04-11 19:40:28
 show_date: true
 permalink: /education/whatisstem/
 toc: true
 toc_sticky: true
+category: Education
 ---
 [STEM](https://en.wikipedia.org/wiki/STEM) an acronym for *science, technology, engineering, and mathematics*. Sometimes an '*A*' is added to include *arts* in [STE(A)M](https://en.wikipedia.org/wiki/STEAM_fields).
 

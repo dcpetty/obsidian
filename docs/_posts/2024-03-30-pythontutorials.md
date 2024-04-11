@@ -1,11 +1,12 @@
 ---
 title: "A list of possible introductory Python tutorials"
 date: 2024-03-30 20:55:39
-last_modified_at: 2024-04-01 14:24:15
+last_modified_at: 2024-04-11 19:40:25
 show_date: true
 permalink: /education/pythontutorials/
 toc: true
 toc_sticky: true
+category: Education
 ---
 It is possible to learn [Python](https://python.org) on-line from self-directed learning. This document lists several tutorial sites with Python-specific introductory tutorials. Some zero-cost&hellip; some are not.
 

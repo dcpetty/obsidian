@@ -1,9 +1,10 @@
 ---
 title: "IntroductoryPythonKnowledge"
 date: 2024-03-28 15:56:32
-last_modified_at: 2024-03-28 18:37:46
+last_modified_at: 2024-04-11 19:40:16
 show_date: true
 permalink: /education/introductorypythonknowledge/
+category: Education
 ---
 An introductory course in [https://python.org/](https://python.org/) should result in learners knowing and being proficient in these six concepts.
 
