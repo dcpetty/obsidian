@@ -562,9 +562,8 @@ if __name__ == '__main__':
             # ['obsidianjekyll.py', '-?', ],
         ]
         # slugify test
-        value = '/obsidian/NestedFolder/Foo & Bar/2024-03-21-Test%20with__spaces, éh? !@%_.md'
-        value = '(/obsidian/TestPages/Page%20for%20testing...%20_%20éh?%20!@$-.md'
-        logger.info((value, Paths.slugify(value, True),))
+        # value = 'obsidian/TestPages/Page%20for%20testing...%20_-_-_%20éh?%20!@$-.md'
+        # logger.info((value, Paths.slugify(value, True),))
         for test in tests:
             logger.debug(f"# {' '.join(test)}")
             main(test)
