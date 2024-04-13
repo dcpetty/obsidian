@@ -1,7 +1,9 @@
 ---
 category: Education
 ---
-# What is STEM education?
+# What is STEM?
+
+<code style="color: red; font-variant: small-caps;">This note is a DRAFT</span>
 
 [STEM](https://en.wikipedia.org/wiki/STEM) an acronym for *science, technology, engineering, and mathematics*. Sometimes an '*A*' is added to include *arts* in [STE(A)M](https://en.wikipedia.org/wiki/STEAM_fields). 
 
@@ -13,14 +15,16 @@ As with most buzzwords, it has come to mean whatever people want it to mean.
 - A convenient shorthand
 - Yet one more way to overload the definition of _technology_
 
-## What is STEM?
+STE(A)M is a convenient acronym to group subject areas and career paths, it does not get at the essence of what I believe important about STE(A)M teaching and learning.
 
-*<span style="color: red;">In contrast to most content-based definitions of STEM, this manifesto emphatically asserts that **the definition of STEM teaching and learning must incorporate four things**</span>*:
+## What is STEM education?
 
-- **Cross-curricular teaching and learning** — 
-- **Asking and answering open-ended questions** — 
+*<span style="color: red;">In contrast to most content-based definitions of STEM, this manifesto emphatically asserts that **the definition of STEM teaching and learning must incorporate four things**</span>*.
+
+- **Cross-curricular teaching and learning** — analyze synthesize different disciplines
+- **Asking and answering open-ended questions** — four of the seven *[Gold Standard PBL: Essential Project Design Elements](https://www.pblworks.org/what-is-pbl/gold-standard-project-design)* of PBLWorks and the Buck Institute for Education.
 - **An iterative design process** — 
-- **Making something** — create is one of the 5 big ideas; important part of PBL
+- **Making something** — creation is one of the [7 Big Ideas](https://bit.ly/7-big-ideas) of computer science: '[Computing is a creative human activity&hellip;]()https://arc.net/l/quote/ifgjltlu)' and one of the  [7 Core Practices](https://k12cs.org/); important part of PBL
 
 ## What STEM is _not_
 

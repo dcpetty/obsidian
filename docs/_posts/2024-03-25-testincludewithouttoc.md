@@ -1,7 +1,7 @@
 ---
-title: "Note for testing included right.html without ToC"
+title: "Note for testing included `right.html` without ToC"
 date: 2024-03-25 17:07:49
-last_modified_at: 2024-04-11 19:38:17
+last_modified_at: 2024-04-11 19:57:07
 show_date: true
 permalink: /testpages/testincludewithouttoc/
 category: Test
