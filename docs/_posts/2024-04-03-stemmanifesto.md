@@ -1,7 +1,7 @@
 ---
 title: "What is STEM?"
 date: 2024-04-03 16:33:14
-last_modified_at: 2024-04-14 20:26:55
+last_modified_at: 2024-04-15 15:58:37
 show_date: true
 permalink: /education/stemmanifesto/
 tags:
@@ -10,8 +10,6 @@ toc: true
 toc_sticky: true
 category: Education
 ---
-<code style="color: red; font-size: x-large; font-variant: small-caps;">This note is a DRAFT &mdash; v0.3</code>
-
 [STEM](https://en.wikipedia.org/wiki/STEM) an acronym for *science, technology, engineering, and mathematics*. Sometimes an '*A*' is added to include *arts* in [STE(A)M](https://en.wikipedia.org/wiki/STEAM_fields).
 
 As with most buzzwords, it has come to mean whatever people want it to mean.
@@ -55,4 +53,7 @@ STEM teaching and learning can be many things. Some STEM trends must be avoided.
 
 - How do [common core](http://corestandards.org/) and [next generation](http://nextgenscience.org/) standards affect what we do? Are there crosswalks for these national and state standards with [K–12 Computer Science](https://k12cs.org/) and [DLCS](https://www.doe.mass.edu/frameworks/dlcs.pdf) curriculum frameworks — especially since many non-computing curricula already incorporate computing standard and practices?
 - What about other disciplines? Art? Humanities? What about units integrated in topics or courses from non-computing disciplines?
+
+<code style="color: red; font-size: x-large; font-variant: small-caps;">This note is a DRAFT &mdash; v0.3</code>
+
 #stem {% include education.html %}
