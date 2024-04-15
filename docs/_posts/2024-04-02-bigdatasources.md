@@ -1,7 +1,7 @@
 ---
 title: "Big data sources"
 date: 2024-04-02 20:40:19
-last_modified_at: 2024-04-11 19:40:09
+last_modified_at: 2024-04-14 10:32:20
 show_date: true
 permalink: /education/bigdatasources/
 category: Education
@@ -34,3 +34,4 @@ Kerri Murphy wrote:
 Thanks for additional contributions from Deborah Boisvert, J Reuther, Elaine Griggs, Beryl Hoffman, Beatriz Mendez
 
 **Note:** [https://www.universalhub.com/2024/bps-open-source-curriculum-open-source](https://www.universalhub.com/2024/bps-open-source-curriculum-open-source) 2024/04/06 *BPS to open source a curriculum on open-source data* — '&hellip;a $500,000 grant from the state Department of Education to develop a lesson plan for teaching students how to use open data sources' (including the [Analyze Boston](https://data.boston.gov/) datasets listed above)
+{% include education.html %}

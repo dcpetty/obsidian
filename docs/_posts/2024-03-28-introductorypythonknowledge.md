@@ -1,7 +1,7 @@
 ---
 title: "IntroductoryPythonKnowledge"
 date: 2024-03-28 15:56:32
-last_modified_at: 2024-04-11 19:40:16
+last_modified_at: 2024-04-14 10:32:30
 show_date: true
 permalink: /education/introductorypythonknowledge/
 category: Education
@@ -14,3 +14,4 @@ An introductory course in [https://python.org/](https://python.org/) should resu
 1. **Iteration**: for and while loops / iterative data<br>Including `while` and `for` statements.
 1. **Functions**: definition / parameters / return values / composition<br>Including `def`, [`docstring`](https://peps.python.org/pep-0257/)s, parameters (positional, default, keyword, arbitrary positional, arbitrary keyword) vs. arguments, return values, and invocation / composition.
 1. **Data Structures**: lists / sets / dictionaries / files (including .CSV) / nested data structures<br>Including [sequence types](https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range), [set types](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset), and [mapping types](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict) and working with files.
+{% include education.html %}

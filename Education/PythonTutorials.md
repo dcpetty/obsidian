@@ -15,3 +15,4 @@ It is possible to learn [Python](https://python.org) on-line from self-directed 
 
 - [https://realpython.com/learning-paths/python-basics/](https://realpython.com/learning-paths/python-basics/)
 - [https://programming-24.mooc.fi/](https://programming-24.mooc.fi/) 'This is the course material page for the Introduction to Programming course&hellip; from the Department of Computer Science at the University of Helsinki.'
+{% include education.html %}
