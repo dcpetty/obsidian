@@ -1,9 +1,11 @@
 ---
 title: "Post-AP assignment: Java Collections Framework"
 date: 2024-03-26 19:05:59
-last_modified_at: 2024-04-14 10:32:37
+last_modified_at: 2024-04-16 10:10:47
 show_date: true
 permalink: /education/javacollectionsframework/
+tags:
+- Java
 toc: true
 toc_sticky: true
 category: Education
@@ -35,4 +37,5 @@ As preparation for the assignment&hellip;
 - [https://drive.google.com/file/d/1FY6nuXVcfMYayaSYbTciA9YmZsEgdKXa/](https://drive.google.com/file/d/1FY6nuXVcfMYayaSYbTciA9YmZsEgdKXa/) 2023 classroom whiteboard notes (from [http://j.mp/psb_david_petty](https://sites.google.com/psbma.org/david-petty/archive/2022-2023/apcs-a))
 - [https://drive.google.com/file/d/1ELECPhkhtFAWsUOwGgrOzN2q5e8Zgr24/](https://drive.google.com/file/d/1ELECPhkhtFAWsUOwGgrOzN2q5e8Zgr24/) UML class diagram for the full Java Collections Framework (made with [https://www.draw.io/](https://www.draw.io/))
 - [https://drive.google.com/file/d/1wANe9e2n44Viy3h-7eeps5mVmudaBaid/](https://drive.google.com/file/d/1wANe9e2n44Viy3h-7eeps5mVmudaBaid/) UML class diagram for linked-list assignment: `LinkedList`, `Queue`, and `Stack` (made with [https://www.draw.io/](https://www.draw.io/))
-{% include education.html %}
+
+#Java {% include education.html %}

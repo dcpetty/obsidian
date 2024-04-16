@@ -1,9 +1,11 @@
 ---
 title: "Big data sources"
 date: 2024-04-02 20:40:19
-last_modified_at: 2024-04-14 10:32:20
+last_modified_at: 2024-04-16 10:10:21
 show_date: true
 permalink: /education/bigdatasources/
+tags:
+- data
 category: Education
 ---
 Kerri Murphy wrote:
@@ -29,9 +31,11 @@ Kerri Murphy wrote:
 - [https://www.audubon.org/news/how-use-ebird](https://www.audubon.org/news/how-use-ebird) — Audubon ebird databases
 - [https://www.audubon.org/native-plants](https://www.audubon.org/native-plants) — Audubon plant databases
 - [https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/](https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/) — Mobile CSP list of data sources for the data unit.
+- [https://archive.ics.uci.edu/](https://archive.ics.uci.edu/) — UC Irvine Machine Learning Repository
 <!-- - [https://gtexportal.org/](https://gtexportal.org/) — Broad Institute GTExPortal gene expression datasets. -->
 
 Thanks for additional contributions from Deborah Boisvert, J Reuther, Elaine Griggs, Beryl Hoffman, Beatriz Mendez
 
 **Note:** [https://www.universalhub.com/2024/bps-open-source-curriculum-open-source](https://www.universalhub.com/2024/bps-open-source-curriculum-open-source) 2024/04/06 *BPS to open source a curriculum on open-source data* — '&hellip;a $500,000 grant from the state Department of Education to develop a lesson plan for teaching students how to use open data sources' (including the [Analyze Boston](https://data.boston.gov/) datasets listed above)
-{% include education.html %}
+
+#data {% include education.html %}

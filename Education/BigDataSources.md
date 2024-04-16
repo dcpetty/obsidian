@@ -26,10 +26,12 @@ Kerri Murphy wrote:
 - [https://www.audubon.org/news/how-use-ebird](https://www.audubon.org/news/how-use-ebird) — Audubon ebird databases
 - [https://www.audubon.org/native-plants](https://www.audubon.org/native-plants) — Audubon plant databases
 - [https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/](https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/) — Mobile CSP list of data sources for the data unit.
+- [https://archive.ics.uci.edu/](https://archive.ics.uci.edu/) — UC Irvine Machine Learning Repository
 <!-- - [https://gtexportal.org/](https://gtexportal.org/) — Broad Institute GTExPortal gene expression datasets. -->
 
 Thanks for additional contributions from Deborah Boisvert, J Reuther, Elaine Griggs, Beryl Hoffman, Beatriz Mendez
 
 **Note:** [https://www.universalhub.com/2024/bps-open-source-curriculum-open-source](https://www.universalhub.com/2024/bps-open-source-curriculum-open-source) 2024/04/06 *BPS to open source a curriculum on open-source data* — '&hellip;a $500,000 grant from the state Department of Education to develop a lesson plan for teaching students how to use open data sources' (including the [Analyze Boston](https://data.boston.gov/) datasets listed above)
-{% include education.html %}
+
+#data {% include education.html %}
 

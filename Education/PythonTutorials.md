@@ -13,6 +13,10 @@ It is possible to learn [Python](https://python.org) on-line from self-directed 
 
 ## Tutorials
 
-- [https://realpython.com/learning-paths/python-basics/](https://realpython.com/learning-paths/python-basics/)
+- [[https://cs50.harvard.edu/python/2022/]] Harvard's CS50 Python course. 'An introduction to programming using a language called Python. Learn how to read and write code as well as how to test and "debug" it.'
+- [[https://education.minecraft.net/en-us/resources/computer-science-subject-kit/python-101]] Python 101 with [MakeCode](https://www.microsoft.com/en-us/makecode). 'Start coding Python in Minecraft with MakeCode! Learn the basics of Python, including syntax, data types, variables, conditionals, 'for' and conditional loops, lists and functions.'
+- [[https://realpython.com/learning-paths/python-basics/]] RealPython Python Basics course. 'Through this learning path, you’ll jump-start your Python journey by mastering fundamental concepts for Python beginners.' (costs)
+- [[https://allendowney.github.io/ThinkPython/]] [Allen Downey](https://www.allendowney.com/blog/)'s excellent on-line book *Think Python* &mdash; the 3rd edition of the Python version of [*How to Think Like a Computer Scientist*](https://runestone.academy/ns/books/published/thinkcspy/index.html).
 - [https://programming-24.mooc.fi/](https://programming-24.mooc.fi/) 'This is the course material page for the Introduction to Programming course&hellip; from the Department of Computer Science at the University of Helsinki.'
-{% include education.html %}
+
+#Python {% include education.html %}
