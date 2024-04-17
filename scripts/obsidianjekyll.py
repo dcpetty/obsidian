@@ -304,7 +304,7 @@ class Files(object):
                         fixed = self._reformat_links(line.rstrip(), self.paths.repo)
                         lines.append(fixed) # add fixed line to text lines
 
-        # Add fron, lines, and yaml to file_dict.
+        # Add front, lines, and yaml to file_dict.
         file_dict['front'] = front
         file_dict['lines'] = lines
         file_dict['yaml'] = self._parse_yaml(file_dict) # updates lines
@@ -316,7 +316,7 @@ class Files(object):
         - search for '(repo/dir/file.ext)'
         - replace 'repo/' with '/repo/'
         - if ext is '.md', remove it
-        - slugify the new link (assumes asset pathnames are already slugified)
+        - slugify the new link (assumes asset dirnames are already slugified)
         - substitute it for the old link
         - iterate for all matching links
         Second:
@@ -446,9 +446,9 @@ class Files(object):
             post_dirname = os.path.dirname(fd['post_path'])
             note_changed = not os.path.isfile(post_path) \
                 or note_mtime > fd['post_mtime']
-            if fd['is_md']:
-                # Write markdown file after 'fixing' YAML.
-                if note_changed:
+            if note_changed:
+                if fd['is_md']:
+                    # Write markdown file after 'fixing' YAML.
                     lines = fd['lines']
                     yaml_text = Files.fix_yaml(yaml.safe_dump(fd['yaml'],
                         default_style=None, default_flow_style=False,
@@ -461,16 +461,12 @@ class Files(object):
                         wf.write('\n'.join(lines).lstrip())
                     logger.info(f"{note_path} \u2192 {post_path}")
                 else:
-                    logger.debug(f"UNCHANGED: {note_path}")
-            else:
-                # Copy asset file.
-                if note_changed:
-                    # Create directory and copy post.
+                    # Create directory and copy asset file.
                     os.makedirs(post_dirname, exist_ok=True)
                     shutil.copy(note_path, post_path)
                     logger.info(f"{note_path} \u2192 {post_path}")
-                else:
-                    logger.debug(f"UNCHANGED: {note_path}")
+            else:
+                logger.debug(f"UNCHANGED: {note_path}")
 
 
 def prepare(REPODIR, POSTDIR, REBUILD=False):
@@ -491,7 +487,7 @@ def prepare(REPODIR, POSTDIR, REBUILD=False):
     # Collect paths to modify and copy.
     path_names = PathNames(paths)   # collect all valid Obsidian vault paths
     files = Files(path_names)       # process information from all paths
-    files.copy_files()              # copy from Obsidian to Jekyll changed files
+    files.copy_files()              # copy changed files from Obsidian to Jekyll
 
 
 class Parser(argparse.ArgumentParser):
