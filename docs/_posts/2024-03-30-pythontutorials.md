@@ -1,7 +1,7 @@
 ---
 title: "A list of possible introductory Python tutorials"
 date: 2024-03-30 20:55:39
-last_modified_at: 2024-04-16 19:54:12
+last_modified_at: 2024-04-16 20:12:43
 show_date: true
 permalink: /education/pythontutorials/
 tags:
@@ -34,13 +34,13 @@ These Python tutorials were suggested by numerous K-12 computing educators and a
 1. [https://hourofpython.trinket.io/a-visual-introduction-to-python#/welcome/an-hour-of-code](https://hourofpython.trinket.io/a-visual-introduction-to-python#/welcome/an-hour-of-code) An *Hour of Python* using Python `turtle`. (Another fun Python `turtle` activity: [*Draw a Star*](https://colab.research.google.com/drive/18d6hSO6Y3DYqVZbV2yHJfiVjN-zxfVJt) in a [Google[Google Colab Notebook](https://colab.research.google.com/).)
 1. [https://earsketch.gatech.edu/earsketch2/](https://earsketch.gatech.edu/earsketch2/) Explore the *Curriculum* pane on the *Earsketch* site.
 1. [https://pygame-zero.readthedocs.io/en/stable](https://pygame-zero.readthedocs.io/en/stable) Follow the *PyGameZero* tutorial (after downloading [MuEditor](https://codewith.mu/en/download), which has it built in).
+- [https://academy.cs.cmu.edu/course-info](https://academy.cs.cmu.edu/course-info) *CMU Computer Science Academy* has several Python courses.
 - [https://gocoderz.com/teachers/#courses](https://gocoderz.com/teachers/#courses) *CoderZ* uses simulated robots in their curriculum. (costs)
 - [https://codeeasy.io/course/python-essentials](https://codeeasy.io/course/python-essentials) *Codeasy.io* Python Essentials. (costs)
 - [https://www.w3schools.com/python/](https://www.w3schools.com/python/) *W3Schools* and [https://www.tutorialspoint.com/python/](https://www.tutorialspoint.com/python/) *TutorialsPoint* have good Python tutorials.
 - [https://brilliant.org/courses/programming-python/](https://brilliant.org/courses/programming-python/) *Brilliant.org* has a level 2 Python tutorial.
 - [https://codehs.com/curriculum/python](https://codehs.com/curriculum/python) *CodeHS* has Python courses.
 - [https://www.khanacademy.org/computing/intro-to-python-fundamentals](https://www.khanacademy.org/computing/intro-to-python-fundamentals) *Khan Academy* says **This course is under construction!**.
-- [https://academy.cs.cmu.edu/course-info](https://academy.cs.cmu.edu/course-info) *CMU Computer Science Academy* has several Python courses.
 - [https://programming-24.mooc.fi/](https://programming-24.mooc.fi/) 'This is the course material page for the Introduction to Programming course&hellip; from the Department of Computer Science at the University of Helsinki.'
 
 Thanks for additional contributions from Andrew Spiece, Steve Willis, Jacqueline Moreno, Renee Sullivan, David Parker, Sheila Slawiak.
