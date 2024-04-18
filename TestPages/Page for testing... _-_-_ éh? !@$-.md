@@ -5,7 +5,10 @@ tags:
 ---
 
 # Internal test page — *do not use parentheses in note names*
-This note's title tests the collapsing of spaces, `'-'`s, and `'_'`s. *Putting parenteses in a note's name makes it impossible to easily parse links with a regular expression.*
+
+This note's title tests the collapsing of spaces, `'-'`s, and `'_'`s. *Putting parentheses in a note's name makes it impossible to easily parse links with a regular expression.*
+
+This note tests many aspects of Obsidian and Jekyll as parsed by [`obsidianjekyll.py`](https://github.com/dcpetty/obsidian/blob/main/scripts/obsidianjekyll.py).
 
 ## Various links
 
@@ -24,19 +27,19 @@ tags:
  - yaml
 ---
 
-AdditionalJekyll  YAML 'front matter' can be included throughout a note, though it renders in Obsidian as horizontal rules followed by a list. Tags can be added anywhere in-line. #another-test-tag
+Additional Jekyll  YAML 'front matter' can be included throughout a note, though it renders in Obsidian as horizontal rules followed by a list. Tags can be added anywhere in-line. #another-test-tag
 
 ## Images
 
 ![20230626-i'm-taking-the-mole](obsidian/assets/obsidian/20230626-i'm-taking-the-mole.png)
 
-<center style="padding: 1em;"><em>I'm leaving your, Henry, and I'm taking the mole.</em></center>
+<center style="padding: 1em;"><em>I'm leaving you, Henry, and I'm taking the mole.</em></center>
 
-The centered caption used embedded HTML (`<center style="padding: 1em;"><em>I'm leaving your, Henry, and I'm taking the mole.</em></center>`).
+The centered caption used embedded HTML (`<center style="padding: 1em;"><em>I'm leaving you, Henry, and I'm taking the mole.</em></center>`).
 
 ![](obsidian/assets/obsidian/Pasted%20image%2020240411151449.png)
 
-There are blank lines on either side of the this pasted image, plus blank lines of either side of any HTML.
+There are blank lines on either side of the this pasted image, plus blank lines on either side of any HTML.
 
 ## Included files
 
