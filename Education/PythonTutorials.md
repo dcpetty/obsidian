@@ -17,7 +17,7 @@ These are on-line learning organizations and aggregators. Many have costs.
 
 ## Tutorials
 
-These Python tutorials were suggested by numerous K-12 computing educators and are listed in no particular order.
+These Python tutorials (and other resources) were suggested by numerous K-12 computing educators and are listed in no particular order.
 
 - [[https://allendowney.github.io/ThinkPython/]] &copy; [Allen Downey](https://www.allendowney.com/blog/)'s excellent on-line book *Think Python* &mdash; the 3rd edition of the Python version of [*How to Think Like a Computer Scientist*](https://runestone.academy/ns/books/published/thinkcspy/index.html).
 - [[https://docs.python-guide.org/]] *The Hitchhiker’s Guide to Python!* ([CC](https://creativecommons.org/licenses/by-nc-sa/3.0/)) 'This handcrafted guide exists to provide both novice and expert Python developers a best practice handbook for the installation, configuration, and usage of Python on a daily basis.'
