@@ -40,8 +40,9 @@ These Python tutorials (and other resources) were suggested by numerous K-12 com
 - [[https://brilliant.org/courses/programming-python/]] *Brilliant.org* has a level 2 Python tutorial.
 - [[https://codehs.com/curriculum/python]] *CodeHS* has Python courses.
 - [[https://www.khanacademy.org/computing/intro-to-python-fundamentals]] *Khan Academy* says '**This course is under construction!**'.
+- [[https://www.raspberrypi.org/courses/learn-python]] *Raspberry Pi Foundation* Python tutorials.
 - [https://programming-24.mooc.fi/](https://programming-24.mooc.fi/) 'This is the course material page for the Introduction to Programming course&hellip; from the Department of Computer Science at the University of Helsinki.'
 
-Thanks for additional contributions from Emmett Wald, NJ Rees, Sheila Slawiak, Andrew Spiece, Steve Willis, Jacqueline Moreno, Renee Sullivan, David Parker.
+Thanks for additional contributions from Emmett Wald, NJ Rees, Sheila Slawiak, Andrew Spiece, Steve Willis, Jacqueline Moreno, Renee Sullivan, David Parker, Aislín Moylan.
 
 #Python {% include education.html %}
