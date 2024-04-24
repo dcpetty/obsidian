@@ -11,7 +11,7 @@ test_runner.py defines run_tests function.
 import unittest
 
 # import test modules.
-from tests import test_paths
+from tests import test_paths, test_pathnames
 
 __all__ = [ 'run_tests', ]
 
@@ -25,6 +25,7 @@ def run_tests(verbosity=2):
 
     # add tests to the test suite
     suite.addTests(loader.loadTestsFromModule(test_paths))
+    suite.addTests(loader.loadTestsFromModule(test_pathnames))
 
     # initialize a runner, pass it your suite and run it
     runner = unittest.TextTestRunner(verbosity=verbosity)

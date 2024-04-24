@@ -9,6 +9,8 @@ __main__.py imports test_runner.run_tests and runs it.
 
 __version__ = "0.0.1"
 
+__all__ = ['log', ]
+
 from sys import path
 from pathlib import Path
 from collections import OrderedDict

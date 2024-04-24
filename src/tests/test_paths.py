@@ -23,9 +23,9 @@ class TestPaths(unittest.TestCase):
 
     def setUp(self):
         """Setup Paths for testing"""
-        REMOVE = 'REMOVE'
+        REMOVE = 'REMOVE'   # self.remove will be removed, so name carefully!
         self.remove = os.path.realpath(os.path.join('.', REMOVE))
-        self.repo = 'test'
+        self.repo = 'paths'
         self.repodir = os.path.join(self.remove, self.repo)
         self.postdir = os.path.join(self.repodir, 'docs')
         os.makedirs(self.postdir, exist_ok=True)
@@ -43,6 +43,24 @@ class TestPaths(unittest.TestCase):
         """Test paths.repo."""
         logger.info(f"{repr(self.repo)} \u2192 {repr(self.paths.repo)}")
         self.assertEqual(self.repo, self.paths.repo)
+        pass
+
+
+    def test_repodir(self):
+        """Test paths.repodir."""
+        relrepodir, relrepo_path = \
+            os.path.relpath(self.repodir), os.path.relpath(self.paths.repo_path)
+        logger.info(f"{repr(relrepodir)} \u2192 {repr(relrepo_path)}")
+        self.assertEqual(self.repodir, self.paths.repo_path)
+        pass
+
+
+    def test_sitedir(self):
+        """Test paths.sitedir."""
+        relsitedir, relsite_path = \
+            os.path.relpath(self.postdir), os.path.relpath(self.paths.site_path)
+        logger.info(f"{repr(relsitedir)} \u2192 {repr(relsite_path)}")
+        self.assertEqual(self.repodir, self.paths.repo_path)
         pass
 
 
