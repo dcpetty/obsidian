@@ -1,24 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# test_pathnames.py
+# test_files.py
 #
 # https://www.internalpointers.com/post/run-painless-test-suites-python-unittest
 #
 """
-test_pathnames.py tests obsidianjekyll.pathnames.
+test_files.py tests obsidianjekyll.files.
 """
+# TODO: complete test cases
+
 import inspect, os, shutil, unittest
 
 from obsidianjekyll.paths import *
 from obsidianjekyll.pathnames import *
+from obsidianjekyll.files import *
 from __main__ import log
 
 # Set up logging.
 logger = log(__name__, 'tests')
 
 
-class TestPathNames(unittest.TestCase):
+class TestFiles(unittest.TestCase):
     """Test obsidianjekyll.pathnames."""
 
 
@@ -26,12 +29,13 @@ class TestPathNames(unittest.TestCase):
         """Setup pathnames for testing"""
         REMOVE = 'REMOVE'   # self.remove will be removed, so name carefully!
         self.remove = os.path.realpath(os.path.join('.', REMOVE))
-        self.repo = 'pathnames'
+        self.repo = 'files'
         self.repodir = os.path.join(self.remove, self.repo)
         self.postdir = os.path.join(self.repodir, 'docs')
         os.makedirs(self.postdir, exist_ok=True)
         self.paths = Paths(repodir=self.repodir, postdir=self.postdir)
         self.pathnames = PathNames(self.paths)
+        self.files = Files(self.pathnames)
         pass
 
 
@@ -43,17 +47,23 @@ class TestPathNames(unittest.TestCase):
 
     def test_paths(self):
         """Test pathnames.paths."""
-        # TODO: complete test case
         test = inspect.currentframe().f_code.co_name
         logger.info(f"In {test}()\u2026")
-        logger.info(f"{repr(self.pathnames.paths)}")
+        logger.info(f"{repr(self.files.paths)}")
         pass
 
 
     def test_path_names(self):
         """Test pathnames.path_names."""
-        # TODO: complete test case
         test = inspect.currentframe().f_code.co_name
         logger.info(f"In {test}()\u2026")
-        logger.info(f"{repr(self.pathnames.path_names)}")
+        logger.info(f"{repr(self.files.path_names)}")
+        pass
+
+
+    def test_files(self):
+        """Test pathnames.files."""
+        test = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test}()\u2026")
+        logger.info(f"{repr(self.files.files)}")
         pass

@@ -9,7 +9,7 @@ __main__.py imports test_runner.run_tests and runs it.
 
 __version__ = "0.0.1"
 
-__all__ = ['log', ]
+__all__ = ['log', 'log_path', ]
 
 from sys import path
 from pathlib import Path
@@ -19,7 +19,7 @@ path.insert(1, str(Path(__file__).resolve().parents[1]))
 path.insert(1, str(Path(__file__).resolve().parents[1] / 'obsidianjekyll'))
 path = list(OrderedDict.fromkeys(path))
 
-from obsidianjekyll.log import log
+from obsidianjekyll.log import log, log_path
 
 # Set up logging.
 logger = log(__name__, 'tests')

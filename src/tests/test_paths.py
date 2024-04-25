@@ -8,7 +8,9 @@
 """
 test_paths.py tests obsidianjekyll.paths.
 """
-import os, shutil, unittest
+# TODO: complete test cases
+
+import inspect, os, shutil, unittest
 
 from obsidianjekyll.paths import *
 from __main__ import log
@@ -40,6 +42,8 @@ class TestPaths(unittest.TestCase):
 
 
     def test_repo(self):
+        test = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test}()\u2026")
         """Test paths.repo."""
         logger.info(f"{repr(self.repo)} \u2192 {repr(self.paths.repo)}")
         self.assertEqual(self.repo, self.paths.repo)
@@ -48,6 +52,8 @@ class TestPaths(unittest.TestCase):
 
     def test_repodir(self):
         """Test paths.repodir."""
+        test = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test}()\u2026")
         relrepodir, relrepo_path = \
             os.path.relpath(self.repodir), os.path.relpath(self.paths.repo_path)
         logger.info(f"{repr(relrepodir)} \u2192 {repr(relrepo_path)}")
@@ -57,6 +63,8 @@ class TestPaths(unittest.TestCase):
 
     def test_sitedir(self):
         """Test paths.sitedir."""
+        test = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test}()\u2026")
         relsitedir, relsite_path = \
             os.path.relpath(self.postdir), os.path.relpath(self.paths.site_path)
         logger.info(f"{repr(relsitedir)} \u2192 {repr(relsite_path)}")
@@ -66,9 +74,43 @@ class TestPaths(unittest.TestCase):
 
     def test_postsdir(self):
         """Test paths.repo."""
+        test = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test}()\u2026")
         postsdir = os.path.join(self.postdir, '_posts')
         relpostsdir, relposts_path = \
             os.path.relpath(postsdir), os.path.relpath(self.paths.posts_path)
         logger.info(f"{repr(relpostsdir)} \u2192 {repr(relposts_path)}")
         self.assertEqual(postsdir, self.paths.posts_path)
+        pass
+
+
+    def test_slugify(self):
+        """Test paths.slugify()."""
+        test = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test}()\u2026")
+        prefix = '/foo/bar/baz' # already slugified and lower case
+        sources = [
+            'This is a test file.txt',
+            'This%20is-a%20test_file.py',
+            '¡™£¢∞§¶•ªº–≠œ∑´®†¥¨ˆøπ“‘«åß∂ƒ©˙∆˚¬…æΩ≈ç√∫˜µ≤≥÷.png',
+            'CamenCaseFilename.MD',
+        ]
+        values = [
+            'This-is-a-test-file.txt',
+            'This-is-a-test-file.py',
+            'TMao-a-c.png',
+            'CamenCaseFilename.MD',
+        ]
+        # Test slugify with (default) preserve_case=False.
+        for i, p in enumerate([os.path.join(prefix, f) for f in sources]):
+            sp = self.paths.slugify(p)
+            vp = os.path.join(prefix, values[i]).lower()
+            logger.info(f"{p} \u2192 {sp} \u225f {vp}")
+            self.assertEqual(vp, sp)
+        # Test slugify with preserve_case=True
+        for i, p in enumerate([os.path.join(prefix, f) for f in sources]):
+            sp = self.paths.slugify(p, True)
+            vp = os.path.join(prefix, values[i])
+            logger.info(f"{p} \u2192 {sp} \u225f {vp}")
+            self.assertEqual(vp, sp)
         pass
