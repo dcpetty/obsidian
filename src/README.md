@@ -112,3 +112,4 @@ document.addEventListener("DOMContentLoaded", function() {
 - Add configuration for *include globs* `['*.md', '*.png', '*.jpg', '*.html', ]` and *exclude globs* `['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md', ]`.
 - Add a way to clean out old `asset` files.
 - Complete `tests` suite.
+- Update test suite to include support for [`pytest`](https://docs.pytest.org/).
