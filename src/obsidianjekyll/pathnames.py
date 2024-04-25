@@ -29,7 +29,7 @@ class PathNames(object):
     # List of patterns to include.
     _default_to_inc = ['*.md', '*.png', '*.jpg', '*.html', ]
     # List of patterns to exclude.
-    _default_to_exc = ['**/.git/**', '**/docs/**', '**/scripts/**', '**/README.md',
+    _default_to_exc = ['**/.git*/**', '**/docs/**', '**/scr/**', '**/README.md',
         '**/foo/**/bar/*.html']  # TODO: this is simply to test valid_paths
 
     def __init__(self, paths, to_inc=None, to_exc=None):
