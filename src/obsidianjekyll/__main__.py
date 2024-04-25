@@ -87,8 +87,8 @@ def main(argv):
     if pa.VERBOSE:
         loggers = [logging.getLogger(name)
             for name in logging.root.manager.loggerDict]
-        for logger in loggers:
-            logger.setLevel('DEBUG')
+        for l in loggers:
+            l.setLevel('DEBUG')
     if pa.REPODIR:
         logger.debug(f"REPODIR = {repr(pa.REPODIR)}")
     if pa.POSTDIR:
