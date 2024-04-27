@@ -45,6 +45,7 @@ class Files(object):
 
     def __init__(self, path_names):
         """Initialize _path_names, _paths, _files."""
+
         self._path_names = path_names
         self._paths = path_names.paths
         self._files = type(self)._default_files
@@ -85,6 +86,7 @@ class Files(object):
 
     def _add_file(self, note_path):
         """Add repository file dictionary for pathname to _files."""
+
         repo_path, site_path = self.paths.repo_path, self.paths.site_path
         assert os.path.isfile(note_path), f"'{note_path}' does not exist"
         assert note_path.startswith(repo_path), \
@@ -130,6 +132,7 @@ class Files(object):
         file_dict['yaml'] with the merged front matter and Jekyll information
         in file_dict. file_dict str keys include: note_path, note_file,
         note_ctime, note_mtime, is_md."""
+
         assert file_dict['is_md'], \
             f"'{file_dict['note_file']}' is not a markdown file"
         front, lines, in_yaml, divider = list(), list(), False, None
@@ -201,6 +204,7 @@ class Files(object):
         parsed from file_dict['lines'] --- which may be updated if initial H1
         title removed. file_dict str keys include: front, lines, note_path,
         note_file, note_ctime, note_mtime."""
+
         front, lines, jekyll = file_dict['front'], file_dict['lines'], dict()
 
         # The YAML of a Jekyll should have:
@@ -224,6 +228,7 @@ class Files(object):
         if self._has_headers(lines):
             jekyll['toc'] = 'true'
             jekyll['toc_sticky'] = 'true'
+
         yaml_dict_list = [jekyll] + list(yaml.safe_load_all(''.join(front)))
         # logger.debug(f"yamls: {yaml_dict_list}")
         return self._merge_yaml(yaml_dict_list)
@@ -232,6 +237,7 @@ class Files(object):
     def _parse_title(self, lines, alt='TITLE'):
         """Return title parsed from first non-blank line of lines if it is an
         H1, otherwise alt."""
+
         title = alt
         for i, line in enumerate(lines):
             if not line: continue       # skip leading blank lines
@@ -244,6 +250,7 @@ class Files(object):
 
     def _parse_tags(self, lines):
         """Return list of tags parsed from lines."""
+
         tags = list()
         for line in lines:
             tags += [h.strip()[1:]
@@ -255,6 +262,7 @@ class Files(object):
         """Return True if there are any H1 - H6 lines in lines. Must come after
         _parse_title so after any initial H1 title is removed. Used to determine
         whether table of contents should be included."""
+
         regex = re.compile(r'^[#]{1,6}\s')
         for line in lines:
             if regex.search(line):
@@ -266,6 +274,7 @@ class Files(object):
         """Return dictionary of yaml_list dictionaries merged into one
         where values for every key are either the concatenation of all strings,
         or a set of the union of list values for duplicate keys sorted."""
+
         merged = dict()
         for yaml_dict in yaml_list:
             for key in yaml_dict:
@@ -285,6 +294,7 @@ class Files(object):
 
     def copy_files(self):
         """Copy all files in self.files. """
+
         for fd in self.files:
             # Initialize local variables.
             note_path, note_mtime = fd['note_path'], fd['note_mtime']

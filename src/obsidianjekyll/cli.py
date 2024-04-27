@@ -26,6 +26,8 @@ logger = log(__name__, 'obsidian')
 
 class Parser(argparse.ArgumentParser):
     """Create OptionParser to parse command-line options."""
+
+
     def __init__(self, **kargs):
         argparse.ArgumentParser.__init__(self, **kargs)
         # self.remove_argument("-h")
@@ -34,8 +36,8 @@ class Parser(argparse.ArgumentParser):
         self.add_argument('--version', action='version',
                           version=f"%(prog)s {__version__}")
 
+
     def error(self, msg):
         sys.stderr.write("%s: error: %s\n\n" % (self.prog, msg, ))
         self.print_help()
         sys.exit(2)
-

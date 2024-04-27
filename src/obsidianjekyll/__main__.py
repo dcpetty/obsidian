@@ -40,6 +40,7 @@ logger = log(__name__, 'obsidian')
 def prepare(REPODIR, POSTDIR, REBUILD=False):
     """Copy and modify valid paths from REPODIR to POSTDIR. If REBUILD, remove
     _posts and _site directories."""
+
     paths = Paths(REPODIR, POSTDIR) # initialize paths w/ REPODIR and POSTDIR
 
     # If REBUILD, clean _posts directory.
@@ -60,6 +61,7 @@ def prepare(REPODIR, POSTDIR, REBUILD=False):
 
 def main(argv):
     """Parse arguments and move files into Jekyll format."""
+
     description = """Format files in REPODIR into Jekyll and copy results
         to POSTDIR."""
     formatter = lambda prog: \

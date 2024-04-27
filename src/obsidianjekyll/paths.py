@@ -33,6 +33,7 @@ class Paths(object):
 
     def __init__(self, repodir=None, postdir=None):
         """Initialize paths for repository and site."""
+
         self._repodir = repodir if repodir else type(self)._default_repodir
         self._postdir = postdir if postdir else type(self)._default_postdir
         self._repo_path = os.path.realpath(self._repodir)   # no trailing '/'
@@ -93,12 +94,13 @@ class Paths(object):
         preserve_case is False, convert slugified path to lowercase.
         - split off any extension and work with root
         - replace '%20' with ' '
-        - unicodedata.normalize 'NFKD'
+        - unicodedata.normalize 'NFKD' to 'ascii'
         - remove everything *not* letters, numerals, or '/._-'
         - replace ' ' or '.' or '_' with '-' (Jekyll)
         - remove duplicate '-'s (Jekyll)
         - add back on the extension
         """
+
         # https://stackoverflow.com/a/27264385
         root, ext = os.path.splitext(path)
         slugified = re.sub('[-]{2,}', '-',
