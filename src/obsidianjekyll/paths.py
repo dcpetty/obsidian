@@ -7,6 +7,8 @@
 paths.py defines Paths class with repo_path, repo, site_path, and posts_path
 properties and slugify function.
 """
+import os, re, unicodedata
+from .log import log
 
 __all__ = ["Paths", ]
 __author__ = "David C. Petty"
@@ -16,9 +18,6 @@ __license__ = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 __maintainer__ = "David C. Petty"
 __email__ = "dcp@acm.org"
 __status__ = "Development"
-
-import os, re, unicodedata
-from log import log
 
 # Set up logging.
 logger = log(__name__, 'obsidian')

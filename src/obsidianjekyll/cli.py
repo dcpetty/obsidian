@@ -6,6 +6,8 @@
 """
 cli.py defines Parser(argparse.ArgumentParser) class with error function.
 """
+import argparse, sys
+from .log import log
 
 __all__ = ["Parser", ]
 __author__ = "David C. Petty"
@@ -16,13 +18,8 @@ __maintainer__ = "David C. Petty"
 __email__ = "dcp@acm.org"
 __status__ = "Development"
 
-import argparse, sys
-from __main__ import __version__
-from log import log
-
 # Set up logging.
 logger = log(__name__, 'obsidian')
-
 
 class Parser(argparse.ArgumentParser):
     """Create OptionParser to parse command-line options."""
@@ -33,8 +30,6 @@ class Parser(argparse.ArgumentParser):
         # self.remove_argument("-h")
         self.add_argument("-?", "--help", action="help",
                           help="show this help message and exit")
-        self.add_argument('--version', action='version',
-                          version=f"%(prog)s {__version__}")
 
 
     def error(self, msg):

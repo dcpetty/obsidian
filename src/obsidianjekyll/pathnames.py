@@ -6,6 +6,8 @@
 """
 pathnames.py defines PathNames class with paths and path_names properties.
 """
+import glob, fnmatch, os, re
+from .log import log
 
 __all__ = ["PathNames", ]
 __author__ = "David C. Petty"
@@ -15,9 +17,6 @@ __license__ = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 __maintainer__ = "David C. Petty"
 __email__ = "dcp@acm.org"
 __status__ = "Development"
-
-import glob, fnmatch, os, re
-from log import log
 
 # Set up logging.
 logger = log(__name__, 'obsidian')

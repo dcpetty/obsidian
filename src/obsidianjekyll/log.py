@@ -7,6 +7,8 @@
 Logging module that logs to the console and a temporary log file.
 """
 1234567890123456789012345678901234567890123456789012345678901234567890
+import logging, os, tempfile
+
 __all__ = ["log", "log_path", ]
 __author__ = "David C. Petty"
 __copyright__ = "Copyright 2024, David C. Petty"
@@ -15,8 +17,6 @@ __license__ = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 __maintainer__ = "David C. Petty"
 __email__ = "dcp@acm.org"
 __status__ = "Development"
-
-import logging, os, tempfile
 
 path = globals().get('path')    # Initialize global path to temporary log.
 fix = lambda prefix: f'{prefix if prefix else "PREFIX"}-'

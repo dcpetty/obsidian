@@ -7,6 +7,9 @@
 files.py defines Files class with copy_files function and files, paths, and
 pathnames properties.
 """
+import os, pathlib, re, shutil, time, yaml
+from .paths import Paths
+from .log import log
 
 __all__ = ["Files", ]
 __author__ = "David C. Petty"
@@ -16,10 +19,6 @@ __license__ = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 __maintainer__ = "David C. Petty"
 __email__ = "dcp@acm.org"
 __status__ = "Development"
-
-import os, pathlib, re, shutil, time, yaml
-from paths import Paths
-from log import log
 
 # Set up logging.
 logger = log(__name__, 'obsidian')

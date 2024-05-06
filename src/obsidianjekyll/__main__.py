@@ -4,40 +4,31 @@
 # __main__.py
 #
 """
-__main__.py sets dunder variables and imports and copies a REPODIR Obsidian
+__main__.py imports and copies a REPODIR Obsidian
 repository to a POSTDIR Jekyll repository, modifying the pathnames appropriately.
 """
+# From https://stackoverflow.com/a/65780624/17467335 to fix relative imports.
+from sys import path as _p
+from pathlib import Path as _P
+from collections import OrderedDict as _OD
 
-__version__ = "0.0.4"
-
-__all__ = ["log", "log_path", ]
-__author__ = "David C. Petty"
-__copyright__ = "Copyright 2024, David C. Petty"
-__credits__ = ["David C. Petty", ]
-__license__ = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
-__maintainer__ = "David C. Petty"
-__email__ = "dcp@acm.org"
-__status__ = "Development"
-
-from sys import path
-from pathlib import Path
-from collections import OrderedDict
-# Add package directory to path.
-path.insert(1, str(Path(__file__).resolve().parents[0]))
-path = list(OrderedDict.fromkeys(path))
+_p.insert(1, str(_P(__file__).resolve().parents[1]))
+_p = list(_OD.fromkeys(_p))
 
 import argparse, logging, os, shutil, sys
-from cli import Parser
-from paths import Paths
-from pathnames import PathNames
-from files import Files
-from log import log, log_path
+from obsidianjekyll import *
+Parser = cli.Parser
+Paths = paths.Paths
+PathNames = pathnames.PathNames
+Files = files.Files
+log_path = log.log_path
+log = log.log
 
 # Set up logging.
 logger = log(__name__, 'obsidian')
 
 
-def prepare(REPODIR, POSTDIR, REBUILD=False):
+def prepare(REPODIR, POSTDIR, REBUILD=False, version=__version__):
     """Copy and modify valid paths from REPODIR to POSTDIR. If REBUILD, remove
     _posts and _site directories."""
 
@@ -68,6 +59,8 @@ def main(argv):
         argparse.ArgumentDefaultsHelpFormatter(prog, max_help_position=30)
     parser = Parser(description=description, add_help=False,
                     formatter_class=formatter)
+    parser.add_argument('--version', action='version',
+                        version=f"%(prog)s {__version__}")
     arguments = [
         # c1, c2, action, dest, default, help
         ('-r', '--rebuild', 'store_true', 'REBUILD', False,
@@ -75,7 +68,6 @@ def main(argv):
         ('-v', '--verbose', 'store_true', 'VERBOSE', False,
          'log DEBUG status information',),
     ]
-
     # Add optional arguments with values.
     for c1, c2, a, v, d, h in arguments:
         parser.add_argument(c1, c2, action=a, dest=v, default=d, help=h,)
@@ -112,7 +104,7 @@ if __name__ == '__main__':
     if any((is_idle, is_pycharm, is_jupyter,)):
         logger.debug(f"logpath: {log_path()}")
         tests = [
-            ['obsidianjekyll.py', '..', '../docs/', ],
+            ['obsidianjekyll.py', '..', '../docs/', '-v', ],
             # ['obsidianjekyll.py', '-?', ],
         ]
         for test in tests:

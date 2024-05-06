@@ -12,13 +12,13 @@ test_files.py tests obsidianjekyll.files.
 
 import inspect, os, shutil, unittest
 
-from obsidianjekyll.paths import *
-from obsidianjekyll.pathnames import *
-from obsidianjekyll.files import *
-from __main__ import log
+from . import paths, pathnames, files, log
+Paths = paths.Paths
+PathNames = pathnames.PathNames
+Files = files.Files
 
 # Set up logging.
-logger = log(__name__, 'tests')
+logger = log.log(__name__, 'tests')
 
 
 class TestFiles(unittest.TestCase):
@@ -47,23 +47,35 @@ class TestFiles(unittest.TestCase):
 
     def test_paths(self):
         """Test pathnames.paths."""
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
+        # TODO: complete test case
         logger.info(f"{repr(self.files.paths)}")
         pass
 
 
     def test_path_names(self):
         """Test pathnames.path_names."""
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
+        # TODO: complete test case
         logger.info(f"{repr(self.files.path_names)}")
         pass
 
 
     def test_files(self):
         """Test pathnames.files."""
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
+        # TODO: complete test case
         logger.info(f"{repr(self.files.files)}")
         pass

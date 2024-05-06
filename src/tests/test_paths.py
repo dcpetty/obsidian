@@ -12,11 +12,11 @@ test_paths.py tests obsidianjekyll.paths.
 
 import inspect, os, shutil, unittest
 
-from obsidianjekyll.paths import *
-from __main__ import log
+from . import paths, log
+Paths = paths.Paths
 
 # Set up logging.
-logger = log(__name__, 'tests')
+logger = log.log(__name__, 'tests')
 
 
 class TestPaths(unittest.TestCase):
@@ -42,9 +42,12 @@ class TestPaths(unittest.TestCase):
 
 
     def test_repo(self):
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
         """Test paths.repo."""
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
         logger.info(f"{repr(self.repo)} \u2192 {repr(self.paths.repo)}")
         self.assertEqual(self.repo, self.paths.repo)
         pass
@@ -52,8 +55,11 @@ class TestPaths(unittest.TestCase):
 
     def test_repodir(self):
         """Test paths.repodir."""
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
         relrepodir, relrepo_path = \
             os.path.relpath(self.repodir), os.path.relpath(self.paths.repo_path)
         logger.info(f"{repr(relrepodir)} \u2192 {repr(relrepo_path)}")
@@ -63,8 +69,11 @@ class TestPaths(unittest.TestCase):
 
     def test_sitedir(self):
         """Test paths.sitedir."""
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
         relsitedir, relsite_path = \
             os.path.relpath(self.postdir), os.path.relpath(self.paths.site_path)
         logger.info(f"{repr(relsitedir)} \u2192 {repr(relsite_path)}")
@@ -74,8 +83,11 @@ class TestPaths(unittest.TestCase):
 
     def test_postsdir(self):
         """Test paths.repo."""
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
         postsdir = os.path.join(self.postdir, '_posts')
         relpostsdir, relposts_path = \
             os.path.relpath(postsdir), os.path.relpath(self.paths.posts_path)
@@ -86,8 +98,11 @@ class TestPaths(unittest.TestCase):
 
     def test_slugify(self):
         """Test paths.slugify()."""
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
         prefix = '/foo/bar/baz' # already slugified and lower case
         sources = [
             'This is a test file.txt',

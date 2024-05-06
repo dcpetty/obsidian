@@ -6,25 +6,37 @@
 """
 __main__.py imports test_runner.run_tests and runs it.
 """
+# From https://stackoverflow.com/a/65780624/17467335 to fix relative imports.
+from sys import path as _p
+from pathlib import Path as _P
+from collections import OrderedDict as _OD
+
+_p.insert(1, str(_P(__file__).resolve().parents[1]))
+_p = list(_OD.fromkeys(_p))
+
+import unittest
+
+# import test modules.
+from tests import *
+#from obsidianjekyll import *
 
 __version__ = "0.0.1"
 
-__all__ = ['log', 'log_path', ]
 
-from sys import path
-from pathlib import Path
-from collections import OrderedDict
-# Add package directory to path.
-path.insert(1, str(Path(__file__).resolve().parents[1]))
-# Add obsidianjekyll to path so its imports still work.
-path.insert(1, str(Path(__file__).resolve().parents[1] / 'obsidianjekyll'))
-path = list(OrderedDict.fromkeys(path))
+def run_tests(verbosity=2):
+    """Run all tests in test_paths."""
 
-from obsidianjekyll.log import log, log_path
+    # initialize the test suite
+    loader = unittest.TestLoader()
+    suite  = unittest.TestSuite()
 
-# Set up logging.
-logger = log(__name__, 'tests')
+    # add tests to the test suite
+    suite.addTests(loader.loadTestsFromModule(test_pathnames))
+    suite.addTests(loader.loadTestsFromModule(test_paths))
+    suite.addTests(loader.loadTestsFromModule(test_files))
 
-# Run test suite in run_tests.
-from tests.test_runner import run_tests
+    # initialize a runner, pass it your suite and run it
+    runner = unittest.TextTestRunner(verbosity=verbosity)
+    result = runner.run(suite)
+
 run_tests()

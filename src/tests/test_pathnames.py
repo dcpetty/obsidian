@@ -10,12 +10,12 @@ test_pathnames.py tests obsidianjekyll.pathnames.
 """
 import inspect, os, shutil, unittest
 
-from obsidianjekyll.paths import *
-from obsidianjekyll.pathnames import *
-from __main__ import log
+from . import paths, pathnames, log
+Paths = paths.Paths
+PathNames = pathnames.PathNames
 
 # Set up logging.
-logger = log(__name__, 'tests')
+logger = log.log(__name__, 'tests')
 
 
 class TestPathNames(unittest.TestCase):
@@ -43,17 +43,23 @@ class TestPathNames(unittest.TestCase):
 
     def test_paths(self):
         """Test pathnames.paths."""
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
         # TODO: complete test case
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
         logger.info(f"{repr(self.pathnames.paths)}")
         pass
 
 
     def test_path_names(self):
         """Test pathnames.path_names."""
+
+        # Log test_name.
+        test_name = inspect.currentframe().f_code.co_name
+        logger.info(f"In {test_name}()\u2026")
+
         # TODO: complete test case
-        test = inspect.currentframe().f_code.co_name
-        logger.info(f"In {test}()\u2026")
         logger.info(f"{repr(self.pathnames.path_names)}")
         pass
