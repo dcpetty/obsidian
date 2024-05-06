@@ -25,13 +25,14 @@ Kerri Murphy wrote:
 - [https://www.fdlp.gov/federal-government-databases-and-websites-a-surprising-source-of-state-and-local-data](https://www.fdlp.gov/federal-government-databases-and-websites-a-surprising-source-of-state-and-local-data) — This [FDLP](https://fdlp.gov/search?k=datasets) article is 404.
 - [https://www.audubon.org/news/how-use-ebird](https://www.audubon.org/news/how-use-ebird) — Audubon ebird databases
 - [https://www.audubon.org/native-plants](https://www.audubon.org/native-plants) — Audubon plant databases
-- [https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/](https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/) — Mobile CSP list of data sources for the data unit.
+- [https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/](https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/) — Mobile CSP list of data sources for the data unit
+- [https://exploringcs.org/wp-content/uploads/2019/07/ECS-v9.0-final.pdf#194](https://exploringcs.org/wp-content/uploads/2019/07/ECS-v9.0-final.pdf#194) *Exploring Computer Science* ([ECS](https://www.exploringcs.org/)) includes *Unit 5: Computing &amp; Data Analysis* as part of its curriculum and that contains data sources and links
 - [https://archive.ics.uci.edu/](https://archive.ics.uci.edu/) — UC Irvine Machine Learning Repository
 <!-- - [https://gtexportal.org/](https://gtexportal.org/) — Broad Institute GTExPortal gene expression datasets. -->
 
 Thanks for additional contributions from Deborah Boisvert, J Reuther, Elaine Griggs, Beryl Hoffman, Beatriz Mendez
 
-**Note:** [https://www.universalhub.com/2024/bps-open-source-curriculum-open-source](https://www.universalhub.com/2024/bps-open-source-curriculum-open-source) 2024/04/06 *BPS to open source a curriculum on open-source data* — '&hellip;a $500,000 grant from the state Department of Education to develop a lesson plan for teaching students how to use open data sources' (including the [Analyze Boston](https://data.boston.gov/) datasets listed above)
+**Note:** [https://www.universalhub.com/2024/bps-open-source-curriculum-open-source](https://www.universalhub.com/2024/bps-open-source-curriculum-open-source) 2024/04/06 *BPS to open source a curriculum on open-source data* — '&hellip;a $500,000 grant from the state Department of Education to develop a lesson plan for teaching students how to use open data sources' (including the [Analyze Boston](https://data.boston.gov/) datasets listed above).
 
 #data {% include education.html %}
 
