@@ -11,7 +11,7 @@ repository to a POSTDIR Jekyll repository, modifying the pathnames appropriately
 from sys import path as _p
 from pathlib import Path as _P
 from collections import OrderedDict as _OD
-
+# path hack: add package directory to path.
 _p.insert(1, str(_P(__file__).resolve().parents[1]))
 _p = list(_OD.fromkeys(_p))
 
