@@ -39,4 +39,5 @@ def run_tests(verbosity=2):
     runner = unittest.TextTestRunner(verbosity=verbosity)
     result = runner.run(suite)
 
-run_tests()
+if __name__ == '__main__':
+    run_tests()
