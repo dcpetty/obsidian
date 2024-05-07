@@ -26,7 +26,7 @@ Kerri Murphy wrote:
 - [https://www.audubon.org/news/how-use-ebird](https://www.audubon.org/news/how-use-ebird) — Audubon ebird databases
 - [https://www.audubon.org/native-plants](https://www.audubon.org/native-plants) — Audubon plant databases
 - [https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/](https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/) — Mobile CSP list of data sources for the data unit
-- [https://exploringcs.org/wp-content/uploads/2019/07/ECS-v9.0-final.pdf#194](https://exploringcs.org/wp-content/uploads/2019/07/ECS-v9.0-final.pdf#194) *Exploring Computer Science* ([ECS](https://www.exploringcs.org/)) includes *Unit 5: Computing &amp; Data Analysis* as part of its curriculum and that contains data sources and links
+- [https://exploringcs.org/wp-content/uploads/2019/07/ECS-v9.0-final.pdf#page=194](https://exploringcs.org/wp-content/uploads/2019/07/ECS-v9.0-final.pdf#page=194) *Exploring Computer Science* ([ECS](https://www.exploringcs.org/)) includes *Unit 5: Computing &amp; Data Analysis* as part of its curriculum and that contains data sources and links
 - [https://archive.ics.uci.edu/](https://archive.ics.uci.edu/) — UC Irvine Machine Learning Repository
 <!-- - [https://gtexportal.org/](https://gtexportal.org/) — Broad Institute GTExPortal gene expression datasets. -->
 
