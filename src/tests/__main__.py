@@ -4,7 +4,7 @@
 # __main__.py
 #
 """
-__main__.py imports test_runner.run_tests and runs it.
+__main__.py  define run_tests and runs it.
 """
 # From https://stackoverflow.com/a/65780624/17467335 to fix relative imports.
 from sys import path as _p

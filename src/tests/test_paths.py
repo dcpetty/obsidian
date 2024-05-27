@@ -26,7 +26,8 @@ class TestPaths(unittest.TestCase):
     def setUp(self):
         """Setup Paths for testing"""
         REMOVE = 'REMOVE'   # self.remove will be removed, so name carefully!
-        self.remove = os.path.realpath(os.path.join('.', REMOVE))
+        dot = os.path.dirname(os.path.realpath(__file__))
+        self.remove = os.path.join(dot, REMOVE)
         self.repo = 'paths'
         self.repodir = os.path.join(self.remove, self.repo)
         self.postdir = os.path.join(self.repodir, 'docs')
