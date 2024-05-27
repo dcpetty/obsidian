@@ -284,11 +284,13 @@ class Files(object):
             for key, val in merged.items() }
 
 
-    # TODO fix _fix_yaml to be more specific to 'true' or '2024-03-25 18:15:12'
-    _fix_yaml = lambda s: \
-        re.sub('(title: )(.*)', r'\1"\2"',  # put '"' around title
-        re.sub(': [\'"]', ': ',             # remove quotes after ': '
-        re.sub('[\'"]\n', '\n', s)))        # remove quotes before '\n'
+    @staticmethod
+    def _fix_yaml(s):
+        """Return s with quotes (") around title text and with quotes around
+        'false', 'true', and dates ('2024-03-25 18:15:12') removed."""
+        pattern = r"""['"](true|false|\d+-\d+-\d+\s\d+:\d+:\d+)['"]"""
+        return re.sub('(title: )(.*)', r'\1"\2"',
+            re.sub(pattern, r'\1', s))
 
 
     def copy_files(self):
