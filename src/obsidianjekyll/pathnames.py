@@ -28,14 +28,14 @@ class PathNames(object):
     # List of patterns to include.
     _default_to_inc = ['*.md', '*.png', '*.jpg', '*.html', ]
     # List of patterns to exclude.
-    _default_to_exc = ['**/.git*/**', '**/docs/**', '**/scr/**', '**/README.md',
-        '**/foo/**/bar/*.html']  # TODO: this is simply to test valid_paths
+    _default_to_exc = ['**/.git*/**', '**/docs/**', '**/src/**', '**/README.md',]
 
     def __init__(self, paths, to_inc=None, to_exc=None):
-        """Created sorted list of valid paths below repo_path."""
+        """Created sorted list of valid paths below repo_path. Empty sequences
+        are valid parameters."""
         self._paths = paths
-        self._to_inc = to_inc if to_inc else type(self)._default_to_inc
-        self._to_exc = to_exc if to_exc else type(self)._default_to_exc
+        self._to_inc = to_inc if to_inc is not None else type(self)._default_to_inc
+        self._to_exc = to_exc if to_exc is not None else type(self)._default_to_exc
         self._path_names = self._valid_paths(self.paths.repo_path, self._to_inc, self._to_exc)
 
         self._log()
@@ -71,7 +71,7 @@ class PathNames(object):
         exc_regex = r'|'.join([wc_regex(x) for x in to_exc]) or r'$.'
 
         # Create set of all includable paths matching inc_regex.
-        included = {p for p in all_paths if re.match(inc_regex, p)}
+        included = {p for p in all_paths if inc_regex and re.match(inc_regex, p)}
         # Create set of valid paths that does not include paths matching exc_regex.
         paths = sorted({p for p in included if not re.match(exc_regex, p)})
 
