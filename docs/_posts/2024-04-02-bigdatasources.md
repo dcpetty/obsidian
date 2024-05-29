@@ -1,7 +1,7 @@
 ---
 title: "Big data sources"
 date: 2024-04-02 20:40:19
-last_modified_at: 2024-05-07 08:53:10
+last_modified_at: 2024-05-28 08:47:22
 show_date: true
 permalink: /education/bigdatasources/
 tags:
@@ -28,6 +28,8 @@ Kerri Murphy wrote:
 - [https://www.fda.gov/industry/fda-basics-industry/search-databases](https://www.fda.gov/industry/fda-basics-industry/search-databases) — FDA databases
 - [https://www.cdc.gov/surveillancepractice/data.html](https://www.cdc.gov/surveillancepractice/data.html) — CDC databases
 - [https://www.fdlp.gov/federal-government-databases-and-websites-a-surprising-source-of-state-and-local-data](https://www.fdlp.gov/federal-government-databases-and-websites-a-surprising-source-of-state-and-local-data) — This [FDLP](https://fdlp.gov/search?k=datasets) article is 404.
+- [https://ourworldindata.org/](https://ourworldindata.org/) — 'Research and data to make progress against the world’s largest problems&hellip; 12,873 charts across 115 topics — [a]ll free: open access and open source'
+- [https://data.census.gov/](https://data.census.gov/) 'the new platform to access data and digital content from the U.S. Census Bureau' (also raw USCB public-use [datasets](https://www.census.gov/data/datasets.html))
 - [https://www.audubon.org/news/how-use-ebird](https://www.audubon.org/news/how-use-ebird) — Audubon ebird databases
 - [https://www.audubon.org/native-plants](https://www.audubon.org/native-plants) — Audubon plant databases
 - [https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/](https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/) — Mobile CSP list of data sources for the data unit
@@ -35,7 +37,7 @@ Kerri Murphy wrote:
 - [https://archive.ics.uci.edu/](https://archive.ics.uci.edu/) — UC Irvine Machine Learning Repository
 <!-- - [https://gtexportal.org/](https://gtexportal.org/) — Broad Institute GTExPortal gene expression datasets. -->
 
-Thanks for additional contributions from Deborah Boisvert, J Reuther, Elaine Griggs, Beryl Hoffman, Beatriz Mendez
+Thanks for additional contributions from Deborah Boisvert, J Reuther, Elaine Griggs, Beryl Hoffman, Beatriz Mendez, Danielle Theissen
 
 **Note:** [https://www.universalhub.com/2024/bps-open-source-curriculum-open-source](https://www.universalhub.com/2024/bps-open-source-curriculum-open-source) 2024/04/06 *BPS to open source a curriculum on open-source data* — '&hellip;a $500,000 grant from the state Department of Education to develop a lesson plan for teaching students how to use open data sources' (including the [Analyze Boston](https://data.boston.gov/) datasets listed above).
 
