@@ -54,8 +54,15 @@ class TestFiles(unittest.TestCase):
         test_name = inspect.currentframe().f_code.co_name
         logger.info(f"In {test_name}()\u2026")
 
-        # TODO: complete test case
-        logger.info(f"{repr(self.files.paths)}")
+        logger.info(f" repo_path: {repr(self.repodir)} \u2192 {repr(self.paths.repo_path)}")
+        self.assertEqual(self.repodir, self.paths.repo_path)
+        logger.info(f"      repo: {repr(self.repo)} \u2192 {repr(self.paths.repo)}")
+        self.assertEqual(self.repo, self.paths.repo)
+        logger.info(f" site_path: {repr(self.sitedir)} \u2192 {repr(self.paths.site_path)}")
+        self.assertEqual(self.sitedir, self.paths.site_path)
+        postsdir = os.path.join(self.sitedir, '_posts')
+        logger.info(f"posts_path: {repr(postsdir)} \u2192 {repr(self.paths.posts_path)}")
+        self.assertEqual(postsdir, self.paths.posts_path)
         pass
 
 

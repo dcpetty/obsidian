@@ -8,7 +8,6 @@
 """
 test_paths.py tests obsidianjekyll.paths.
 """
-# TODO: complete test cases
 
 import inspect, os, shutil, tempfile, unittest
 

@@ -8,6 +8,7 @@
 """
 test_pathnames.py tests obsidianjekyll.pathnames.
 """
+
 import inspect, os, shutil, tempfile, unittest
 
 from . import paths, pathnames, log
