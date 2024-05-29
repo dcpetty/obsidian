@@ -10,7 +10,7 @@ test_paths.py tests obsidianjekyll.paths.
 """
 # TODO: complete test cases
 
-import inspect, os, shutil, unittest
+import inspect, os, shutil, tempfile, unittest
 
 from . import paths, log
 Paths = paths.Paths
@@ -26,18 +26,19 @@ class TestPaths(unittest.TestCase):
     def setUp(self):
         """Setup Paths for testing"""
         REMOVE = 'REMOVE'   # self.remove will be removed, so name carefully!
-        dot = os.path.dirname(os.path.realpath(__file__))
-        self.remove = os.path.join(dot, REMOVE)
-        self.repo = 'paths'
+        tmp = os.path.realpath(tempfile.mkdtemp())  # tempfile make be a link
+        self.remove = os.path.join(tmp, REMOVE)
+        self.repo = 'pathnames'
         self.repodir = os.path.join(self.remove, self.repo)
-        self.postdir = os.path.join(self.repodir, 'docs')
-        os.makedirs(self.postdir, exist_ok=True)
-        self.paths = Paths(repodir=self.repodir, postdir=self.postdir)
+        self.sitedir = os.path.join(self.repodir, 'docs')
+        os.makedirs(self.sitedir, exist_ok=True)
+        self.paths = Paths(repodir=self.repodir, postdir=self.sitedir)
         pass
 
 
     def tearDown(self):
         """Clean up Paths and any added directories."""
+        logger.debug(f"Removing '{self.remove}'\u2026")
         shutil.rmtree(self.remove)
         pass
 
@@ -76,7 +77,7 @@ class TestPaths(unittest.TestCase):
         logger.info(f"In {test_name}()\u2026")
 
         relsitedir, relsite_path = \
-            os.path.relpath(self.postdir), os.path.relpath(self.paths.site_path)
+            os.path.relpath(self.sitedir), os.path.relpath(self.paths.site_path)
         logger.info(f"{repr(relsitedir)} \u2192 {repr(relsite_path)}")
         self.assertEqual(self.repodir, self.paths.repo_path)
         pass
@@ -89,7 +90,7 @@ class TestPaths(unittest.TestCase):
         test_name = inspect.currentframe().f_code.co_name
         logger.info(f"In {test_name}()\u2026")
 
-        postsdir = os.path.join(self.postdir, '_posts')
+        postsdir = os.path.join(self.sitedir, '_posts')
         relpostsdir, relposts_path = \
             os.path.relpath(postsdir), os.path.relpath(self.paths.posts_path)
         logger.info(f"{repr(relpostsdir)} \u2192 {repr(relposts_path)}")

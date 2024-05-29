@@ -10,7 +10,7 @@ test_files.py tests obsidianjekyll.files.
 """
 # TODO: complete test cases
 
-import inspect, os, shutil, unittest
+import inspect, os, shutil, tempfile, unittest
 
 from . import paths, pathnames, files, log
 Paths = paths.Paths
@@ -28,20 +28,21 @@ class TestFiles(unittest.TestCase):
     def setUp(self):
         """Setup pathnames for testing"""
         REMOVE = 'REMOVE'   # self.remove will be removed, so name carefully!
-        dot = os.path.dirname(os.path.realpath(__file__))
-        self.remove = os.path.join(dot, REMOVE)
-        self.repo = 'files'
+        tmp = os.path.realpath(tempfile.mkdtemp())  # tempfile make be a link
+        self.remove = os.path.join(tmp, REMOVE)
+        self.repo = 'pathnames'
         self.repodir = os.path.join(self.remove, self.repo)
-        self.postdir = os.path.join(self.repodir, 'docs')
-        os.makedirs(self.postdir, exist_ok=True)
-        self.paths = Paths(repodir=self.repodir, postdir=self.postdir)
-        self.pathnames = PathNames(self.paths)
+        self.sitedir = os.path.join(self.repodir, 'docs')
+        os.makedirs(self.sitedir, exist_ok=True)
+        self.paths = Paths(repodir=self.repodir, postdir=self.sitedir)
+        self.pathnames = PathNames(self.paths)  # TODO: self.repodir is empty
         self.files = Files(self.pathnames)
         pass
 
 
     def tearDown(self):
         """Clean up pathnames and any added directories."""
+        logger.debug(f"Removing '{self.remove}'\u2026")
         shutil.rmtree(self.remove)
         pass
 
