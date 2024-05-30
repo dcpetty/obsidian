@@ -9,16 +9,7 @@
 test_runner.py defines run_tests function.
 """
 import unittest
-from __main__ import log, log_path
-
-# Set up logging.
-logger = log(__name__, 'tests')
-logger.info(f"log: {log_path()}")
-
-# import test modules.
-from tests import test_paths, test_pathnames, test_files
-
-__all__ = [ 'run_tests', ]
+from . import test_paths, test_pathnames, test_files
 
 
 def run_tests(verbosity=2):
