@@ -51,7 +51,7 @@ class TestPathNames(unittest.TestCase):
 
 
     def test_paths(self):
-        """Test pathnames.paths."""
+        """Test pathnames.paths. Similar to tests in test_paths."""
 
         # Log test_name.
         test_name = inspect.currentframe().f_code.co_name

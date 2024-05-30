@@ -25,7 +25,7 @@ class TestPaths(unittest.TestCase):
     def setUp(self):
         """Setup Paths for testing"""
         REMOVE = 'REMOVE'   # self.remove will be removed, so name carefully!
-        tmp = os.path.realpath(tempfile.mkdtemp())  # tempfile make be a link
+        tmp = os.path.realpath(tempfile.mkdtemp())  # tempfile may be a link
         self.remove = os.path.join(tmp, REMOVE)
         self.repo = 'pathnames'
         self.repodir = os.path.join(self.remove, self.repo)
