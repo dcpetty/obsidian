@@ -4,8 +4,9 @@
 # __main__.py
 #
 """
-__main__.py imports and copies a REPODIR Obsidian
-repository to a POSTDIR Jekyll repository, modifying the pathnames appropriately.
+__main__.py imports obsidianjekyll, parses command-line arguments, uses them
+to run main, which copies a REPODIR Obsidian repository to a POSTDIR Jekyll
+repository, modifying the pathnames appropriately.
 """
 # From https://stackoverflow.com/a/65780624/17467335 to fix relative imports.
 from sys import path as _p
