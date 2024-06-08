@@ -1,7 +1,7 @@
 ---
 title: "What is STEM?"
 date: 2024-04-03 16:33:14
-last_modified_at: 2024-04-17 12:38:03
+last_modified_at: 2024-05-30 08:26:31
 show_date: true
 permalink: /education/stemmanifesto/
 tags:
