@@ -228,8 +228,12 @@ class Files(object):
             jekyll['toc'] = 'true'
             jekyll['toc_sticky'] = 'true'
 
+        # logger.debug(f"front: {front}")
         yaml_dict_list = [jekyll] + list(yaml.safe_load_all(''.join(front)))
-        # logger.debug(f"yamls: {yaml_dict_list}")
+        logger.debug(f"yamls ({len(yaml_dict_list)}):\n"
+            f"{yaml.safe_dump(self._merge_yaml(yaml_dict_list),
+                default_style=None, default_flow_style=False,
+                sort_keys=False, allow_unicode=True).strip()}")
         return self._merge_yaml(yaml_dict_list)
 
 
@@ -268,6 +272,11 @@ class Files(object):
                 return True
         return False
 
+    # from collections.abc import Sequence
+    """Return True if v is a 1D list with element of  the same type."""
+    _sortable = lambda v: v \
+        and isinstance(v, list) and not isinstance(v[0], list) \
+        and all(isinstance(x, type(v[0])) for x in v)
 
     def _merge_yaml(self, yaml_list):
         """Return dictionary of yaml_list dictionaries merged into one
@@ -276,11 +285,22 @@ class Files(object):
 
         merged = dict()
         for yaml_dict in yaml_list:
+            # logger.debug(f"yaml_dict:\n{yaml.safe_dump(yaml_dict,
+            #    default_style=None, default_flow_style=False,
+            #    sort_keys=False, allow_unicode=True).strip()}")
             for key in yaml_dict:
-                # yaml_dict[key] is list or str.
-                empty = list() if isinstance(yaml_dict[key], list) else ''
-                merged[key] = merged.get(key, empty) + yaml_dict[key]
-        return { key: sorted(set(val)) if isinstance(val, list) else val
+                current, value = merged.get(key, None), yaml_dict[key]
+                # logger.debug(f"yaml_dict[{key}]: {value} "
+                #    f"({type(value)} was: {current})")
+                # value replaces current, except for 'tags'.
+                if key == 'tags':
+                    value = value if isinstance(value, list) else [value]
+                    value = list(set(current + value if current else value))
+                # Sort lists of all the same non-list types.
+                merged[key] = sorted(value) \
+                    if Files._sortable(value) else value
+                # logger.debug(f"merged['{key}']: {merged[key]}")
+        return { key: val if isinstance(val, list) else val
             for key, val in merged.items() }
 
 
