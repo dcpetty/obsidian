@@ -1,5 +1,5 @@
 ---
-category: Test
+category: OriginalTest
 tags:
  - test
 ---
@@ -18,16 +18,36 @@ This note tests many aspects of Obsidian and Jekyll as parsed by [`obsidianjekyl
 - And [ObsidianJekyll](obsidian/Obsidian%20&%20Jekyll/ObsidianJekyll.md).
 - And [[https://google.com/]].
 
-## `tags`
-
-Tags can be added to YAML front matter (as a list) or in-line with text following a `#`.
+## YAML 'font matter'
 
 ---
+category: Test
 tags:
  - yaml
 ---
 
-Additional Jekyll  YAML 'front matter' can be included throughout a note, though it renders in Obsidian as horizontal rules followed by a list. Tags can be added anywhere in-line. #another-test-tag
+- YAML format consists of `---`, a dictionary in the form of `key: value`, followed by `---` in line in the note. When YAML appears as the first thing in a note, it is literally front matter. It can appear multiple times in a note
+- The YAML `key` is a string. The YAML `value` can be a string or a list. lists are entered as follows:
+
+```
+metasyntactic:
+ - foo
+ - bar
+ - baz
+```
+
+- Duplicate `key`s incorporate only the final value, as with `category: Test` above, except for `key` `'tags'` where all tags are accumulated in a sorted set.
+
+## `tags`
+
+- Tags can be added to YAML front matter (as a list) or in-line with text following a `#`. 
+- Additional Jekyll  YAML 'front matter' can be included throughout a note, though it renders in Obsidian as horizontal rules followed by a list. 
+- Tags can be added anywhere in-line. #test
+- Duplicate tags in a single document are removed. For example, there is only one `#test` tag included in this document, though it is included in the front matter, the in-line tag above and the following 'front matter.'
+
+---
+tags: test
+---
 
 ## Images
 

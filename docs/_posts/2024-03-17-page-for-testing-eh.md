@@ -1,11 +1,10 @@
 ---
 title: "Internal test page — *do not use parentheses in note names*"
 date: 2024-03-17 21:26:51
-last_modified_at: 2024-04-17 12:30:23
+last_modified_at: 2024-07-22 16:36:40
 show_date: true
 permalink: /testpages/page-for-testing-eh/
 tags:
-- another-test-tag
 - test
 - yaml
 toc: true
@@ -24,12 +23,28 @@ This note tests many aspects of Obsidian and Jekyll as parsed by [`obsidianjekyl
 - And [ObsidianJekyll](/obsidian/obsidian-jekyll/obsidianjekyll).
 - And [https://google.com/](https://google.com/).
 
+## YAML 'font matter'
+
+
+- YAML format consists of `---`, a dictionary in the form of `key: value`, followed by `---` in line in the note. When YAML appears as the first thing in a note, it is literally front matter. It can appear multiple times in a note
+- The YAML `key` is a string. The YAML `value` can be a string or a list. lists are entered as follows:
+
+```
+metasyntactic:
+ - foo
+ - bar
+ - baz
+```
+
+- Duplicate `key`s incorporate only the final value, as with `category: Test` above, except for `key` `'tags'` where all tags are accumulated in a sorted set.
+
 ## `tags`
 
-Tags can be added to YAML front matter (as a list) or in-line with text following a `#`.
+- Tags can be added to YAML front matter (as a list) or in-line with text following a `#`.
+- Additional Jekyll  YAML 'front matter' can be included throughout a note, though it renders in Obsidian as horizontal rules followed by a list.
+- Tags can be added anywhere in-line. #test
+- Duplicate tags in a single document are removed. For example, there is only one `#test` tag included in this document, though it is included in the front matter, the in-line tag above and the following 'front matter.'
 
-
-Additional Jekyll  YAML 'front matter' can be included throughout a note, though it renders in Obsidian as horizontal rules followed by a list. Tags can be added anywhere in-line. #another-test-tag
 
 ## Images
 
