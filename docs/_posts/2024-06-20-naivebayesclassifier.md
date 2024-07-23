@@ -1,7 +1,7 @@
 ---
 title: "NäiveBayesClassifier"
 date: 2024-06-20 10:02:57
-last_modified_at: 2024-07-22 21:53:32
+last_modified_at: 2024-07-22 22:05:47
 show_date: true
 permalink: /ipdc/naivebayesclassifier/
 tags:
@@ -49,6 +49,7 @@ Following the [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier#G
 - The prior probability is $P(C_{k})$ and the likelihood is $\prod_{i}P({f_{i}\vert C_{k}})$, so the *joint probability* is: $$P\left(f_{i}\vert C_{k}, \dots, f_{i-1}, f_{i+1}, \dots f_{n}\right) = P\left(f_{i}\vert C_{k}\right) = P\left(C_{k}\right) \prod_{i}P\left({f_{i}\vert C_{k}}\right)$$
 - The total evidence is $Z = P(S) \prod_{i}{P(f_{i}\vert S)} + P(\overline{S}) \prod_{i}{P(f_{i}\vert\overline{S})}$, so the *posterior probability* of each of two values of $C_k$ are: $$P(S\vert f_{1},\dots,f_{6}) = \frac{P\left(S\right) \prod_{i}P\left({f_{i}\vert S}\right)}{Z}$$ $$P(\overline{S}\vert f_{1},\dots,f_{6}) = \frac{P(\overline{S}) \prod_{i}P({f_{i}\vert \overline{S}})}{Z}$$
 - If $P(\overline{S}\vert f_{1},\dots,f_{6}) \lt P(S\vert f_{1},\dots,f_{6})$ for any passenger, then that passenger **survived**.
+
 ## Notes:
 
 - [https://colab.research.google.com/drive/1gdRqv9bqXlSuiby1dF2vP_-n99qZB6Ym](https://colab.research.google.com/drive/1gdRqv9bqXlSuiby1dF2vP_-n99qZB6Ym) A Google Colab Notebook that follows the above mathematics and [Dimitre Oliveira](https://www.kaggle.com/code/dimitreoliveira/naive-bayes-probabilistic-ml-titanic-survival#Distribution-study)'s solution for the use of [`numpy`](https://numpy.org/) and [`pandas`](https://pandas.pydata.org/).
