@@ -1,7 +1,7 @@
 ---
 title: "Internal test page — *do not use parentheses in note names*"
 date: 2024-03-17 21:26:51
-last_modified_at: 2024-07-22 16:36:40
+last_modified_at: 2024-07-22 17:39:06
 show_date: true
 permalink: /testpages/page-for-testing-eh/
 tags:
@@ -10,6 +10,24 @@ tags:
 toc: true
 toc_sticky: true
 category: Test
+baz:
+- foo
+- 123
+- 2024-06-21 18:36:45
+- - bar
+  - 456
+  - - blap:
+      - 3
+      - 2
+      - 1
+math: true
+foo: 1234
+bar: 2024-03-25 18:15:12
+qux:
+- 1
+- 2
+- 3
+- 4
 ---
 This note's title tests the collapsing of spaces, `'-'`s, and `'_'`s. *Putting parentheses in a note's name makes it impossible to easily parse links with a regular expression.*
 

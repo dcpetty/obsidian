@@ -2,6 +2,12 @@
 category: OriginalTest
 tags:
  - test
+baz: this key will be superseded below
+math: true
+foo: 1234
+bar: 2024-03-25 18:15:12
+baz: ['foo', 123, 2024-06-21 18:36:45, ['bar', 456, ['blap': [ 3, 2, 1, ]]]]
+qux: [ 4, 3, 2, 1, ]
 ---
 
 # Internal test page — *do not use parentheses in note names*
