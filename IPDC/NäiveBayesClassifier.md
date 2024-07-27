@@ -28,7 +28,7 @@ Bayesian Gaussian statistics further assumes (as described on [Kaggle](https://w
 - The Titanic survivability data are available on [Kaggle](https://www.kaggle.com/c/titanic).
 - Given .CSV headers `['PassengerId', 'Survived', 'Pclass', 'Name', 'Sex', 'Age', 'SibSp', 'Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked', 'train']`, the relevant features are `Age`, `Embarked`, `Fare`, `Parch`, `Sex`, `SibSp`. The target is `Survived`. (The training data are labeled with `train`.)
 - The features must be verified to meet the näive Gaussian criteria (as in [Dimitre Oliveira](https://www.kaggle.com/code/dimitreoliveira/naive-bayes-probabilistic-ml-titanic-survival#Distribution-study)'s solution).
-- The data must be normalized with numerical values (not categorical) and cleaned of missing values.
+- The data must be normalized with numerical values (not categorical) and cleaned of missing values or where missing values are set to the mean where appropriate.
 
 Following the [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier#Gaussian_naive_Bayes) article and the [example](https://en.wikipedia.org/wiki/Naive_Bayes_classifier#Person_classification), yields the following approach:
 
@@ -37,8 +37,9 @@ Following the [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier#G
 - The total evidence is $Z = P(S) \prod_{i}{P(f_{i}\vert S)} + P(\overline{S}) \prod_{i}{P(f_{i}\vert\overline{S})}$, so the *posterior probability* of each of two values of $C_k$ are: $$P(S\vert f_{1},\dots,f_{6}) = \frac{P\left(S\right) \prod_{i}P\left({f_{i}\vert S}\right)}{Z}$$ $$P(\overline{S}\vert f_{1},\dots,f_{6}) = \frac{P(\overline{S}) \prod_{i}P({f_{i}\vert \overline{S}})}{Z}$$
 - If $P(\overline{S}\vert f_{1},\dots,f_{6}) \lt P(S\vert f_{1},\dots,f_{6})$ for any passenger, then that passenger **survived**.
 
-## Notes:
+## Sample code
 
-- [[https://colab.research.google.com/drive/1gdRqv9bqXlSuiby1dF2vP_-n99qZB6Ym]] A Google Colab Notebook that follows the above mathematics and [Dimitre Oliveira](https://www.kaggle.com/code/dimitreoliveira/naive-bayes-probabilistic-ml-titanic-survival#Distribution-study)'s solution for the use of [`numpy`](https://numpy.org/) and [`pandas`](https://pandas.pydata.org/).
+- [[https://colab.research.google.com/drive/1gdRqv9bqXlSuiby1dF2vP_-n99qZB6Ym]] A [Google Colab Notebook](https://colab.research.google.com) that follows the above mathematics and [Dimitre Oliveira](https://www.kaggle.com/code/dimitreoliveira/naive-bayes-probabilistic-ml-titanic-survival#Distribution-study)'s solution with the use of [`numpy`](https://numpy.org/) and [`pandas`](https://pandas.pydata.org/).
+- The Google Colab Notebook also includes [Oliveira](https://www.kaggle.com/code/dimitreoliveira/naive-bayes-probabilistic-ml-titanic-survival#Distribution-study)'s (updated) code using [`numpy`](https://numpy.org/), [`pandas`](https://pandas.pydata.org/), [`seaborn`](https://seaborn.pydata.org/index.html), [`matplotlib`](https://matplotlib.org/), [`scipy`](https://scipy.org/), [`scikit`](https://scikit-learn.org/stable/).
 
 #data #Python #IPDC
