@@ -1,7 +1,7 @@
 ---
 title: "Big data sources"
 date: 2024-04-02 20:40:19
-last_modified_at: 2024-05-28 08:47:22
+last_modified_at: 2024-07-28 20:59:25
 show_date: true
 permalink: /education/bigdatasources/
 tags:
@@ -17,7 +17,7 @@ Kerri Murphy wrote:
 - [https://data.world/search?type=resources](https://data.world/search?type=resources) — Data.world datasets: Free - Up to 3 private projects & datasets, 100MB per project / dataset, & 3 integrations
 - [https://www.kaggle.com/datasets](https://www.kaggle.com/datasets) — Kaggle datasets: A '...huge repository of community- published models, data & code' from '...the largest AI & ML community'
 - [https://data.gov/](https://data.gov/) — Data.gov is the 'Home of the U.S. Government's Open Data'
-- [https://datahub.io/collections](https://datahub.io/collections) — The awesome collection on Datahub.io '&hellip;presents collections of high quality datasets organized by topic.'
+- [https://datahub.io/collections](https://datahub.io/collections) — The collection on Datahub.io '&hellip;presents collections of high quality datasets organized by topic.'
 - [https://github.com/search?q=datasets&type=repositories](https://github.com/search?q=datasets&type=repositories) — Github search for datasets within repositories
 - [https://datasetsearch.research.google.com/](https://datasetsearch.research.google.com/) — Google dataset search
 <br><br>
