@@ -1,7 +1,7 @@
 ---
 title: "A list of possible introductory Python tutorials"
 date: 2024-03-30 20:55:39
-last_modified_at: 2024-06-07 18:38:59
+last_modified_at: 2024-08-02 11:26:46
 show_date: true
 permalink: /education/pythontutorials/
 tags:
@@ -40,6 +40,9 @@ These Python tutorials were suggested by numerous K-12 computing educators and a
 - [https://codelab.turingscraft.com/](https://codelab.turingscraft.com/) *CodeLab* Generic Python3 course (can register as an instructor).
 - [https://realpython.com/learning-paths/python-basics/](https://realpython.com/learning-paths/python-basics/) RealPython Python Basics course. 'Through this learning path, you’ll jump-start your Python journey by mastering fundamental concepts for Python beginners.' (costs)
 - [https://cs50.harvard.edu/python/2022/](https://cs50.harvard.edu/python/2022/) Harvard's CS50 Python course. 'An introduction to programming using a language called Python. Learn how to read and write code as well as how to test and "debug" it.'
+- [https://pickcode.io/](https://pickcode.io/) *Pickcode*, touted as '&hellip; the easiest way to teach and learn programming,' includes a Python tutorial with dozens of short activities.
+- [https://www.graderthan.com/workspace](https://www.graderthan.com/workspace) *Grader Than Workspace* is a zero-config VSCode IDE in your browser with Jupyter Notebook support for students from grade 6 to college &mdash; including a complete debugger, interactive lessons, and coding exercises for Python.
+- [https://groklearning.com/courses/#technology=python&topic=programming](https://groklearning.com/courses/#technology=python&topic=programming) *Grok Academy* has tutorials in Python &mdash; as well as data science, cybersecurity, networking, *etc.*
 - [https://education.minecraft.net/en-us/resources/computer-science-subject-kit/python-101](https://education.minecraft.net/en-us/resources/computer-science-subject-kit/python-101) Python 101 with [MakeCode](https://www.microsoft.com/en-us/makecode). 'Start coding Python in Minecraft with MakeCode! Learn the basics of Python, including syntax, data types, variables, conditionals, 'for' and conditional loops, lists and functions.'
 - A three-part tutorial sequence:
 1. [https://hourofpython.trinket.io/a-visual-introduction-to-python#/welcome/an-hour-of-code](https://hourofpython.trinket.io/a-visual-introduction-to-python#/welcome/an-hour-of-code) An *Hour of Python* using Python `turtle`. (Another fun Python `turtle` activity: [*Draw a Star*](https://colab.research.google.com/drive/18d6hSO6Y3DYqVZbV2yHJfiVjN-zxfVJt) in a [Google Colab Notebook](https://colab.research.google.com/).)
@@ -61,6 +64,6 @@ These are other lists of Python resources similar to this one.
 - [https://digitsandbytes.edublogs.org/programming-resources/#Python](https://digitsandbytes.edublogs.org/programming-resources/#Python) A useful list of Python resources on *digits + bytes*.
 - [https://t.ly/jHqcf](https://t.ly/jHqcf) A MO CSTA teacher put together an editable list of computing curricular resources (includes Python and other languages).
 
-Thanks for additional contributions from Emmett Wald, NJ Rees, Sheila Slawiak, Andrew Spiece, Steve Willis, Jacqueline Moreno, Renee Sullivan, David Parker, Aislín Moylan, Cynthia Chance.
+Thanks for additional contributions from Emmett Wald, NJ Rees, Sheila Slawiak, Andrew Spiece, Steve Willis, Jacqueline Moreno, Renee Sullivan, David Parker, Aislín Moylan, Cynthia Chance, Shereen Tyrell.
 
 #Python {% include education.html %}
