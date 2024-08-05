@@ -29,10 +29,11 @@ Kerri Murphy wrote:
 - [https://www.audubon.org/native-plants](https://www.audubon.org/native-plants) — Audubon plant databases
 - [https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/](https://docs.google.com/document/d/13qhmWAlwmUVWZQei5DJazUlYLyrWVHprRrfghWpv6_E/) — Mobile CSP list of data sources for the data unit
 - [https://exploringcs.org/wp-content/uploads/2019/07/ECS-v9.0-final.pdf#page=194](https://exploringcs.org/wp-content/uploads/2019/07/ECS-v9.0-final.pdf#page=194) *Exploring Computer Science* ([ECS](https://www.exploringcs.org/)) includes *Unit 5: Computing &amp; Data Analysis* as part of its curriculum and that contains data sources and links
+- [https://opendata.cityofnewyork.us/data/](https://opendata.cityofnewyork.us/data/) — NYC Open Data: 'The Open Data Team at the *NYC Office of Technology and Innovation* ([OTI](https://nyc.gov/oti))&hellip; works with City agencies to identify and make data available, coordinate platform operations and improvements, and promote the use of Open Data both within government and throughout NYC.'
 - [https://archive.ics.uci.edu/](https://archive.ics.uci.edu/) — UC Irvine Machine Learning Repository
 <!-- - [https://gtexportal.org/](https://gtexportal.org/) — Broad Institute GTExPortal gene expression datasets. -->
 
-Thanks for additional contributions from Deborah Boisvert, J Reuther, Elaine Griggs, Beryl Hoffman, Beatriz Mendez, Danielle Theissen
+Thanks for additional contributions from Deborah Boisvert, J Reuther, Elaine Griggs, Beryl Hoffman, Beatriz Mendez, Danielle Theissen, Joshua Hans.
 
 **Note:** [https://www.universalhub.com/2024/bps-open-source-curriculum-open-source](https://www.universalhub.com/2024/bps-open-source-curriculum-open-source) 2024/04/06 *BPS to open source a curriculum on open-source data* — '&hellip;a $500,000 grant from the state Department of Education to develop a lesson plan for teaching students how to use open data sources' (including the [Analyze Boston](https://data.boston.gov/) datasets listed above).
 
