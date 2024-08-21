@@ -1,7 +1,7 @@
 ---
 title: "A list of possible introductory Python tutorials"
 date: 2024-03-30 20:55:39
-last_modified_at: 2024-08-02 11:26:46
+last_modified_at: 2024-08-19 10:52:00
 show_date: true
 permalink: /education/pythontutorials/
 tags:
@@ -40,8 +40,8 @@ These Python tutorials were suggested by numerous K-12 computing educators and a
 - [https://codelab.turingscraft.com/](https://codelab.turingscraft.com/) *CodeLab* Generic Python3 course (can register as an instructor).
 - [https://realpython.com/learning-paths/python-basics/](https://realpython.com/learning-paths/python-basics/) RealPython Python Basics course. 'Through this learning path, you’ll jump-start your Python journey by mastering fundamental concepts for Python beginners.' (costs)
 - [https://cs50.harvard.edu/python/2022/](https://cs50.harvard.edu/python/2022/) Harvard's CS50 Python course. 'An introduction to programming using a language called Python. Learn how to read and write code as well as how to test and "debug" it.'
-- [https://pickcode.io/](https://pickcode.io/) *Pickcode*, touted as '&hellip; the easiest way to teach and learn programming,' includes a Python tutorial with dozens of short activities.
-- [https://www.graderthan.com/workspace](https://www.graderthan.com/workspace) *Grader Than Workspace* is a zero-config VSCode IDE in your browser with Jupyter Notebook support for students from grade 6 to college &mdash; including a complete debugger, interactive lessons, and coding exercises for Python.
+- [https://pickcode.io/](https://pickcode.io/) *Pickcode*, touted as '&hellip; the easiest way to teach and learn programming,' includes a Python tutorial with dozens of short activities. (costs)
+- [https://www.graderthan.com/workspace](https://www.graderthan.com/workspace) *Grader Than Workspace* is a zero-config VSCode IDE in your browser with Jupyter Notebook support for students from grade 6 to college &mdash; including a complete debugger, interactive lessons, and coding exercises for Python. (costs)
 - [https://groklearning.com/courses/#technology=python&topic=programming](https://groklearning.com/courses/#technology=python&topic=programming) *Grok Academy* has tutorials in Python &mdash; as well as data science, cybersecurity, networking, *etc.*
 - [https://education.minecraft.net/en-us/resources/computer-science-subject-kit/python-101](https://education.minecraft.net/en-us/resources/computer-science-subject-kit/python-101) Python 101 with [MakeCode](https://www.microsoft.com/en-us/makecode). 'Start coding Python in Minecraft with MakeCode! Learn the basics of Python, including syntax, data types, variables, conditionals, 'for' and conditional loops, lists and functions.'
 - A three-part tutorial sequence:
@@ -52,7 +52,7 @@ These Python tutorials were suggested by numerous K-12 computing educators and a
 - [https://codeeasy.io/course/python-essentials](https://codeeasy.io/course/python-essentials) *Codeasy.io* Python Essentials. (costs)
 - [https://www.w3schools.com/python/](https://www.w3schools.com/python/) *W3Schools* and [https://www.tutorialspoint.com/python/](https://www.tutorialspoint.com/python/) *TutorialsPoint* have good Python tutorials.
 - [https://brilliant.org/courses/programming-python/](https://brilliant.org/courses/programming-python/) *Brilliant.org* has a level 2 Python tutorial.
-- [https://codehs.com/curriculum/python](https://codehs.com/curriculum/python) *CodeHS* has Python courses.
+- [https://codehs.com/curriculum/python](https://codehs.com/curriculum/python) *CodeHS* has Python courses. ([costs](https://codehs.com/plans_detail))
 - [https://www.khanacademy.org/computing/intro-to-python-fundamentals](https://www.khanacademy.org/computing/intro-to-python-fundamentals) *Khan Academy* says '**This course is under construction!**' (2024/06/01).
 - [https://www.raspberrypi.org/courses/learn-python](https://www.raspberrypi.org/courses/learn-python) *Raspberry Pi Foundation* Python tutorials.
 - [https://programming-24.mooc.fi/](https://programming-24.mooc.fi/) 'This is the course material page for the Introduction to Programming course&hellip; from the Department of Computer Science at the University of Helsinki.'
