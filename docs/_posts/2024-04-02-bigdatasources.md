@@ -1,7 +1,7 @@
 ---
 title: "Big data sources"
 date: 2024-04-02 20:40:19
-last_modified_at: 2024-08-15 09:57:48
+last_modified_at: 2024-08-20 07:31:36
 show_date: true
 permalink: /education/bigdatasources/
 tags:
@@ -27,7 +27,7 @@ Kerri Murphy wrote:
 - [https://isenseproject.org/](https://isenseproject.org/) — Any topic from iSense (login)
 - [https://www.fda.gov/industry/fda-basics-industry/search-databases](https://www.fda.gov/industry/fda-basics-industry/search-databases) — FDA databases
 - [https://www.cdc.gov/surveillancepractice/data.html](https://www.cdc.gov/surveillancepractice/data.html) — CDC databases
-- [https://www.fdlp.gov/federal-government-databases-and-websites-a-surprising-source-of-state-and-local-data](https://www.fdlp.gov/federal-government-databases-and-websites-a-surprising-source-of-state-and-local-data) — This [FDLP](https://fdlp.gov/search?k=datasets) article is 404.
+- [https://github.com/usgpo/cataloging-records](https://github.com/usgpo/cataloging-records) — Federal Depository Library Program ([FDLP](https://fdlp.gov/search?k=datasets)) cataloging records
 - [https://ourworldindata.org/](https://ourworldindata.org/) — 'Research and data to make progress against the world’s largest problems&hellip; 12,873 charts across 115 topics — [a]ll free: open access and open source'
 - [https://data.census.gov/](https://data.census.gov/) 'the new platform to access data and digital content from the U.S. Census Bureau' (also raw USCB public-use [datasets](https://www.census.gov/data/datasets.html))
 - [https://data.un.org/](https://data.un.org/) '*UNdata*&hellip; brings international statistical databases within easy reach of users through a single-entry point.'
