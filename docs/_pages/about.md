@@ -17,4 +17,4 @@ including as cofounder of two telecommunications companies.
 problem solving, cross-curricular learning and collaboration, and computing 
 from beginning to advanced; including physical computing and robotics.
 
-<span style="font-size: 108pt;">&#x270C;</span> Alter ego <a href="https://www.gocomics.com/monty/">Monty</a> &mdash; image credit <a href="https://en.wikipedia.org/wiki/Jim_Meddick">Jim Meddick</a>.
+<span style="font-size: 108pt;">&#x1F919;&#x1F3FB;</span> Alter ego <a href="https://www.gocomics.com/monty/">Monty</a> &mdash; image credit <a href="https://en.wikipedia.org/wiki/Jim_Meddick">Jim Meddick</a>.
