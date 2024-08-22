@@ -1,7 +1,7 @@
 ---
 title: "Internal test page — *do not use parentheses in note names*"
 date: 2024-03-17 21:26:51
-last_modified_at: 2024-07-22 17:39:06
+last_modified_at: 2024-08-22 11:01:09
 show_date: true
 permalink: /testpages/page-for-testing-eh/
 tags:
@@ -31,7 +31,7 @@ qux:
 ---
 This note's title tests the collapsing of spaces, `'-'`s, and `'_'`s. *Putting parentheses in a note's name makes it impossible to easily parse links with a regular expression.*
 
-This note tests many aspects of Obsidian and Jekyll as parsed by [`obsidianjekyll.py`](https://github.com/dcpetty/obsidian/blob/main/scripts/obsidianjekyll.py).
+This note tests many aspects of Obsidian and Jekyll as parsed by [`obsidianjekyll`](https://github.com/dcpetty/obsidian/tree/main/src/obsidianjekyll).
 
 ## Various links
 
@@ -94,7 +94,7 @@ This is a way to test:
 
 ⁄€‹›ﬁﬂ‡°·‚—±Œ„´‰ˇÁ¨ˆØ∏”’ÅÍÎÏ˝ÓÔÒÚÆ¸˛Ç◊ı˜Â¯˘¿
 
-My favorites: ×≈≡ΛΔ𝛿×∏ʻ⊠□ΦΘ👍🏻
+My favorites: ×≈≡ΛΔ𝛿×𝜈∏ʻ‡⊠□ΦΘ½👍🏻♥️
 
 ## Include Right Navigation
 
