@@ -63,7 +63,7 @@ tags: test
 
 The centered caption used embedded HTML (`<center style="padding: 1em;"><em>I'm leaving you, Henry, and I'm taking the mole.</em></center>`).
 
-![](obsidian/assets/obsidian/Pasted%20image%2020240411151449.png)
+![dcp-dangerous-rock](obsidian/assets/obsidian/Pasted%20image%2020240411151449.png)
 
 There are blank lines on either side of the this pasted image, plus blank lines on either side of any HTML.
 
