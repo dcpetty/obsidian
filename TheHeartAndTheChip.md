@@ -20,7 +20,7 @@ The book is divided in three sections: **Dreams** / **Reality** / **Responsibili
 
 Chapters 1-7 (*Strength*, *Reach*, *Time*, *Lift*, *Magic*, *Vision*, *Precision*) each describe an aspect of physical reality that robots can augment with imagined, actual, and visionary examples. The examples mostly keep the human in the loop and views robots as extending human capabilities in a variety of ways. 
 
-I was reminded of the view of '&hellip;sometime in the near future' in [*Robot &amp; Frank*](https://www.imdb.com/title/tt1990314/) (2012) where Robot assists the elderly and gruff Frank &mdash; who is suffering from signs of dementia &mdash; with his capers and thereby forms a bond between man and machine.
+I was reminded of the perspective in [*Robot &amp; Frank*](https://www.imdb.com/title/tt1990314/) (2012) set '&hellip;sometime in the near future' where Robot assists the elderly and gruff Frank &mdash; who is suffering from signs of dementia &mdash; with his capers and thereby forms a bond between man and machine (heart and chip).
 
 ### Magic
 
@@ -88,7 +88,7 @@ In this interlude, Rus gives an overview and definition-of-terms for the types o
 
 ## Responsibility
 
-Chapters 13-17 (*Possible futures*, *What could go wrong?*, *The work of the future*, *Computational education*, *Grand challenges*) describe 
+Chapters 13-17 (*Possible futures*, *What could go wrong?*, *The work of the future*, *Computational education*, *Grand challenges*) describe concerns that humans (the heart) must have when creating AI-driven robots (the chip).
 
 ### Possible Futures
 
@@ -121,9 +121,21 @@ Chapter 15 makes the assertion that *automation does not automate jobs, it autom
 
 ### Computational education
 
-Chapter 16 discusses the necessity of students *learning* computing and the challenges faced by educators in *teaching* computing. 
+Chapter 16 discusses the necessity of students *learning* computing and the challenges faced by educators in *teaching* computing. Rus calls *computational thinking* (CT) a top-down approach to problem solving. That means learning CT is more than simply learning programming &mdash; the primary way computing was taught in the last century. Quoting a problem-solving discussion in [StemManifesto](obsidian/Education/StemManifesto.md) about CT:
 
-More [TK](https://en.wikipedia.org/wiki/To_come_(publishing)).
+<blockquote>
+Originally described in detail by Jeannette Wing (<a href="https://www.cs.cmu.edu/~15110-s13/Wing06-ct.pdf">2006</a>) and expanded upon by Fred Martin (<a href="https://advocate.csteachers.org/2018/02/17/rethinking-computational-thinking/">2018</a>): '<em>computational thinking is about connecting computing to things in the real world</em>' and '<em>&hellip;is the "connecting tissue" between the world of computer science / programming expertise and the world of disciplinary knowledge.</em>' This connection is a fundamental aspect of STEM problem-solving and what enables,  '<em>&hellip;formulating problems and their solutions so that the solutions are represented in a form that can be effectively carried out by&hellip;</em>' code and computers (<a href="https://www.cs.cmu.edu/~CompThink/resources/TheLinkWing.pdf">2010</a>).
+</blockquote>
+
+Rus stresses the creative side of CT so as to, '&hellip;think through complex seemingly impossible tasks.' Again, quoting from [StemManifesto](obsidian/Education/StemManifesto.md):
+
+<blockquote>
+Creation is one of the <a href="https://bit.ly/7-big-ideas">7 Big Ideas</a> of computer science: '<a href="https://arc.net/l/quote/btgvyjoh">Computing is a creative human activity&hellip;</a>' (defined as part of the <em><a href="https://web.archive.org/web/20121013163639/http://www.csprinciples.org/home/about-the-project">CS Principles</a></em> project in 2010). <em><a href="https://arc.net/l/quote/xhnxbadg">Creativity</a></em> has its colloquial meaning of 'produce or use original and unusual ideas.' It also means 'the process of creating.' Both important meanings are supported by students generating <em>public products</em> (one of the <a href="https://www.pblworks.org/what-is-pbl/gold-standard-project-design">7 essential elements of PBL</a>) or <em>creating computational artifacts</em> (one of the  <a href="https://k12cs.org/">7 Core Practices</a> of the <em>K-12 Computer Science Frameworks</em>). 
+</blockquote>
+
+How does AI fit in?
+
+More [TK](https://en.wikipedia.org/wiki/To_come_(publishing))&hellip;
 
 ### Grand challenges
 
