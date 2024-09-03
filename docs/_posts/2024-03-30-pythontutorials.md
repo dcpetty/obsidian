@@ -1,7 +1,7 @@
 ---
 title: "A list of possible introductory Python tutorials"
 date: 2024-03-30 20:55:39
-last_modified_at: 2024-08-19 10:52:00
+last_modified_at: 2024-09-03 09:12:08
 show_date: true
 permalink: /education/pythontutorials/
 tags:
@@ -30,6 +30,7 @@ These are on-line Python textbooks &mdash; most of which include integrated acti
 - [https://docs.python-guide.org/](https://docs.python-guide.org/) *The Hitchhiker’s Guide to Python!* ([CC](https://creativecommons.org/licenses/by-nc-sa/3.0/)) 'This handcrafted guide exists to provide both novice and expert Python developers a best practice handbook for the installation, configuration, and usage of Python on a daily basis.'
 - [https://introcs.cs.princeton.edu/python/home/](https://introcs.cs.princeton.edu/python/home/) *Introduction to Programming in Python* &copy; Princeton's 'textbook for a first course in computer science for the next generation of scientists and engineers.'
 - [https://diveintopython3.problemsolving.io/](https://diveintopython3.problemsolving.io/) *Dive Into Python 3* ([CC](http://creativecommons.org/licenses/by-sa/3.0/)) is an Apress book that '&hellip;covers Python 3 and its differences from Python 2.'
+- [https://creative-python-computing.github.io/](https://creative-python-computing.github.io/) *CS 20: Introduction to Creative Computing* a Python textbook that aligns with the Saskatchewan 10-12 [introductory computing course](https://curriculum.gov.sk.ca/CurriculumHome?id=446).
 
 ## Tutorials
 
@@ -64,6 +65,6 @@ These are other lists of Python resources similar to this one.
 - [https://digitsandbytes.edublogs.org/programming-resources/#Python](https://digitsandbytes.edublogs.org/programming-resources/#Python) A useful list of Python resources on *digits + bytes*.
 - [https://t.ly/jHqcf](https://t.ly/jHqcf) A MO CSTA teacher put together an editable list of computing curricular resources (includes Python and other languages).
 
-Thanks for additional contributions from Emmett Wald, NJ Rees, Sheila Slawiak, Andrew Spiece, Steve Willis, Jacqueline Moreno, Renee Sullivan, David Parker, Aislín Moylan, Cynthia Chance, Shereen Tyrell.
+Thanks for additional contributions from Emmett Wald, NJ Rees, Sheila Slawiak, Andrew Spiece, Steve Willis, Jacqueline Moreno, Renee Sullivan, David Parker, Aislín Moylan, Cynthia Chance, Shereen Tyrell, Janice Cotcher.
 
 #Python {% include education.html %}
