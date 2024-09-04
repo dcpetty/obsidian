@@ -1,7 +1,7 @@
 ---
 title: "TheHeartAndTheChip"
 date: 2024-08-28 11:59:52
-last_modified_at: 2024-09-04 19:01:39
+last_modified_at: 2024-09-04 19:04:35
 show_date: true
 permalink: /theheartandthechip/
 tags:
@@ -168,7 +168,7 @@ Chapter 16 on [*computational education*](#computational-education) brings up ch
 - **Is AI literacy enough?** [https://teachai.org/](https://teachai.org/) lists aspects of *AI literacy*: understanding how AI works, using AI responsibly, recognizing its social and ethical impacts, &amp; understanding AI's potential benefits and risks and how to mitigate the risks. Teaching how to build and use ML &amp; AI models responsibly is a minimal framework for every K-12 student. A specific course in ML or AI will have to teach *with AI* and *about AI* in some combination.
 - **How can educators include the serious ethical questions posed by an AI-enabled future in their courses?** Ethical questions &mdash; like those in the *Computers and Society* ([CAS](https://www.doe.mass.edu/frameworks/dlcs.pdf#page=13)) sections of the *Massachusetts Curriculum Framework - Digital Literacy and Computer Science K-12* (2016) &mdash; typically get short shrift over other DLCS content. AI poses further ethical challenges concerning equity, bias, privacy, transparency. The UNESCO *[Draft AI competency frameworks for teachers and for school students](https://www.unesco.org/sites/default/files/medias/fichiers/2024/07/UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf)* includes an *Ethics of AI* framework. The Algorithmic Justice League states:
 
-<blockquote>'[AJL’s mission](https://www.ajlunited.org/learn-more) is to raise public awareness about the impacts of AI, equip advocates with resources to bolster campaigns, build the voice and choice of the most impacted communities, and galvanize researchers, policymakers, and industry practitioners to prevent AI harms.'</blockquote>
+<blockquote>'<a href="https://www.ajlunited.org/learn-more">AJL’s mission</a> is to raise public awareness about the impacts of AI, equip advocates with resources to bolster campaigns, build the voice and choice of the most impacted communities, and galvanize researchers, policymakers, and industry practitioners to prevent AI harms.'</blockquote>
 
 More [TK](https://en.wikipedia.org/wiki/To_come_(publishing))&hellip;
 
