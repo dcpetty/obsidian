@@ -2,15 +2,15 @@
 category: Robotics
 ---
 
-I recently read *The Heart and the Chip: Our Bright Future With Robots* ([ISBN 978-1-324-05023-0](https://isbn.nu/9781324050230)) by [Daniella Rus](https://danielarus.csail.mit.edu/) &amp; Gregory Mone. I am a a roboticist and computing educator and this note captures several of my observations about this book.
+I am a a robotics and computing educator and this note captures several of my observations about the book *The Heart and the Chip: Our Bright Future With Robots* ([ISBN 978-1-324-05023-0](https://isbn.nu/9781324050230)) by [Daniella Rus](https://danielarus.csail.mit.edu/) &amp; Gregory Mone.
 
 - There is a definition of a robot on p. 13 and it comports with the definition towards which I always guided my students with a [*Is this a robot?*](https://docs.google.com/document/d/13irVOPcPFg7OvfBycZw4OXjkR905275ue2saTuAY-Vo/) activity each semester: 'A robot is a programmable mechanical device that takes input from its surroundings, processes that information, then takes physical action in response to that input' that engages in the 'sense - think - act' loop.
 - Daniella Rus is a roboticist, so much of the book is about robots (dreams / reality / responsibility), but it is also largely about artificial intelligence (AI) and its application to physical computing and robotics and the challenges we face in its ubiquitous adoption.
-- Daniella Rus is a *bone fide* nerd. In typical MIT fashion, and going against all advice for encouraging young women in engineering, she invokes comic books, science fiction, and sci-fi movies in many of her examples of robotics and AI.
+- Daniella Rus is a *bone fide* nerd. In typical MIT fashion &mdash; and going against all advice for encouraging young women in engineering &mdash; she invokes comic books, science fiction, and sci-fi movies in many of her examples of robotics and AI.
 - Daniella Rus is the *Director of [MIT CSAIL](https://csail.mit.edu/)* and, as such, has been involved in many inventions, has worked on many interesting projects, has taught many accomplished students, and knows tons of experts in many fields. She liberally sprinkles illustrative anecdotes with their names, research, and impact throughout the narrative. They are conveniently all listed in the afternotes.
 - Rus is fundamentally a techno-optimist, so she argues *against* the [robot apocalypse](https://what-if.xkcd.com/5/) and *for* the enhancement of the human condition through robotics &mdash; where the damaging effects of greedy people or trolls are considered addressable problems. 
 
-**I hope you read [*The Heart and the Chip: Our Bright Future With Robots*](https://isbn.nu/9781324050230)!** These notes are only *my* summary.
+**I hope you read [*The Heart and the Chip: Our Bright Future With Robots*](https://isbn.nu/9781324050230)!** These notes are only *my* summary and all in-line quotations are from the book.
 
 # Book
 
@@ -20,7 +20,7 @@ The book is divided in three sections: **Dreams** / **Reality** / **Responsibili
 
 Chapters 1-7 (*Strength*, *Reach*, *Time*, *Lift*, *Magic*, *Vision*, *Precision*) each describe an aspect of physical reality that robots can augment with imagined, actual, and visionary examples. The examples mostly keep the human in the loop and views robots as extending human capabilities in a variety of ways. 
 
-I was reminded of the perspective in [*Robot &amp; Frank*](https://www.imdb.com/title/tt1990314/) (2012) set '&hellip;sometime in the near future' where Robot assists the elderly and gruff Frank &mdash; who is suffering from signs of dementia &mdash; with his capers and thereby forms a bond between man and machine (heart and chip).
+I was reminded of the perspective in [*Robot &amp; Frank*](https://www.imdb.com/title/tt1990314/) (2012), set '&hellip;sometime in the near future,' where Robot assists the elderly and gruff Frank &mdash; who is suffering from signs of dementia &mdash; with his capers and thereby forms a bond between man and machine (heart and chip).
 
 ### Magic
 
@@ -99,7 +99,7 @@ Rus argues for the *heart-and-the-chip* possible future, lest we '&hellip;end up
 1. Assistive &mdash; 'The human collaborator should always have the final say when the heart and the chip are working together.'
 1. Causal &mdash; Most machine learning is, by its nature, correlative not causal &mdash; causal systems are those that can account for the connection between action and consequence and for internal and external interventions.
 1. Generalizable &mdash; Models that are capable of reasoning through the uncertainties that arise when they encounter situations that they have not been trained for.
-1. Explainable &mdash; Answering the question, 'why did a model made a decision?' is a goal of [*AI transparency*](https://www.zendesk.com/blog/ai-transparency/) &mdash; including explaining how a systems produces results.
+1. Explainable &mdash; Answering the question, 'why did a model made a decision?' is a goal of [*AI transparency*](https://www.zendesk.com/blog/ai-transparency/) &mdash; including explaining how systems produce results.
 1. Equitable &mdash; Models that avoid widespread algorithmic bias caused by poor representation in training datasets &mdash; the mission of the [Algorithmic Justice League](https://ajl.org/about).
 1. Economical &mdash; '&hellip;we absolutely must do everything we can to ensure that these tools aren't merely the playthings of the wealthy elite.'
 1. Certified &mdash; Models that are subjected to '&hellip;testing, evaluation, certification, and (perhaps) a regulatory body&hellip; that evaluates the safety and efficacy of intelligent machines and approves them for specific uses&hellip; [which] will shape our creativity, not stifle it.'
@@ -137,27 +137,29 @@ Creation is one of the <a href="https://bit.ly/7-big-ideas">7 Big Ideas</a> of c
 
 To solve hard problems computationally, Rus says, '&hellip;computational thinking consists of four interrelated steps:' decomposition (we decompose a larger problem into simpler ones), modularization (we search for patterns or similarities to problems we have already solved), abstraction (we generalize these solutions so they can be reused), and composition (eventually solving our problem by combining solutions to the smaller problems). 
 
-Rus notes that many (most?) fields have computational sub-disciplines: computational linguistics, computational biology, computational chemistry, computation physics, *etc.*. These disciplines invariably involve large amounts of data (sometimes called [*big data*](https://www.techtarget.com/searchdatamanagement/definition/big-data) &mdash;  [data sets&hellip; too large or complex to be dealt with by traditional data-processing application software](https://arc.net/l/quote/iguxonrk)). ML and other AI techniques invariable offer techniques for solving problems with big data. 
+Rus notes that many (most?) fields have computational sub-disciplines: computational linguistics, computational biology, computational chemistry, computation physics, *etc.* These disciplines invariably involve large amounts of data (sometimes called [*big data*](https://www.techtarget.com/searchdatamanagement/definition/big-data) &mdash;  [data sets&hellip; too large or complex to be dealt with by traditional data-processing application software](https://arc.net/l/quote/iguxonrk)). ML and other AI techniques invariable offer techniques for solving problems with big data. 
 
-Rus adds a corollary to CT called *computational making* (CM) that extends into the physical world, stating: 'The more you know about materials, programming, and how things are made. the more creativity and freedom and power you'll have as a consumer [(user)] and designer [(maker)].' She adds: 
+Rus adds a corollary to CT called *computational making* (CM) that extends into the physical world, stating: 'The more you know about materials, programming, and how things are made, the more creativity and freedom and power you'll have as a consumer [(user)] and designer [(maker)].' She adds: 
 
 <blockquote>
-Every secondary school should have a computer-science teacher and an advanced machine-shop equipped with tools for this new era. As we thihnk about the skill sets required by this new worls, it is imporanat to define literacy for the twenty-first centure and to include computational thinking and making in that definition.
+Every secondary school should have a computer-science teacher and an advanced machine-shop equipped with tools for this new era. As we think about the skill sets required by this new worlds, it is important to define literacy for the twenty-first century and to include computational thinking and making in that definition. (p. 216)
 </blockquote>
 
 On the future of education she finishes the chapter with:
-- **Workforce impacts** — 'As we think about investing in the workforce of tomorrow, we also need to think seriously about reskilling the workers of today. This will require a paradigm shift in how we think about education.'
-- **Open learning** — Massively open online courses (MOOCs) like those offered through [edX](https://www.edx.org/) without charge can enable lifelong learning and continuous education.
-- **Critical thinking** —  ('If we do not ask questions, we end up in echo chambers.') 'The lack of understanding and critical thinking is perhaps at the root of why society is so divided right now, and this is where we get back again to the heart and the chip. If we teach children from an early age how to think about computing, and how we program computers to solve problems and make decisions, they will be starting their high-school studies and moving into further education opportunities with a much higher level of knowledge and set of tools. To them, these machines won't be magic. They'll be human-programmed devices.'
+- **Workforce impacts** &mdash; 'As we think about investing in the workforce of tomorrow, we also need to think seriously about reskilling the workers of today. This will require a paradigm shift in how we think about education.'
+- **Open learning** &mdash; Massively open online courses (MOOCs) like those offered through [edX](https://www.edx.org/) without charge can enable lifelong learning and continuous education.
+- **Critical thinking** &mdash;  ('If we do not ask questions, we end up in echo chambers.') 'The lack of understanding and critical thinking is perhaps at the root of why society is so divided right now, and this is where we get back again to the heart and the chip. If we teach children from an early age how to think about computing, and how we program computers to solve problems and make decisions, they will be starting their high-school studies and moving into further education opportunities with a much higher level of knowledge and set of tools. To them, these machines won't be magic. They'll be human-programmed devices.'
 
 #### AI challenges
 
-Chapter 16 on *computational education* brings up challenges to K-12 educators everywhere in the age of generative AI: What specifically must students know and be able to do with respect to all the forms of AI?
+Chapter 16 on [*computational education*](#computational-education) brings up challenges to K-12 educators everywhere in the age of generative AI: What specifically must students know and be able to do with respect to all the forms of AI?
 
 - **Is AI a tool?** AI in all its forms is clearly a powerful tool. *Teaching with AI* is mostly about using AI as a tool. Since the field is changing so rapidly, it will be a challenge for educators and students to keep current. Further, learning to code with ML &amp; AI libraries ([like](https://arc.net/l/quote/mvbczqyg) TensorFlow, PyTorch, MXNet, and scikit-learn) may be too focussed on vocational skills rather than generally applicable principles.
 - **Is AI a computational technique?** Understanding AI's power requires an understanding of sophisticated mathematics and computing. *Teaching about AI* sufficient to implement some ML &amp; AI algorithms may focus on the trees at the expense of the entire forest.
 - **Is AI literacy enough?** [[https://teachai.org/]] lists aspects of *AI literacy*: understanding how AI works, using AI responsibly, recognizing its social and ethical impacts, &amp; understanding AI's potential benefits and risks and how to mitigate the risks. Teaching how to build and use ML &amp; AI models responsibly is a minimal framework for every K-12 student. A specific course in ML or AI will have to teach *with AI* and *about AI* in some combination.
-- **How can educators include the serious ethical questions posed by an AI-enabled future in their courses?** Ethical questions &mdash; like those in the *Computers and Society* ([CAS](https://www.doe.mass.edu/frameworks/dlcs.pdf#page=13)) sections of the *Massachusetts Curriculum Framework - Digital Literacy and Computer Science K-12* (2016) &mdash; typically get short shrift over other DLCS content. AI poses further ethical challenges concerning equity, bias, privacy, transparency. The UNESCO *[Draft AI competency frameworks for teachers and for school students](https://www.unesco.org/sites/default/files/medias/fichiers/2024/07/UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf)* includes an *Ethics of AI* framework. The Algorithmic Justice League states '[AJL’s mission](https://www.ajlunited.org/learn-more) is to raise public awareness about the impacts of AI, equip advocates with resources to bolster campaigns, build the voice and choice of the most impacted communities, and galvanize researchers, policymakers, and industry practitioners to prevent AI harms.' 
+- **How can educators include the serious ethical questions posed by an AI-enabled future in their courses?** Ethical questions &mdash; like those in the *Computers and Society* ([CAS](https://www.doe.mass.edu/frameworks/dlcs.pdf#page=13)) sections of the *Massachusetts Curriculum Framework - Digital Literacy and Computer Science K-12* (2016) &mdash; typically get short shrift over other DLCS content. AI poses further ethical challenges concerning equity, bias, privacy, transparency. The UNESCO *[Draft AI competency frameworks for teachers and for school students](https://www.unesco.org/sites/default/files/medias/fichiers/2024/07/UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf)* includes an *Ethics of AI* framework. The Algorithmic Justice League states:
+
+<blockquote>'[AJL’s mission](https://www.ajlunited.org/learn-more) is to raise public awareness about the impacts of AI, equip advocates with resources to bolster campaigns, build the voice and choice of the most impacted communities, and galvanize researchers, policymakers, and industry practitioners to prevent AI harms.'</blockquote>
 
 More [TK](https://en.wikipedia.org/wiki/To_come_(publishing))&hellip;
 
@@ -170,13 +172,13 @@ Chapter 17 lists several *grand challenges* to be addressed in a future with mor
 | Link | Description |
 | --- | --- |
 | [https://isbn.nu/&#8203;9781324050230](https://isbn.nu/9781324050230) | *The Heart and the Chip* |
-| [https://www.csail.mit.edu/&#8203;person/&#8203;daniela-rus](https://www.csail.mit.edu/person/daniela-rus) | 'Daniela Rus is the&hellip; Director of the Computer Science and Artificial Intelligence Laboratory (CSAIL) at MIT. s research interests are in robotics, mobile computing, and data science.'  |
-| [https://www.gregorymone.com/](https://www.gregorymone.com/) | '&hellip;As a ghostwriter, ve collaborated with Bill Nye, Susan Cain, Neil deGrasse Tyson, MIT AI Lab Director Daniela Rus, Mattel, and numerous technology executives and thought leaders.' |
+| [https://www.csail.mit.edu/&#8203;person/&#8203;daniela-rus](https://www.csail.mit.edu/person/daniela-rus) | *Daniela Rus is the&hellip; Director of the Computer Science and Artificial Intelligence Laboratory (CSAIL) at MIT. s research interests are in robotics, mobile computing, and data science.*  |
+| [https://www.gregorymone.com/](https://www.gregorymone.com/) | *As a ghostwriter, I've collaborated with Bill Nye, Susan Cain, Neil deGrasse Tyson, MIT AI Lab Director Daniela Rus, Mattel, and numerous technology executives and thought leaders.* |
 | [https://youtu.be/&#8203;tCtb0ALFEoY](https://youtu.be/tCtb0ALFEoY) | *Daniela Rus & Gregory Mone $\vert$ The Heart and the Chip: Our Bright Future with Robots $\vert$ Talks at Google* (30:00) |
 | [https://en.wikipedia.org/&#8203;wiki/&#8203;Clarke's_three_laws](https://en.wikipedia.org/wiki/Clarke's_three_laws) | *Clarke's Three Laws* |
 | [https://techcrunch.com/&#8203;2023/&#8203;08/&#8203;17/&#8203;what-is-a-liquid-neural-network-really/](https://techcrunch.com/2023/08/17/what-is-a-liquid-neural-network-really/) | *What is a liquid neural network, really?* (2023) |
 | [https://www.zendesk.com/&#8203;blog/&#8203;ai-transparency/](https://www.zendesk.com/blog/ai-transparency/) | *What is AI transparency? A comprehensive guide* (2024) |
-| [https://www.ajl.org/&#8203;about](https://www.ajl.org/about) | *AJL, '&hellip;leading a cultural movement towards EQUITABLE and ACCOUNTABLE AI'* |
+| [https://www.ajl.org/&#8203;about](https://www.ajl.org/about) | AJL is *&hellip;leading a cultural movement towards EQUITABLE and ACCOUNTABLE AI* |
 | [https://dcpetty.github.io/&#8203;obsidian/&#8203;education/&#8203;stemmanifesto/](https://dcpetty.github.io/obsidian/education/stemmanifesto/) | *What is STEM?* (2024) |
 | [https://www.cs.cmu.edu/&#8203;~CompThink/&#8203;resources/&#8203;TheLinkWing.pdf](https://www.cs.cmu.edu/~CompThink/resources/TheLinkWing.pdf) | *Computational Thinking: What and Why?* (2010) |
 | [https://advocate.csteachers.org/&#8203;2018/&#8203;02/&#8203;17/&#8203;rethinking-computational-thinking/](https://advocate.csteachers.org/2018/02/17/rethinking-computational-thinking/) | *Rethinking Computational Thinking* (2018) |
@@ -184,8 +186,8 @@ Chapter 17 lists several *grand challenges* to be addressed in a future with mor
 | [https://k12cs.org/](https://k12cs.org/) | *Seven Core Practices of the (CSTA) K-12 Computer Science Framework* |
 | [https://www.pblworks.org/&#8203;what-is-pbl/&#8203;gold-standard-project-design](https://www.pblworks.org/what-is-pbl/gold-standard-project-design) | *Seven Essential Project Design Elements of Project-Based Learning* |
 | [https://www.techtarget.com/&#8203;searchdatamanagement/&#8203;definition/&#8203;big-data](https://www.techtarget.com/searchdatamanagement/definition/big-data) | *What is big data?* |
-| [https://www.edx.org/](https://www.edx.org/) | *edX* |
-| [https://www.teachai.org/](https://www.teachai.org/) | *TeachAI* |
+| [https://www.edx.org/](https://www.edx.org/) | edX |
+| [https://www.teachai.org/](https://www.teachai.org/) | TeachAI |
 | [https://www.doe.mass.edu/&#8203;frameworks/&#8203;dlcs.pdf](https://www.doe.mass.edu/frameworks/dlcs.pdf) | *Massachusetts Curriculum Framework - Digital Literacy and Computer Science K-12* (2016) |
 
 # Image
