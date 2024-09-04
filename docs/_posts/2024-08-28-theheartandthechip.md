@@ -1,7 +1,7 @@
 ---
 title: "TheHeartAndTheChip"
 date: 2024-08-28 11:59:52
-last_modified_at: 2024-09-04 19:04:35
+last_modified_at: 2024-09-04 19:14:32
 show_date: true
 permalink: /theheartandthechip/
 tags:
@@ -203,7 +203,13 @@ Chapter 17 lists several *grand challenges* to be addressed in a future with mor
 
 'I recently received a wonderful present from my students Alexander Amini and Ava Soleimany: my AI-generated portrait in the style of a classical painting. To get this portrait, they trained a model of 5.8 billion images along with their textural descriptions using a probabilistic diffusion model' &mdash; [*The Heart and the Chip*](https://isbn.nu/9781324050230) p. 156
 
-![rus-gen-ai-image-amini-soleymani](/obsidian/assets/obsidian/pasted-image-20240828153819.png)
+{% comment %}
+
+[![rus-gen-ai-image-amini-soleymani](/obsidian/assets/obsidian/pasted-image-20240828153819.png)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
+
+{% endcomment %}
+
+[![danielle rus gen ai image](https://media.licdn.com/dms/image/v2/D5612AQEPWUREfM_BUA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721983277056?e=1730937600&v=beta&t=WvMyP1AWV9CTrEWjVLw7NeZ_H5KAHyPVxUYh0RCpboY)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
 
 #robotics #ai
 <style>h1 { color: rebeccapurple; }</style>
