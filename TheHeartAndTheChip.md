@@ -46,7 +46,7 @@ Chapter 11 introduces *deep neural networks* and their miraculous abilities and 
 
 ### An Informative Technical Interlude
 
-In this interlude, Rus gives an overview and definition-of-terms for the types of AI / machine learning referred to in the book.
+In this interlude, Rus gives an overview and definition-of-terms for the types of AI / machine learning (ML) referred to in the book.
 
 {% comment %}
 
@@ -121,19 +121,43 @@ Chapter 15 makes the assertion that *automation does not automate jobs, it autom
 
 ### Computational education
 
-Chapter 16 discusses the necessity of students *learning* computing and the challenges faced by educators in *teaching* computing. Rus calls *computational thinking* (CT) a top-down approach to problem solving. That means learning CT is more than simply learning programming &mdash; the primary way computing was taught in the last century. Quoting a problem-solving discussion in [StemManifesto](obsidian/Education/StemManifesto.md) about CT:
+Chapter 16 discusses the necessity of students *learning* computing and the challenges faced by educators in *teaching* computing. 
+
+Rus calls *computational thinking* (CT) a top-down approach to problem solving. That means learning CT is more than simply learning to code &mdash; the primary way computing was taught in the last milenium. Quoting a problem-solving discussion in my [StemManifesto](obsidian/Education/StemManifesto.md) about CT:
 
 <blockquote>
 Originally described in detail by Jeannette Wing (<a href="https://www.cs.cmu.edu/~15110-s13/Wing06-ct.pdf">2006</a>) and expanded upon by Fred Martin (<a href="https://advocate.csteachers.org/2018/02/17/rethinking-computational-thinking/">2018</a>): '<em>computational thinking is about connecting computing to things in the real world</em>' and '<em>&hellip;is the "connecting tissue" between the world of computer science / programming expertise and the world of disciplinary knowledge.</em>' This connection is a fundamental aspect of STEM problem-solving and what enables,  '<em>&hellip;formulating problems and their solutions so that the solutions are represented in a form that can be effectively carried out by&hellip;</em>' code and computers (<a href="https://www.cs.cmu.edu/~CompThink/resources/TheLinkWing.pdf">2010</a>).
 </blockquote>
 
-Rus stresses the creative side of CT so as to, '&hellip;think through complex seemingly impossible tasks.' Again, quoting from [StemManifesto](obsidian/Education/StemManifesto.md):
+Rus stresses the creative side of CT so as to, '&hellip;think through complex seemingly impossible tasks.' Again, quoting from my [StemManifesto](obsidian/Education/StemManifesto.md):
 
 <blockquote>
 Creation is one of the <a href="https://bit.ly/7-big-ideas">7 Big Ideas</a> of computer science: '<a href="https://arc.net/l/quote/btgvyjoh">Computing is a creative human activity&hellip;</a>' (defined as part of the <em><a href="https://web.archive.org/web/20121013163639/http://www.csprinciples.org/home/about-the-project">CS Principles</a></em> project in 2010). <em><a href="https://arc.net/l/quote/xhnxbadg">Creativity</a></em> has its colloquial meaning of 'produce or use original and unusual ideas.' It also means 'the process of creating.' Both important meanings are supported by students generating <em>public products</em> (one of the <a href="https://www.pblworks.org/what-is-pbl/gold-standard-project-design">7 essential elements of PBL</a>) or <em>creating computational artifacts</em> (one of the  <a href="https://k12cs.org/">7 Core Practices</a> of the <em>K-12 Computer Science Frameworks</em>). 
 </blockquote>
 
-How does AI fit in?
+To solve hard problems computationally, Rus says, '&hellip;computational thinking consists of four interrelated steps:' decomposition (we decompose a larger problem into simpler ones), modularization (we search for patterns or similarities to problems we have already solved), abstraction (we generalize these solutions so they can be reused), and composition (eventually solving our problem by combining solutions to the smaller problems). 
+
+Rus notes that many (most?) fields have computational sub-disciplines: computational linguistics, computational biology, computational chemistry, computation physics, *etc.*. These disciplines invariably involve large amounts of data (sometimes called [*big data*](https://www.techtarget.com/searchdatamanagement/definition/big-data) &mdash;  [data sets&hellip; too large or complex to be dealt with by traditional data-processing application software](https://arc.net/l/quote/iguxonrk)). ML and other AI techniques invariable offer techniques for solving problems with big data. 
+
+Rus adds a corollary to CT called *computational making* (CM) that extends into the physical world, stating: 'The more you know about materials, programming, and how things are made. the more creativity and freedom and power you'll have as a consumer [(user)] and designer [(maker)].' She adds: 
+
+<blockquote>
+Every secondary school should have a computer-science teacher and an advanced machine-shop equipped with tools for this new era. As we thihnk about the skill sets required by this new worls, it is imporanat to define literacy for the twenty-first centure and to include computational thinking and making in that definition.
+</blockquote>
+
+On the future of education she finishes the chapter with:
+- **Workforce impacts** — 'As we think about investing in the workforce of tomorrow, we also need to think seriously about reskilling the workers of today. This will require a paradigm shift in how we think about education.'
+- **Open learning** — Massively open online courses (MOOCs) like those offered through [edX](https://www.edx.org/) without charge can enable lifelong learning and continuous education.
+- **Critical thinking** —  ('If we do not ask questions, we end up in echo chambers.') 'The lack of understanding and critical thinking is perhaps at the root of why society is so divided right now, and this is where we get back again to the heart and the chip. If we teach children from an early age how to think about computing, and how we program computers to solve problems and make decisions, they will be starting their high-school studies and moving into further education opportunities with a much higher level of knowledge and set of tools. To them, these machines won't be magic. They'll be human-programmed devices.'
+
+#### AI challenges
+
+Chapter 16 on *computational education* brings up challenges to K-12 educators everywhere in the age of generative AI: What specifically must students know and be able to do with respect to all the forms of AI?
+
+- **Is AI a tool?** AI in all its forms is clearly a powerful tool. *Teaching with AI* is mostly about using AI as a tool. Since the field is changing so rapidly, it will be a challenge for educators and students to keep current. Further, learning to code with ML &amp; AI libraries ([like](https://arc.net/l/quote/mvbczqyg) TensorFlow, PyTorch, MXNet, and scikit-learn) may be too focussed on vocational skills rather than generally applicable principles.
+- **Is AI a computational technique?** Understanding AI's power requires an understanding of sophisticated mathematics and computing. *Teaching about AI* sufficient to implement some ML &amp; AI algorithms may focus on the trees at the expense of the entire forest.
+- **Is AI literacy enough?** [[https://teachai.org/]] lists aspects of *AI literacy*: understanding how AI works, using AI responsibly, recognizing its social and ethical impacts, &amp; understanding AI's potential benefits and risks and how to mitigate the risks. Teaching how to build and use ML &amp; AI models responsibly is a minimal framework for every K-12 student. A specific course in ML or AI will have to teach *with AI* and *about AI* in some combination.
+- **How can educators include the serious ethical questions posed by an AI-enabled future in their courses?** Ethical questions &mdash; like those in the *Computers and Society* ([CAS](https://www.doe.mass.edu/frameworks/dlcs.pdf#page=13)) sections of the *Massachusetts Curriculum Framework - Digital Literacy and Computer Science K-12* (2016) &mdash; typically get short shrift over other DLCS content. AI poses further ethical challenges concerning equity, bias, privacy, transparency. The UNESCO *[Draft AI competency frameworks for teachers and for school students](https://www.unesco.org/sites/default/files/medias/fichiers/2024/07/UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf)* includes an *Ethics of AI* framework. The Algorithmic Justice League states '[AJL’s mission](https://www.ajlunited.org/learn-more) is to raise public awareness about the impacts of AI, equip advocates with resources to bolster campaigns, build the voice and choice of the most impacted communities, and galvanize researchers, policymakers, and industry practitioners to prevent AI harms.' 
 
 More [TK](https://en.wikipedia.org/wiki/To_come_(publishing))&hellip;
 
@@ -145,10 +169,24 @@ Chapter 17 lists several *grand challenges* to be addressed in a future with mor
 
 | Link | Description |
 | --- | --- |
-| [[https://isbn.nu/9781324050230]] | *The Heart and the Chip* |
-| [[https://www.csail.mit.edu/person/daniela-rus]] | 'Daniela Rus is the&hellip; Director of the Computer Science and Artificial Intelligence Laboratory (CSAIL) at MIT. Rus’s research interests are in robotics, mobile computing, and data science.'  |
-| [[https://www.gregorymone.com/]] | '&hellip;As a ghostwriter, I’ve collaborated with Bill Nye, Susan Cain, Neil deGrasse Tyson, MIT AI Lab Director Daniela Rus, Mattel, and numerous technology executives and thought leaders.' |
-| [[https://youtu.be/tCtb0ALFEoY]] | *Daniela Rus & Gregory Mone $\vert$ The Heart and the Chip: Our Bright Future with Robots $\vert$ Talks at Google* (30:00) |
+| [https://isbn.nu/&#8203;9781324050230](https://isbn.nu/9781324050230) | *The Heart and the Chip* |
+| [https://www.csail.mit.edu/&#8203;person/&#8203;daniela-rus](https://www.csail.mit.edu/person/daniela-rus) | 'Daniela Rus is the&hellip; Director of the Computer Science and Artificial Intelligence Laboratory (CSAIL) at MIT. s research interests are in robotics, mobile computing, and data science.'  |
+| [https://www.gregorymone.com/](https://www.gregorymone.com/) | '&hellip;As a ghostwriter, ve collaborated with Bill Nye, Susan Cain, Neil deGrasse Tyson, MIT AI Lab Director Daniela Rus, Mattel, and numerous technology executives and thought leaders.' |
+| [https://youtu.be/&#8203;tCtb0ALFEoY](https://youtu.be/tCtb0ALFEoY) | *Daniela Rus & Gregory Mone $\vert$ The Heart and the Chip: Our Bright Future with Robots $\vert$ Talks at Google* (30:00) |
+| [https://en.wikipedia.org/&#8203;wiki/&#8203;Clarke's_three_laws](https://en.wikipedia.org/wiki/Clarke's_three_laws) | *Clarke's Three Laws* |
+| [https://techcrunch.com/&#8203;2023/&#8203;08/&#8203;17/&#8203;what-is-a-liquid-neural-network-really/](https://techcrunch.com/2023/08/17/what-is-a-liquid-neural-network-really/) | *What is a liquid neural network, really?* (2023) |
+| [https://www.zendesk.com/&#8203;blog/&#8203;ai-transparency/](https://www.zendesk.com/blog/ai-transparency/) | *What is AI transparency? A comprehensive guide* (2024) |
+| [https://www.ajl.org/&#8203;about](https://www.ajl.org/about) | *AJL, '&hellip;leading a cultural movement towards EQUITABLE and ACCOUNTABLE AI'* |
+| [https://dcpetty.github.io/&#8203;obsidian/&#8203;education/&#8203;stemmanifesto/](https://dcpetty.github.io/obsidian/education/stemmanifesto/) | *What is STEM?* (2024) |
+| [https://www.cs.cmu.edu/&#8203;~CompThink/&#8203;resources/&#8203;TheLinkWing.pdf](https://www.cs.cmu.edu/~CompThink/resources/TheLinkWing.pdf) | *Computational Thinking: What and Why?* (2010) |
+| [https://advocate.csteachers.org/&#8203;2018/&#8203;02/&#8203;17/&#8203;rethinking-computational-thinking/](https://advocate.csteachers.org/2018/02/17/rethinking-computational-thinking/) | *Rethinking Computational Thinking* (2018) |
+| [https://stewart.sdsu.edu/&#8203;cs100/&#8203;SevenBigIdeasOfCS.html](https://stewart.sdsu.edu/cs100/SevenBigIdeasOfCS.html) | *Seven Big Ideas of Computer Science* |
+| [https://k12cs.org/](https://k12cs.org/) | *Seven Core Practices of the (CSTA) K-12 Computer Science Framework* |
+| [https://www.pblworks.org/&#8203;what-is-pbl/&#8203;gold-standard-project-design](https://www.pblworks.org/what-is-pbl/gold-standard-project-design) | *Seven Essential Project Design Elements of Project-Based Learning* |
+| [https://www.techtarget.com/&#8203;searchdatamanagement/&#8203;definition/&#8203;big-data](https://www.techtarget.com/searchdatamanagement/definition/big-data) | *What is big data?* |
+| [https://www.edx.org/](https://www.edx.org/) | *edX* |
+| [https://www.teachai.org/](https://www.teachai.org/) | *TeachAI* |
+| [https://www.doe.mass.edu/&#8203;frameworks/&#8203;dlcs.pdf](https://www.doe.mass.edu/frameworks/dlcs.pdf) | *Massachusetts Curriculum Framework - Digital Literacy and Computer Science K-12* (2016) |
 
 # Image
 
