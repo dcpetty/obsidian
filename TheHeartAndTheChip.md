@@ -161,13 +161,25 @@ Chapter 16 on [*computational education*](#computational-education) brings up ch
 	- The UNESCO *[Draft AI competency frameworks for teachers and for school students](https://www.unesco.org/sites/default/files/medias/fichiers/2024/07/UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf)* includes an *Ethics of AI* framework. 
 	- The Algorithmic Justice League states:
 
-<blockquote>'<a href="https://www.ajlunited.org/learn-more">AJL’s mission</a> is to raise public awareness about the impacts of AI, equip advocates with resources to bolster campaigns, build the voice and choice of the most impacted communities, and galvanize researchers, policymakers, and industry practitioners to prevent AI harms.'</blockquote>
+<blockquote><a href="https://www.ajlunited.org/learn-more">AJL’s mission</a> is to raise public awareness about the impacts of AI, equip advocates with resources to bolster campaigns, build the voice and choice of the most impacted communities, and galvanize researchers, policymakers, and industry practitioners to prevent AI harms.</blockquote>
 
 More [TK](https://en.wikipedia.org/wiki/To_come_(publishing))&hellip;
 
 ### Grand challenges
 
 Chapter 17 lists several *grand challenges* to be addressed in a future with more capable and powerful robots: *human health*, *food security*, *energy and electricity*, *sustainability*, *cleaner waters*, *discovery on earth*, *discovery in space*, *truth and democracy*.
+
+# Image
+
+'I recently received a wonderful present from my students Alexander Amini and Ava Soleimany: my AI-generated portrait in the style of a classical painting. To get this portrait, they trained a model of 5.8 billion images along with their textural descriptions using a probabilistic diffusion model' &mdash; [*The Heart and the Chip*](https://isbn.nu/9781324050230) p. 156
+
+{% comment %}
+
+[![rus-gen-ai-image-amini-soleymani](obsidian/assets/obsidian/Pasted%20image%2020240828153819.png)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
+
+{% endcomment %}
+
+[![danielle rus gen ai image](https://media.licdn.com/dms/image/v2/D5612AQEPWUREfM_BUA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721983277056?e=1730937600&v=beta&t=WvMyP1AWV9CTrEWjVLw7NeZ_H5KAHyPVxUYh0RCpboY)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
 
 # Links
 
@@ -191,18 +203,7 @@ Chapter 17 lists several *grand challenges* to be addressed in a future with mor
 | [https://www.edx.org/](https://www.edx.org/) | edX |
 | [https://www.teachai.org/](https://www.teachai.org/) | TeachAI |
 | [https://www.doe.mass.edu/&#8203;frameworks/&#8203;dlcs.pdf](https://www.doe.mass.edu/frameworks/dlcs.pdf) | *Massachusetts Curriculum Framework - Digital Literacy and Computer Science K-12* (2016) |
-
-# Image
-
-'I recently received a wonderful present from my students Alexander Amini and Ava Soleimany: my AI-generated portrait in the style of a classical painting. To get this portrait, they trained a model of 5.8 billion images along with their textural descriptions using a probabilistic diffusion model' &mdash; [*The Heart and the Chip*](https://isbn.nu/9781324050230) p. 156
-
-{% comment %}
-
-[![rus-gen-ai-image-amini-soleymani](obsidian/assets/obsidian/Pasted%20image%2020240828153819.png)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
-
-{% endcomment %}
-
-[![danielle rus gen ai image](https://media.licdn.com/dms/image/v2/D5612AQEPWUREfM_BUA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721983277056?e=1730937600&v=beta&t=WvMyP1AWV9CTrEWjVLw7NeZ_H5KAHyPVxUYh0RCpboY)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
+| [https://www.linkedin.com/&#8203;pulse/&#8203;new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc) | *Daniela Rus on Our Bright Future with Robots* (2024) |
 
 #robotics #ai
 <style>h1 { color: rebeccapurple; }</style>
