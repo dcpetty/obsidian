@@ -1,7 +1,7 @@
 ---
 title: "TheHeartAndTheChip"
 date: 2024-08-28 11:59:52
-last_modified_at: 2024-09-07 08:07:10
+last_modified_at: 2024-09-10 10:10:12
 show_date: true
 permalink: /theheartandthechip/
 tags:
@@ -213,6 +213,8 @@ Chapter 17 lists several *grand challenges* to be addressed in a future with mor
 | [https://www.edx.org/](https://www.edx.org/) | edX |
 | [https://www.teachai.org/](https://www.teachai.org/) | TeachAI |
 | [https://www.doe.mass.edu/&#8203;frameworks/&#8203;dlcs.pdf](https://www.doe.mass.edu/frameworks/dlcs.pdf) | *Massachusetts Curriculum Framework - Digital Literacy and Computer Science K-12* (2016) |
+| [https://www.unesco.org/&#8203;sites/&#8203;default/&#8203;files/&#8203;medias/&#8203;fichiers/&#8203;2024/&#8203;07/&#8203;UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf](https://www.unesco.org/sites/default/files/medias/fichiers/2024/07/UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf) | UNESCO *Draft AI competency frameworks for teachers and for school students* |
+| [https://kaporfoundation.org/&#8203;wp-content/&#8203;uploads/&#8203;2024/&#8203;01/&#8203;Responsible-AI-Guide-Kapor-Foundation.pdf](https://kaporfoundation.org/wp-content/uploads/2024/01/Responsible-AI-Guide-Kapor-Foundation.pdf) | Kapor Foundation *Responsible AI and Tech Justice: A Guide for K-12 Education* |
 | [https://www.linkedin.com/&#8203;pulse/&#8203;new-interview-daniela-rus-our-bright-future-robots-&#8203;arik-korman-murpc](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc) | *Daniela Rus on Our Bright Future with Robots* (2024) |
 
 #robotics #ai
