@@ -2,15 +2,15 @@
 category: Robotics
 ---
 
-I am a a robotics and computing educator and this note captures several of my observations about the book *The Heart and the Chip: Our Bright Future With Robots* ([ISBN 978-1-324-05023-0](https://isbn.nu/9781324050230)) by [Daniella Rus](https://danielarus.csail.mit.edu/) &amp; Gregory Mone.
+I am a robotics and computing educator and this note captures several of my observations about the book *The Heart and the Chip: Our Bright Future With Robots* ([ISBN 978-1-324-05023-0](https://isbn.nu/9781324050230)) by [Daniela Rus](https://danielarus.csail.mit.edu/) &amp; Gregory Mone.
 
 - There is a definition of a robot on p. 13 and it comports with the definition towards which I always guided my students with a [*Is this a robot?*](https://docs.google.com/document/d/13irVOPcPFg7OvfBycZw4OXjkR905275ue2saTuAY-Vo/) activity each semester: 'A robot is a programmable mechanical device that takes input from its surroundings, processes that information, then takes physical action in response to that input' that engages in the 'sense - think - act' loop.
-- Daniella Rus is a roboticist, so much of the book is about robots (dreams / reality / responsibility), but it is also largely about artificial intelligence (AI) and its application to physical computing and robotics and the challenges we face in its ubiquitous adoption.
-- Daniella Rus is a *bone fide* nerd. In typical MIT fashion &mdash; and going against all advice for encouraging young women in engineering &mdash; she invokes comic books, science fiction, and sci-fi movies in many of her examples of robotics and AI.
-- Daniella Rus is the *Director of [MIT CSAIL](https://csail.mit.edu/)* and, as such, has been involved in many inventions, has worked on many interesting projects, has taught many accomplished students, and knows tons of experts in many fields. She liberally sprinkles illustrative anecdotes with their names, research, and impact throughout the narrative. They are conveniently all listed in the afternotes.
+- Daniela Rus is a roboticist, so much of the book is about robots (dreams / reality / responsibility), but it is also largely about artificial intelligence (AI) and its application to physical computing and robotics and the challenges we face in its ubiquitous adoption.
+- Daniela Rus is a *bone fide* nerd. In typical MIT fashion &mdash; and going against all advice for encouraging young women in engineering &mdash; she invokes comic books, science fiction, and sci-fi movies in many of her examples of robotics and AI.
+- Daniela Rus is the *Director of [MIT CSAIL](https://csail.mit.edu/)* and, as such, has been involved in many inventions, has worked on many interesting projects, has taught many accomplished students, and knows tons of experts in many fields. She liberally sprinkles illustrative anecdotes with their names, research, and impact throughout the narrative. They are conveniently all listed in the afternotes.
 - Rus is fundamentally a techno-optimist, so she argues *against* the [robot apocalypse](https://what-if.xkcd.com/5/) and *for* the enhancement of the human condition through robotics &mdash; where the damaging effects of greedy people or trolls are considered addressable problems. 
 
-**I hope you read [*The Heart and the Chip: Our Bright Future With Robots*](https://isbn.nu/9781324050230)!** These notes are only *my* summary and all in-line quotations are from the book.
+**I hope you read [*The Heart and the Chip: Our Bright Future With Robots*](https://isbn.nu/9781324050230)!** These notes are only *my* summary and all in-line quotations are from the book, &copy; 2024, included under [fair use](https://arc.net/l/quote/kyaspcdc).
 
 # Book
 
@@ -207,6 +207,8 @@ Chapter 17 lists several *grand challenges* to be addressed in a future with mor
 | [https://www.unesco.org/&#8203;sites/&#8203;default/&#8203;files/&#8203;medias/&#8203;fichiers/&#8203;2024/&#8203;07/&#8203;UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf](https://www.unesco.org/sites/default/files/medias/fichiers/2024/07/UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf) | UNESCO *Draft AI competency frameworks for teachers and for school students* |
 | [https://kaporfoundation.org/&#8203;wp-content/&#8203;uploads/&#8203;2024/&#8203;01/&#8203;Responsible-AI-Guide-Kapor-Foundation.pdf](https://kaporfoundation.org/wp-content/uploads/2024/01/Responsible-AI-Guide-Kapor-Foundation.pdf) | Kapor Foundation *Responsible AI and Tech Justice: A Guide for K-12 Education* |
 | [https://www.linkedin.com/&#8203;pulse/&#8203;new-interview-daniela-rus-our-bright-future-robots-&#8203;arik-korman-murpc](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc) | *Daniela Rus on Our Bright Future with Robots* (2024) |
+
+I have additional notes on the authors' next book [TheMind'sMirror](obsidian/TheMind'sMirror.md).
 
 #robotics #ai
 <style>h1 { color: rebeccapurple; }</style>
