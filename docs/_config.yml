@@ -87,6 +87,9 @@ author:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/dcpetty"
+    - label: "BY-NC-SA"
+      icon: "fab fa-fw fa-creative-commons"
+      url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 
 footer:
   links: # All links changed.
@@ -99,9 +102,9 @@ footer:
     - label: "CV"
       icon: "fas fa-fw fa-info"
       url: "https://dcpetty.dev/cv"
-    - label: "LinkedIn"	# added
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://linkedin.com/in/dcpetty"
+    - label: "BY-NC-SA"
+      icon: "fab fa-fw fa-creative-commons"
+      url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 
 defaults:
   # _posts
