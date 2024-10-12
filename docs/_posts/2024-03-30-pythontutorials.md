@@ -1,7 +1,7 @@
 ---
 title: "A list of possible introductory Python tutorials"
 date: 2024-03-30 20:55:39
-last_modified_at: 2024-09-03 09:12:08
+last_modified_at: 2024-10-11 20:04:34
 show_date: true
 permalink: /education/pythontutorials/
 tags:
@@ -45,6 +45,7 @@ These Python tutorials were suggested by numerous K-12 computing educators and a
 - [https://www.graderthan.com/workspace](https://www.graderthan.com/workspace) *Grader Than Workspace* is a zero-config VSCode IDE in your browser with Jupyter Notebook support for students from grade 6 to college &mdash; including a complete debugger, interactive lessons, and coding exercises for Python. (costs)
 - [https://groklearning.com/courses/#technology=python&topic=programming](https://groklearning.com/courses/#technology=python&topic=programming) *Grok Academy* has tutorials in Python &mdash; as well as data science, cybersecurity, networking, *etc.*
 - [https://education.minecraft.net/en-us/resources/computer-science-subject-kit/python-101](https://education.minecraft.net/en-us/resources/computer-science-subject-kit/python-101) Python 101 with [MakeCode](https://www.microsoft.com/en-us/makecode). 'Start coding Python in Minecraft with MakeCode! Learn the basics of Python, including syntax, data types, variables, conditionals, 'for' and conditional loops, lists and functions.'
+- [https://projectstem.org/high-school/cs-fundamentals](https://projectstem.org/high-school/cs-fundamentals) *Project STEM* '&hellip;collaborates with Amazon to bring computer science to students nationwide.' ([apply](https://form.jotform.com/220397891133156))
 - A three-part tutorial sequence:
 1. [https://hourofpython.trinket.io/a-visual-introduction-to-python#/welcome/an-hour-of-code](https://hourofpython.trinket.io/a-visual-introduction-to-python#/welcome/an-hour-of-code) An *Hour of Python* using Python `turtle`. (Another fun Python `turtle` activity: [*Draw a Star*](https://colab.research.google.com/drive/18d6hSO6Y3DYqVZbV2yHJfiVjN-zxfVJt) in a [Google Colab Notebook](https://colab.research.google.com/).)
 1. [https://earsketch.gatech.edu/earsketch2/](https://earsketch.gatech.edu/earsketch2/) Explore the *Curriculum* pane on the *Earsketch* site.
