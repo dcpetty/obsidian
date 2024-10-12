@@ -152,7 +152,9 @@ On the future of education she finishes the chapter with:
 
 #### AI challenges
 
-Chapter 16 on [*computational education*](#computational-education) brings up challenges to K-12 educators everywhere in the age of generative AI: What specifically must students know and be able to do with respect to all the forms of AI?
+Chapter 16 on [*computational education*](#computational-education) brings up challenges to K-12 educators everywhere in the age of generative AI.
+
+Below are questions I am considering on what *specifically* students must know and be able to do with respect to all the forms of AI.
 
 - **Is AI a tool?** AI in all its forms clearly *is* a powerful tool. *Teaching with AI* is mostly about using that tool. Since the field is changing so rapidly, it will be a challenge for educators and students to keep current. Further, learning to code with ML &amp; AI libraries ([like](https://arc.net/l/quote/mvbczqyg) TensorFlow, PyTorch, MXNet, and scikit-learn) may be too focussed on vocational skills rather than generally applicable principles.
 - **Is AI a computational technique?** Understanding AI's power requires an understanding of sophisticated mathematics and computing. *Teaching about AI* sufficient to implement some ML &amp; AI algorithms may focus on the trees at the expense of the entire forest.
@@ -163,6 +165,8 @@ Chapter 16 on [*computational education*](#computational-education) brings up ch
 	- The Algorithmic Justice League states:
 
 <blockquote><a href="https://www.ajlunited.org/learn-more">AJL’s mission</a> is to raise public awareness about the impacts of AI, equip advocates with resources to bolster campaigns, build the voice and choice of the most impacted communities, and galvanize researchers, policymakers, and industry practitioners to prevent AI harms.</blockquote>
+
+The [UNESCO AI competency framework](https://unesco.org/en/digital-education/artificial-intelligence)) documents have now been released in full form for [teachers](https://unesdoc.unesco.org/ark:/48223/pf0000391104.locale=en) and [students](https://unesdoc.unesco.org/ark:/48223/pf0000391105.locale=en).
 
 More [TK](https://en.wikipedia.org/wiki/To_come_(publishing))&hellip;
 
