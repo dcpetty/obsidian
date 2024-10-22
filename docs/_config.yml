@@ -26,8 +26,15 @@ search: true
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 kramdown:
-  syntax_highlighter: rouge
+  input: GFM
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
 remote_theme: mmistakes/minimal-mistakes
 # Outputting
 permalink: /:categories/:title/

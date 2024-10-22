@@ -4,7 +4,7 @@ In connecting the [Monk Makes Plant Monitor](https://monkmakes.com/pmon) to a [`
 
 # Code
 
-```Python
+```python
 # Imports go at the top
 from microbit import *
 

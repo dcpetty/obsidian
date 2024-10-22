@@ -1,7 +1,7 @@
 ---
 title: "Monk Makes Plant Monitor"
 date: 2024-10-20 18:56:13
-last_modified_at: 2024-10-21 10:31:35
+last_modified_at: 2024-10-22 16:50:04
 show_date: true
 permalink: /microbit/monkmakesplantmonitor/
 toc: true
@@ -11,7 +11,7 @@ In connecting the [Monk Makes Plant Monitor](https://monkmakes.com/pmon) to a [`
 
 # Code
 
-```Python
+```python
 # Imports go at the top
 from microbit import *
 
