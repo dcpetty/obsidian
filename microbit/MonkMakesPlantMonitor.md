@@ -1,6 +1,8 @@
 # Monk Makes Plant Monitor
 
-In connecting the [Monk Makes Plant Monitor](https://monkmakes.com/pmon) to a [`micro:bit`](https://microbit-micropython.readthedocs.io/en/v2-docs/) using [`micro:bit` Python](https://microbit.org/get-started/user-guide/python-editor/) over a serial connection, there are several assumptions.
+In connecting the [Monk Makes Plant Monitor](https://monkmakes.com/pmon) (MMPM) to a [`micro:bit`](https://microbit-micropython.readthedocs.io/en/v2-docs/) using [`micro:bit` Python](https://microbit.org/get-started/user-guide/python-editor/) over a serial connection, there are several assumptions.
+
+- The MMPM communicates over a two-way serial link at 9600bps, N81 protocol on two unused pins. This code assumes TX on `pin8` and RX on `pin9`.
 
 # Code
 

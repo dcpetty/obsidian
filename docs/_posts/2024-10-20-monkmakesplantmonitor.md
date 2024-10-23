@@ -1,13 +1,15 @@
 ---
 title: "Monk Makes Plant Monitor"
 date: 2024-10-20 18:56:13
-last_modified_at: 2024-10-23 08:56:23
+last_modified_at: 2024-10-23 18:19:29
 show_date: true
 permalink: /microbit/monkmakesplantmonitor/
 toc: true
 toc_sticky: true
 ---
-In connecting the [Monk Makes Plant Monitor](https://monkmakes.com/pmon) to a [`micro:bit`](https://microbit-micropython.readthedocs.io/en/v2-docs/) using [`micro:bit` Python](https://microbit.org/get-started/user-guide/python-editor/) over a serial connection, there are several assumptions.
+In connecting the [Monk Makes Plant Monitor](https://monkmakes.com/pmon) (MMPM) to a [`micro:bit`](https://microbit-micropython.readthedocs.io/en/v2-docs/) using [`micro:bit` Python](https://microbit.org/get-started/user-guide/python-editor/) over a serial connection, there are several assumptions.
+
+- The MMPM communicates over a two-way serial link at 9600bps, N81 protocol on two unused pins. This code assumes TX on `pin8` and RX on `pin9`.
 
 # Code
 
@@ -62,10 +64,10 @@ while True:
 
 | Link | Description |
 | --- | --- |
-| [https://monkmakes.com/](https://monkmakes.com/) | 'Founded in 2013, Monk Makes Ltd designs and manufacturers a wide range of electronics kits and circuit boards from its base in the North West of England.' |
-| [https://monkmakes.com/pmon](https://monkmakes.com/pmon) | Plant Monitor website |
-| [https://monkmakes.com/downloads/datasheet_plant_monitor.pdf](https://monkmakes.com/downloads/datasheet_plant_monitor.pdf) | Plant Monitor datasheet |
-| [https://github.com/monkmakes/plant_monitor_firmware](https://github.com/monkmakes/plant_monitor_firmware) | Plant Monitor firmware |
-| [https://tech.microbit.org/hardware/edgeconnector/](https://tech.microbit.org/hardware/edgeconnector/) | micro:bit pinouts |
-| [https://microbit-micropython.readthedocs.io/en/v2-docs/uart.html](https://microbit-micropython.readthedocs.io/en/v2-docs/uart.html) | micro:bit UART |
-| [https://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny1614-16-17-DataSheet-DS40002204A.pdf](https://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny1614-16-17-DataSheet-DS40002204A.pdf) | ATTiny 1614 — the µcontroller |
+| [https://monkmakes.com/&#8203;](https://monkmakes.com/) | 'Founded in 2013, Monk Makes Ltd designs and manufacturers a wide range of electronics kits and circuit boards from its base in the North West of England.' |
+| [https://monkmakes.com/&#8203;pmon](https://monkmakes.com/pmon) | Plant Monitor website |
+| [https://monkmakes.com/&#8203;downloads/&#8203;datasheet_plant_monitor.pdf](https://monkmakes.com/downloads/datasheet_plant_monitor.pdf) | Plant Monitor datasheet |
+| [https://github.com/&#8203;monkmakes/&#8203;plant_monitor_firmware](https://github.com/monkmakes/plant_monitor_firmware) | Plant Monitor firmware |
+| [https://tech.microbit.org/&#8203;hardware/&#8203;edgeconnector/&#8203;](https://tech.microbit.org/hardware/edgeconnector/) | micro:bit pinouts |
+| [https://microbit-micropython.readthedocs.io/&#8203;en/&#8203;v2-docs/&#8203;uart.html](https://microbit-micropython.readthedocs.io/en/v2-docs/uart.html) | micro:bit UART |
+| [https://ww1.microchip.com/&#8203;downloads/&#8203;en/&#8203;DeviceDoc/&#8203;ATtiny1614-16-17-DataSheet-DS40002204A.pdf](https://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny1614-16-17-DataSheet-DS40002204A.pdf) | ATTiny 1614 — the µcontroller |
