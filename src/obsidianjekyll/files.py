@@ -191,9 +191,9 @@ class Files(object):
         for match in double_re.finditer(fixed):
             old_link = match.groups()[2]
             uri = match.groups()[3]
-            new_link = f"[{uri}]({uri})"
+            new_link = f"[{re.sub(r'(?<!/)/(?!/)', r'/&#8203;', uri)}]({uri})"
             fixed = fixed.replace(old_link, new_link)
-            # logger.debug(f"fixed '[[': {fixed.strip()}")
+            #logger.info(f"fixed '[[': {fixed.strip()}")
 
         return fixed
 
