@@ -1,2 +1,2 @@
 blockquote { font-style: inherit; border-left-width: thin; }
-.highlight { font-size: small; }
+.highlight, .rouge-code { font-size: small; }
