@@ -1,7 +1,7 @@
 ---
 title: "Monk Makes Plant Monitor"
 date: 2024-10-20 18:56:13
-last_modified_at: 2024-10-26 10:14:36
+last_modified_at: 2024-10-26 10:19:17
 show_date: true
 permalink: /microbit/monkmakesplantmonitor/
 toc: true
@@ -89,6 +89,7 @@ while True:
 | --- | --- |
 | [https://monkmakes.com/&#8203;](https://monkmakes.com/) | 'Founded in 2013, Monk Makes Ltd designs and manufacturers a wide range of electronics kits and circuit boards from its base in the North West of England.' |
 | [https://monkmakes.com/&#8203;pmon](https://monkmakes.com/pmon) | Plant Monitor website |
+| [https://www.adafruit.com/&#8203;product/&#8203;5587](https://www.adafruit.com/product/5587) | Plant Monitor available at [adafruit](https://www.adafruit.com/) |
 | [https://monkmakes.com/&#8203;downloads/&#8203;datasheet_plant_monitor.pdf](https://monkmakes.com/downloads/datasheet_plant_monitor.pdf) | Plant Monitor datasheet |
 | [https://github.com/&#8203;monkmakes/&#8203;plant_monitor_firmware](https://github.com/monkmakes/plant_monitor_firmware) | Plant Monitor firmware |
 | [https://tech.microbit.org/&#8203;hardware/&#8203;edgeconnector/&#8203;](https://tech.microbit.org/hardware/edgeconnector/) | micro:bit pinouts |
