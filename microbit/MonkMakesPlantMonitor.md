@@ -4,8 +4,8 @@ This documents a [Python](https://www.python.org/community/microbit/) library fo
 
 # Assumptions
 
-- The MMPM communicates over a two-way serial link at 9600bps, N81 protocol on two unused pins. This code assumes TX on `pin8` and RX on `pin9`.
-- In order to use the on-line serial terminal that, '&hellip;shows errors and other output from the program running on your micro:bit' so the '&hellip;program can print messages using the `print` function,' the [UART](https://microbit-micropython.readthedocs.io/en/v2-docs/uart.html) must be set to its default settings with `uart.init(115200)`. *However*, the MMPM also communicates serially using the UART, so it must be initialized before use.
+- The MMPM communicates over a two-way serial link at 9600bps, N81 protocol on two unused pins. This code assumes TX on `pin8` and RX on `pin9`. (The only pins on a [micro:bit v2](https://tech.microbit.org/hardware/edgeconnector/) that are unused for other micro:bit functions are `pin0`, `pin1`, `pin2`, `pin8`, `pin9`, and `pin16`.)
+- In order to use the micro:bit on-line serial terminal that, '&hellip;shows errors and other output from the program running on your micro:bit' so the '&hellip;program can print messages using the `print` function,' the [UART](https://microbit-micropython.readthedocs.io/en/v2-docs/uart.html) must be set to its default settings with `uart.init(115200)`. *However*, the MMPM also communicates serially using the UART, so it must also be initialized before use.
 - The three commands used to read the three sensors are `'h'`, `'t'`, and `'w'`. There are other commands (`'j'`, `'L'`, `'l'`, and `'v'`) that are unused by this library. The command summary is:
 
 | Command | Delay | Units | Notes |
