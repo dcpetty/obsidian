@@ -1,8 +1,28 @@
 # Monk Makes Plant Monitor
 
-In connecting the [Monk Makes Plant Monitor](https://monkmakes.com/pmon) (MMPM) to a [`micro:bit`](https://microbit-micropython.readthedocs.io/en/v2-docs/) using [`micro:bit` Python](https://microbit.org/get-started/user-guide/python-editor/) over a serial connection, there are several assumptions.
+This documents a [Python](https://www.python.org/community/microbit/) library for the [Monk Makes Plant Monitor](https://monkmakes.com/pmon) (MMPM) connected to a BBC [`micro:bit`](https://microbit-micropython.readthedocs.io/en/v2-docs/) through the [`micro:bit` Python Editor](https://microbit.org/get-started/user-guide/python-editor/) over a serial connection.
+
+# Assumptions
 
 - The MMPM communicates over a two-way serial link at 9600bps, N81 protocol on two unused pins. This code assumes TX on `pin8` and RX on `pin9`.
+- In order to use the on-line serial terminal that, '&hellip;shows errors and other output from the program running on your micro:bit' so the '&hellip;program can print messages using the `print` function,' the [UART](https://microbit-micropython.readthedocs.io/en/v2-docs/uart.html) must be set to its default settings with `uart.init(115200)`. *However*, the MMPM also communicates serially using the UART, so it must be initialized before use.
+- The three commands used to read the three sensors are `'h'`, `'t'`, and `'w'`. There are other commands (`'j'`, `'L'`, `'l'`, and `'v'`) that are unused by this library. The command summary is:
+
+| Command | Delay | Units | Notes |
+| :---: | :---: | :---: | --- |
+| `'h'` | 100ms | % &#xb1; 2% | relative humidity |
+| `'t'` | 100ms | &#xb0;C | temperature |
+| `'w'` | 1000ms | % | moisture |
+
+- The connector J3 has 5 connections, both with clippable through-hole connections and 0.1" pin header. The pins are:
+
+| Pin | Signal | I/O | Notes |
+| :---: | :---: | :---: | --- |
+| 1 | `PA6/D2/DAC` | O | analog moisture (25mV / %) |
+| 2 | `TxD` | O | transmit data |
+| 3 | `RxD` | I | receive data |
+| 4 | `+3V` | +V | +3V |
+| 5 | `GND` | &#x23da; | ground |
 
 # Code
 
@@ -10,7 +30,7 @@ In connecting the [Monk Makes Plant Monitor](https://monkmakes.com/pmon) (MMPM) 
 # Imports go at the top
 from microbit import *
 
-delay, buffer = 10, ''
+delay= 10
 pm_init = lambda: uart.init(9600, 8, None, 1, tx=pin8, rx=pin9)
 py_init = lambda: uart.init(115200)
 
@@ -18,24 +38,27 @@ def read_data(delay=delay):
     """Returns a dictionary with data readings of humidity, temperature, 
     and moisture read over a serial connection from a Monk Makes Plant 
     Monitor. An example return is: {'h': 48.43, 'w': 38.0, 't': 23.56}. 
-    The value types will be float, unless a ValueError is generated from 
-    the uart.readline text. UART is set to 9600 8N1 on pins 8 & 9."""
-    res, ret = dict(), ''
+    The value types will be float. If a ValueError is generated from 
+    the uart.readline text, the commands are repeated until all results
+    are good. The UART is set to 9600 8N1 on pins 8 & 9."""
     pm_init()
-    # Process commands for humidity, temperature, and wetness
-    for cmd in 'htw':
-        uart.write(cmd + '\n')
-        sleep(max(100,delay))   # magic number to allow response
-        while not ret:
-            ret = uart.readline()
-        # Expect ret to be of the form 'h=48.43\n', otherwise ValueError.
-        try:
-            key, val = str(ret, 'utf-8').strip().split('=')
-            res[key], ret = float(val), ''
-        except ValueError as e:
-            res[cmd], ret = e, ''
+    res, ret = dict(), ''
+    # Process 'h', 't', & 'w' commands until all responses are float.
+    while not(res and all(type(val) is float for val in res.values())):
+        # Process commands for humidity, temperature, and wetness.
+        for cmd, slp in {'h': 100, 't': 100, 'w': 1000}.items():
+            uart.write(cmd)
+            sleep(max(slp, delay))   # slp response time from datasheet
+            while not ret:
+                ret = uart.readline()
+            # ret must be of the form 'h=48.43\n', otherwise ValueError.
+            try:
+                key, val = str(ret, 'utf-8').strip().split('=')
+                res[key], ret = float(val), ''
+            except ValueError as e:
+                res[cmd], ret = e, ''
     sleep(delay)
-    return(res)
+    return res
 
 def echo_data(data, delay=delay):
     """Setup UART to default (115200) and print data."""
@@ -64,3 +87,4 @@ while True:
 | [[https://tech.microbit.org/hardware/edgeconnector/]] | micro:bit pinouts |
 | [[https://microbit-micropython.readthedocs.io/en/v2-docs/uart.html]] | micro:bit UART |
 | [[https://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny1614-16-17-DataSheet-DS40002204A.pdf]] | ATTiny 1614 — the µcontroller |
+| [[https://docs.python.org/3.4/]] | Python 3.4 documentation |
