@@ -4,7 +4,7 @@ This documents [Python](https://www.python.org/community/microbit/) example code
 
 # Assumptions
 
-- This example code uses the [`micro:bit` Python NeoPixel](https://microbit-micropython.readthedocs.io/en/v2-docs/neopixel.html) library with initialization `np = neopixel.NeoPixel(pin2, 12)` to initialize $12$ NeoPixels connected to `DI` on `pin2`. The NeoPixel library works on `pin0`, `pin1`, or `pin2`. `pin2` is the nearest clippable `micro:bit` pin to the `3V` and `GND` clippable pins.
+- This example code uses the [micro:bit Python NeoPixel](https://microbit-micropython.readthedocs.io/en/v2-docs/neopixel.html) library with initialization `np = neopixel.NeoPixel(pin2, 12)` to initialize $12$ NeoPixels connected to `DI` on `pin2`. The NeoPixel library works on `pin0`, `pin1`, or `pin2`. `pin2` is the nearest clippable micro:bit pin to the `3V` and `GND` clippable pins.
 - The *50mm 12 NeoPixel (WS2812B) Ring* mounting holes are 2mm diameter on the corners of a 32mm square.
 - The *50mm 12 NeoPixel (WS2812B) Ring* electrical connector has 4 solder-pad connections that are on 0.1" centers and are ≈2.54mm × ≈1.27mm. The pins are:
 
@@ -17,7 +17,6 @@ This documents [Python](https://www.python.org/community/microbit/) example code
 
 ![](obsidian/assets/obsidian/Pasted%20image%2020241103202007.png) 
 
-- [[https://photos.app.goo.gl/hWqZB8di2HHBCWo19]] An image of a *50mm 12 NeoPixel (WS2812B) Ring* with soldered 0.1" [headers](https://adafruit.com/product/400) and wired through a [KS0360 Keyestudio Sensor Shield V2](https://wiki.keyestudio.com/Ks0360_Keyestudio_Sensor_Shield_V2_for_BBC_micro:bit).
 - NeoPixels can take RGB values on $[0, 255]$, but saturate at brightness levels $> 30$. Limiting each color to $30$ also limits the current needed to $\approx 12\%$ of the $60$ ma quoted as the maximum for a [WS2812B](https://universal-solder.ca/downloads/WS2812B.pdf) NeoPixel (or $7$ ma).
 - To limit the RGB color values to $< 30$ the example code uses the `compress` function to compress values on $[0, 1)$ to generate integers up to a maximum value on an exponential scale such that smaller values cover a larger part of the range and larger values cover a smaller part of the range. This is shown on a [Desmos](https://www.desmos.com/calculator/gdcw7rndv2) graph.
 - The example code includes `random_lights` and `chase_lights` functions. 
@@ -115,6 +114,8 @@ while True:
 | --- | --- |
 | [[https://www.desmos.com/calculator/gdcw7rndv2]] | [Desmos](https://www.desmos.com/) exponential compression graph |
 | [[https://universal-solder.ca/12-led-ring-ws2812b-rgb-addressable-50mm/)]] | 50mm 12 NeoPixel (WS2812B) Ring available from [Universal Solder](https://universal-solder.ca/) |
+| [[https://photos.app.goo.gl/hWqZB8di2HHBCWo19]] | A *50mm 12 NeoPixel (WS2812B) Ring* with soldered 0.1" [headers](https://adafruit.com/product/400) and wired through a [KS0360 Keyestudio Sensor Shield V2](https://wiki.keyestudio.com/Ks0360_Keyestudio_Sensor_Shield_V2_for_BBC_micro:bit) |
+| [[https://photos.app.goo.gl/zHPtcBgjWh99wYCZ6]] | micro:bit examples videos (NeoPixel Ring &amp; Snake) |
 | [[https://tech.microbit.org/hardware/edgeconnector/]] | micro:bit pinouts |
 | [[https://microbit-micropython.readthedocs.io/en/v2-docs/neopixel.html]] | micro:bit Python NeoPixel |
 | [[https://docs.python.org/3.4/]] | Python 3.4 documentation |
