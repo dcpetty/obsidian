@@ -22,7 +22,7 @@ This documents a [Python](https://www.python.org/community/microbit/) library fo
 | 2 | `TxD` | O | transmit data |
 | 3 | `RxD` | I | receive data |
 | 4 | `+3V` | +V | +3V |
-| 5 | `GND` | &#x23da; | ground |
+| 5 | `GND` | &#x23da; | 0V |
 
 # Code
 

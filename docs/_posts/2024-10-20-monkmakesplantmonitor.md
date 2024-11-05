@@ -1,7 +1,7 @@
 ---
 title: "Monk Makes Plant Monitor"
 date: 2024-10-20 18:56:13
-last_modified_at: 2024-10-26 14:23:43
+last_modified_at: 2024-10-26 14:26:26
 show_date: true
 permalink: /microbit/monkmakesplantmonitor/
 tags:
@@ -33,7 +33,7 @@ This documents a [Python](https://www.python.org/community/microbit/) library fo
 | 2 | `TxD` | O | transmit data |
 | 3 | `RxD` | I | receive data |
 | 4 | `+3V` | +V | +3V |
-| 5 | `GND` | &#x23da; | ground |
+| 5 | `GND` | &#x23da; | 0V |
 
 # Code
 
