@@ -12,7 +12,7 @@ This documents [Python](https://www.python.org/community/microbit/) example code
 | :---: | :---: | :---: | --- |
 | 1 | `DI` | I | DI (input) |
 | 2 | `5V` | +V | +5-7V |
-| 5 | `GND` | &#x23da; | 0V |
+| 3 | `GND` | &#x23da; | 0V |
 | 4 | `DO` | O | DO (output to further NeoPixel strands) |
 
 ![](obsidian/assets/obsidian/Pasted%20image%2020241103202007.png) 
