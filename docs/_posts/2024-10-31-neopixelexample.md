@@ -1,7 +1,7 @@
 ---
 title: "NeoPixel example"
 date: 2024-10-31 21:16:42
-last_modified_at: 2024-11-04 21:43:08
+last_modified_at: 2024-11-04 23:58:41
 show_date: true
 permalink: /microbit/neopixelexample/
 tags:
@@ -32,7 +32,7 @@ This documents [Python](https://www.python.org/community/microbit/) example code
 - To limit the RGB color values to $< 30$ the example code uses the `compress` function to compress values on $[0, 1)$ to generate integers up to a maximum value on an exponential scale such that smaller values cover a larger part of the range and larger values cover a smaller part of the range. This is shown on a [Desmos](https://www.desmos.com/calculator/gdcw7rndv2) graph.
 - The example code includes `random_lights` and `chase_lights` functions.
 	- `random_lights` creates $12$ random colors with `compress`ed RGB color values $< 30$ then uses the unbiased Fisher-Yates  (aka Knuth) algorithm to shuffle them every `delay`ms.
-	- `chase_lights` creates $12$ colors scaled by $\frac{i}{12}$ for $i$ on $[\![ 0, 12 )\!)$ with `compress`ed RGB color values $< 30$ then rotates them every `delay`ms.
+	- `chase_lights` creates $12$ colors scaled by $\frac{i}{12}$ for $i$ on $[\negthinspace[ 0, 12 )\negthinspace)$ with `compress`ed RGB color values $< 30$ then rotates them every `delay`ms.
 - The example event loop sets random NeoPixels and shuffles them every `delay` ms until `button_a` is pressed, then sets chasing NeoPixels every `delay` ms until `button_a` is pressed, then repeats.
 
 # Code
