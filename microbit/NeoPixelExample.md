@@ -4,15 +4,25 @@ This documents [Python](https://www.python.org/community/microbit/) example code
 
 # Assumptions
 
-- XXX
-- The connector has 4 solder-pad connections, *32mmx32mm with 2.0mm diameter.* The pins are:
+- This example code uses the [`micro:bit` Python NeoPixel](https://microbit-micropython.readthedocs.io/en/v2-docs/neopixel.html) library with initialization `np = neopixel.NeoPixel(pin2, 12)` to initialize $12$ NeoPixels connected to `DI` on `pin2`. The NeoPixel library works on `pin0`, `pin1`, or `pin2`. `pin2` is the nearest clippable `micro:bit` pin to the `3V` and `GND` clippable pins.
+- The *50mm 12 NeoPixel (WS2812B) Ring* mounting holes are 2mm diameter on the corners of a 32mm square.
+- The *50mm 12 NeoPixel (WS2812B) Ring* electrical connector has 4 solder-pad connections that are on 0.1" centers and are ≈2.54mm × ≈1.27mm. The pins are:
 
 | Pin | Signal | I/O | Notes |
 | :---: | :---: | :---: | --- |
-| 1 | `DI` | I | DI ??? |
+| 1 | `DI` | I | DI (input) |
 | 2 | `5V` | +V | +5-7V |
 | 5 | `GND` | &#x23da; | 0V |
-| 4 | `DO` | DO | DO ??? |
+| 4 | `DO` | O | DO (output to further NeoPixel strands) |
+
+![](obsidian/assets/obsidian/Pasted%20image%2020241103202007.png)
+
+- NeoPixels can take RGB values on $[0, 255]$, but saturate at brightness levels $> 30$. Limiting each color to $30$ also limits the current needed to $\approx 12\%$ of the $60$ ma quoted as the maximum for a [WS2812B](https://universal-solder.ca/downloads/WS2812B.pdf) NeoPixel (or $7$ ma).
+- To limit the RGB color values to $< 30$ the example code uses the `compress` function to compress values on $[0, 1)$ to generate integers up to a maximum value on an exponential scale such that smaller values cover a larger part of the range and larger values cover a smaller part of the range. This is shown on a [Desmos](https://www.desmos.com/calculator/gdcw7rndv2) graph.
+- The example code includes `random_lights` and `chase_lights` functions. 
+	- `random_lights` creates $12$ random colors with `compress`ed RGB color values $< 30$ then uses the unbiased Fisher-Yates  (aka Knuth) algorithm to shuffle them every `delay`ms.
+	- `chase_lights` creates $12$ colors scaled by $\frac{i}{12}$ for $i$ on $[\![ 0, 12 )\!)$ with `compress`ed RGB color values $< 30$ then rotates them every `delay`ms.
+- The example event loop sets random NeoPixels and shuffles them every `delay` ms until `button_a` is pressed, then sets chasing NeoPixels every `delay` ms until `button_a` is pressed, then repeats.
 
 # Code
 
@@ -21,14 +31,16 @@ This documents [Python](https://www.python.org/community/microbit/) example code
 from microbit import *
 import math, neopixel, random
 
-np = neopixel.NeoPixel(pin0, 12)
+np = neopixel.NeoPixel(pin2, 12)
 n, delay, maximum = 12, 200, 30
 
-# https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-# The de-facto unbiased shuffle algorithm is the Fisher-Yates (aka Knuth) Shuffle. 
+# https://stackoverflow.com/a/2450976/17467335
+# The de-facto unbiased shuffle algorithm is the Fisher-Yates 
+# (aka Knuth) Shuffle. 
 # See https://github.com/coolaj86/knuth-shuffle. 
 def shuffle(array):
-    """Return array shuffled in place with the unbiased Fisher-Yates (aka Knuth) algorithm."""
+    """Return array shuffled in place with the unbiased Fisher-Yates 
+    (aka Knuth) algorithm."""
     current_index = len(array)
 
     # While there remain elements to shuffle...
@@ -39,14 +51,17 @@ def shuffle(array):
         current_index -= 1
     
         # And swap it with the current element.
-        array[current_index], array[random_index] = array[random_index], array[current_index]
+        array[current_index], array[random_index] = \
+            array[random_index], array[current_index]
 
     return array
 
 def compress(x, scale=1):
-    """Return x on [0, 1) exponentially compressed, scaled to scale, and floored."""
+    """Return x on [0, 1) exponentially compressed, scaled to scale, 
+    and floored."""
     # https://www.desmos.com/calculator/gdcw7rndv2
-    # The compression factor of 4 is good. It must be greater than e for color[j] > 0.
+    # The compression factor of 4 is good. It must be greater than e 
+    # for color[j] > 0.
     return int(math.exp(4 * (x - 1)) * scale)
     
 def random_lights(n=12, maximum=30):
@@ -59,7 +74,8 @@ def random_lights(n=12, maximum=30):
     return leds
 
 def chase_lights(rot, color=(102, 51, 153, ), n=12, maximum=30):
-    """Return n leds of color divided over n steps scaled by maximum rotated by rot."""
+    """Return n leds of color divided over n steps scaled by maximum 
+    rotated by rot."""
     leds = [tuple(), ] * n
     for i in range(len(leds)):
         scaled = [ compress(c / 255 * i / n, maximum) for c in color ]
@@ -70,7 +86,7 @@ def chase_lights(rot, color=(102, 51, 153, ), n=12, maximum=30):
 # Code in a 'while True:' loop repeats forever
 while True:
 
-    # Set random leds and shuffle every delay ms until button_a is pressed.
+    # Set random leds and shuffle every delay ms until button_a pressed.
     leds = random_lights(n, maximum)
     while not button_a.was_pressed():
         leds = shuffle(leds)
@@ -79,7 +95,7 @@ while True:
         np.show()
         sleep(delay)
 
-    # Set chasing leds every delay ms until button_a is pressed.
+    # Set chasing leds every delay ms until button_a pressed.
     chase = 0
     while not button_a.was_pressed():
         leds = chase_lights(chase, (0, 255, 0, ))   # chase green leds
@@ -96,9 +112,10 @@ while True:
 
 | Link | Description |
 | --- | --- |
+| [[https://www.desmos.com/calculator/gdcw7rndv2]] | [Desmos](https://www.desmos.com/) exponential compression graph |
 | [[https://universal-solder.ca/12-led-ring-ws2812b-rgb-addressable-50mm/)]] | 50mm 12 NeoPixel (WS2812B) Ring available from [Universal Solder](https://universal-solder.ca/) |
 | [[https://tech.microbit.org/hardware/edgeconnector/]] | micro:bit pinouts |
-| [[https://microbit-micropython.readthedocs.io/en/v2-docs/neopixel.html]] | micro:bit NeoPixel |
+| [[https://microbit-micropython.readthedocs.io/en/v2-docs/neopixel.html]] | micro:bit Python NeoPixel |
 | [[https://docs.python.org/3.4/]] | Python 3.4 documentation |
 
 #microbit #embedded #Python
