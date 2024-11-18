@@ -1,2 +1,7 @@
 blockquote { font-style: inherit; border-left-width: thin; }
 .highlight { font-size: small; }
+/* https://angel-rs.github.io/css-color-filter-generator/ */
+.fa-bluesky { filter: /* filter #000000 to #3a83f7 */
+  brightness(0) saturate(100%) invert(41%) sepia(88%) saturate(767%) 
+  hue-rotate(190deg) brightness(96%) contrast(103%);
+}
