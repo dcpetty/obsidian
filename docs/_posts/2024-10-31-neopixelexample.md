@@ -1,7 +1,7 @@
 ---
 title: "NeoPixel example"
 date: 2024-10-31 21:16:42
-last_modified_at: 2024-11-04 23:58:41
+last_modified_at: 2024-11-05 10:01:42
 show_date: true
 permalink: /microbit/neopixelexample/
 tags:
@@ -23,7 +23,7 @@ This documents [Python](https://www.python.org/community/microbit/) example code
 | :---: | :---: | :---: | --- |
 | 1 | `DI` | I | DI (input) |
 | 2 | `5V` | +V | +5-7V |
-| 5 | `GND` | &#x23da; | 0V |
+| 3 | `GND` | &#x23da; | 0V |
 | 4 | `DO` | O | DO (output to further NeoPixel strands) |
 
 ![](/obsidian/assets/obsidian/pasted-image-20241103202007.png)
