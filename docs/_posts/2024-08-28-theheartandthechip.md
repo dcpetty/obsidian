@@ -1,7 +1,7 @@
 ---
 title: "TheHeartAndTheChip"
 date: 2024-08-28 11:59:52
-last_modified_at: 2024-09-28 10:44:23
+last_modified_at: 2025-02-17 21:34:37
 show_date: true
 permalink: /theheartandthechip/
 tags:
@@ -167,7 +167,7 @@ Below are questions I am considering on what *specifically* students must know a
 
 - **Is AI a tool?** AI in all its forms clearly *is* a powerful tool. *Teaching with AI* is mostly about using that tool. Since the field is changing so rapidly, it will be a challenge for educators and students to keep current. Further, learning to code with ML &amp; AI libraries ([like](https://arc.net/l/quote/mvbczqyg) TensorFlow, PyTorch, MXNet, and scikit-learn) may be too focussed on vocational skills rather than generally applicable principles.
 - **Is AI a computational technique?** Understanding AI's power requires an understanding of sophisticated mathematics and computing. *Teaching about AI* sufficient to implement some ML &amp; AI algorithms may focus on the trees at the expense of the entire forest.
-- **Is AI literacy enough?** [https://teachai.org/](https://teachai.org/) lists aspects of *AI literacy*: understanding how AI works, using AI responsibly, recognizing its social and ethical impacts, &amp; understanding AI's potential benefits and risks and how to mitigate the risks. Teaching how to build and use ML &amp; AI models responsibly is a minimal framework for every K-12 student. A specific course in ML or AI will additionally have to teach *with AI* and *about AI* in some combination.
+- **Is AI literacy enough?** [https://teachai.org/&#8203;](https://teachai.org/) lists aspects of *AI literacy*: understanding how AI works, using AI responsibly, recognizing its social and ethical impacts, &amp; understanding AI's potential benefits and risks and how to mitigate the risks. Teaching how to build and use ML &amp; AI models responsibly is a minimal framework for every K-12 student. A specific course in ML or AI will additionally have to teach *with AI* and *about AI* in some combination.
 - **How can educators include the serious ethical questions posed by an AI-enabled future in their courses?** Ethical questions &mdash; like those in the *Computers and Society* ([CAS](https://www.doe.mass.edu/frameworks/dlcs.pdf#page=13)) sections of the *Massachusetts Curriculum Framework - Digital Literacy and Computer Science K-12* (2016) &mdash; typically get short shrift over other DLCS content. AI poses further ethical challenges concerning equity, bias, privacy, transparency.
 	- The UNESCO *[Draft AI competency frameworks for teachers and for school students](https://www.unesco.org/sites/default/files/medias/fichiers/2024/07/UNESCO-Draft-AI-competency-frameworks-for-teachers-and-school-students_0.pdf)* includes an *Ethics of AI* framework.
 	- The Kapor Foundation *[Responsible AI and Tech Justice: A Guide for K-12 Education](https://kaporfoundation.org/wp-content/uploads/2024/01/Responsible-AI-Guide-Kapor-Foundation.pdf)* proposes *justice-centered computing education* with six core components.
@@ -193,7 +193,7 @@ Chapter 17 lists several *grand challenges* to be addressed in a future with mor
 
 {% endcomment %}
 
-[![danielle rus gen ai image](https://media.licdn.com/dms/image/v2/D5612AQEPWUREfM_BUA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721983277056?e=1730937600&v=beta&t=WvMyP1AWV9CTrEWjVLw7NeZ_H5KAHyPVxUYh0RCpboY)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
+[![danielle rus gen ai image](https://media.licdn.com/dms/image/v2/D5612AQEPWUREfM_BUA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721983277056?e=1745452800&v=beta&t=LZMOZkfvBITwk2T8B_rHcOE5TQ3xXX7lOW8Ty5AA9aY)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
 
 # Links
 

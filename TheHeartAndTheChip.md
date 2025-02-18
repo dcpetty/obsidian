@@ -184,7 +184,7 @@ Chapter 17 lists several *grand challenges* to be addressed in a future with mor
 
 {% endcomment %}
 
-[![danielle rus gen ai image](https://media.licdn.com/dms/image/v2/D5612AQEPWUREfM_BUA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721983277056?e=1730937600&v=beta&t=WvMyP1AWV9CTrEWjVLw7NeZ_H5KAHyPVxUYh0RCpboY)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
+[![danielle rus gen ai image](https://media.licdn.com/dms/image/v2/D5612AQEPWUREfM_BUA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721983277056?e=1745452800&v=beta&t=LZMOZkfvBITwk2T8B_rHcOE5TQ3xXX7lOW8Ty5AA9aY)](https://www.linkedin.com/pulse/new-interview-daniela-rus-our-bright-future-robots-arik-korman-murpc/)
 
 # Links
 
