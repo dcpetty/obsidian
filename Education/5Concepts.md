@@ -11,7 +11,7 @@ category: Education
 
 ## Concepts
 
-To understand how to communicate with a computer through programming, neophytes and beginning students must master *Five programming-language concepts that (mostly) all programming languages (mostly) share*.
+To understand how to communicate with a computer through programming, neophytes and beginning students must master (at least) *five programming-language concepts that (mostly) all programming languages (mostly) share*.
 
 ### Sequence
 
