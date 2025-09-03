@@ -21,10 +21,12 @@ To understand how to communicate with a computer through programming, neophytes 
 
 ### Selection
 
-- The concept that computers can execute one of a number of statements  depending on a program's state. 
+- The concept that computers can execute one of a number of statements depending on a program's state. 
 - A *selection* is one of the [structured programming control structures](https://en.wikipedia.org/wiki/Structured_programming#Control_structures). 
 - A *selection* can be referred to as a *conditional (statement)* and is often represented by two mutually-exclusive sequence paths chosen based on a [Boolean](https://en.wikipedia.org/wiki/Boolean_data_type) (`true` or `false`) value. 
 - A common *selection* is an [`if`](https://en.wikipedia.org/wiki/Conditional_(computer_programming)#If%E2%80%94then(%E2%80%94else)) statement.
+
+> *Selection* is typified by program [branch](https://en.wikipedia.org/wiki/Branch_%28computer_science%29)es *forward* in the program *sequence*, because typically instructions may be skipped depending on the program's state.
 
 ### Iteration
 
@@ -32,6 +34,8 @@ To understand how to communicate with a computer through programming, neophytes 
 - *Iteration* is one of the [structured programming control structures](https://en.wikipedia.org/wiki/Structured_programming#Control_structures). 
 - An *iteration* can be referred to as a *loop*. 
 - Common *iteration*s are [`for` (count-controlled loop)](https://en.wikipedia.org/wiki/For_loop) and [`while` (condition-controlled loop)](https://en.wikipedia.org/wiki/While_loop) statements.
+
+> *Iteration* is typified by program [branch](https://en.wikipedia.org/wiki/Branch_%28computer_science%29)es *backward* in the program *sequence*, because typically instructions may be repeated depending on the program's state.
 
 ### Function
 
