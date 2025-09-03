@@ -43,7 +43,7 @@ To understand how to communicate with a computer through programming, neophytes 
 
 - The concept that named locations within a computer can be given values representing the [state](https://en.wikipedia.org/wiki/State_%28computer_science%29) of a program that can be: remembered from instruction to instruction, be retrieved, and be modified. 
 - A [*variable*](https://en.wikipedia.org/wiki/Variable_%28computer_science%29) varies, in that its value can change.
-- *Variable*s in programming superficially resemble, but may not directly correspond to the concept of variables in mathematics.
+- *Variable*s in programming superficially resemble, but may not directly correspond to the concept of [variable](https://en.wikipedia.org/wiki/Variable_%28mathematics%29) in mathematics.
 
 > Note: in [*declarative programming*](https://en.wikipedia.org/wiki/Declarative_programming) programs do not typically have side effects (mutable system state stored in variables). [Functional programming](https://en.wikipedia.org/wiki/Functional_programming), for example, aims to minimize or eliminate side effects. The *five programming-language concepts* described here are for typical [imperative programming](https://en.wikipedia.org/wiki/Imperative_programming) languages.
 
