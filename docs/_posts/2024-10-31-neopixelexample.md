@@ -1,7 +1,7 @@
 ---
 title: "NeoPixel example"
 date: 2024-10-31 21:16:42
-last_modified_at: 2024-11-05 10:01:42
+last_modified_at: 2025-06-06 16:17:03
 show_date: true
 permalink: /microbit/neopixelexample/
 tags:
@@ -124,7 +124,7 @@ while True:
 | Link | Description |
 | --- | --- |
 | [https://www.desmos.com/&#8203;calculator/&#8203;gdcw7rndv2](https://www.desmos.com/calculator/gdcw7rndv2) | [Desmos](https://www.desmos.com/) exponential compression graph |
-| [https://universal-solder.ca/&#8203;12-led-ring-ws2812b-rgb-addressable-50mm/&#8203;)](https://universal-solder.ca/12-led-ring-ws2812b-rgb-addressable-50mm/)) | 50mm 12 NeoPixel (WS2812B) Ring available from [Universal Solder](https://universal-solder.ca/) |
+| [https://universal-solder.ca/&#8203;12-led-ring-ws2812b-rgb-addressable-50mm/&#8203;](https://universal-solder.ca/12-led-ring-ws2812b-rgb-addressable-50mm/) | 50mm 12 NeoPixel (WS2812B) Ring available from [Universal Solder](https://universal-solder.ca/) |
 | [https://photos.app.goo.gl/&#8203;hWqZB8di2HHBCWo19](https://photos.app.goo.gl/hWqZB8di2HHBCWo19) | A *50mm 12 NeoPixel (WS2812B) Ring* with soldered 0.1" [headers](https://adafruit.com/product/400) and wired through a [KS0360 Keyestudio Sensor Shield V2](https://wiki.keyestudio.com/Ks0360_Keyestudio_Sensor_Shield_V2_for_BBC_micro:bit) |
 | [https://photos.app.goo.gl/&#8203;zHPtcBgjWh99wYCZ6](https://photos.app.goo.gl/zHPtcBgjWh99wYCZ6) | micro:bit examples videos (NeoPixel Ring &amp; Snake) |
 | [https://tech.microbit.org/&#8203;hardware/&#8203;edgeconnector/&#8203;](https://tech.microbit.org/hardware/edgeconnector/) | micro:bit pinouts |
